@@ -16,6 +16,11 @@ frontend/dist/
 frontend/.turbo/
 frontend/.vercel/
 
+# Admin Dashboard (Embedded Vite app)
+frontend/admin-dashboard/node_modules
+frontend/admin-dashboard/dist/
+frontend/admin-dashboard/.turbo/
+
 # Backend
 backend/venv/
 backend/env/

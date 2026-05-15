@@ -93,15 +93,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 <p className="text-sm text-muted-foreground">{project.impact}</p>
               </div>
             )}
-
-            {project.architecture && (
-              <div>
-                <h4 className="text-xs font-mono text-primary mb-2">Architecture Flow</h4>
-                <div className="p-3 rounded-md bg-secondary/50 font-mono text-xs text-muted-foreground overflow-x-auto">
-                  {project.architecture}
-                </div>
-              </div>
-            )}
           </div>
         </motion.div>
       </div>

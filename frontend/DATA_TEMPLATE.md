@@ -1,4 +1,4 @@
-# Data Template Guide
+[text](../../Billingsley-Senior-Design-Project/frontend)# Data Template Guide
 
 This skeleton contains placeholder data in `/frontend/lib/data.ts`. To customize your portfolio, replace the example entries with your own information.
 
