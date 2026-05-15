@@ -80,17 +80,52 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
-    title: "Job Title",
-    organization: "Company",
-    dates: "Start Date - End Date",
-    summary: "Summary",
+    title: "Junior Software and Data Associate",
+    organization: "JR Dallas Wealth Management",
+    dates: "Sept. 2025 – Present",
+    summary: "Designing and maintaining Excel-based databases while automating data processes and developing internal analysis tools.",
     bullets: [
-      "Responsibility 1",
-      "Responsibility 2",
-      "Responsibility 3",
-      "Responsibility 4"
+      "Designed and maintained Excel-based databases to manage client, account, and performance data across wealth management and retail divisions",
+      "Automated recurring data updates and validation scripts, improving data accuracy and reducing manual effort by 30%",
+      "Developed internal data analysis and visualization tools in Python and Excel, streamlining reporting for senior management"
     ],
-    skills: ["Skill 1", "Skill 2", "Skill 3", "Skill 4"]
+    skills: ["Python", "Excel", "SQL", "Data Analysis", "Database Design", "Automation", "Scripting", "Reporting"]
+  },
+  {
+    title: "AI Trainer",
+    organization: "Outlier AI",
+    dates: "May 2025 – Oct. 2025",
+    summary: "Designed and evaluated prompts for real-world web applications, creating 50+ web applications while comparing outputs from multiple LLMs.",
+    bullets: [
+      "Designed and evaluated prompts for 50+ real-world web applications, comparing outputs from 3+ large language models (LLMs) for accuracy, coherence, and usability",
+      "Built and refined HTML, React, and JavaScript-based responses as ground truth data to train and improve model reasoning and alignment",
+      "Contributed to model performance optimization by identifying edge cases and generating corrective outputs, enhancing system reliability across diverse user intents"
+    ],
+    skills: ["React", "JavaScript", "HTML", "LLM Evaluation", "Prompt Engineering", "Web Development", "LLM Training", "Data Labeling"]
+  },
+  {
+    title: "Teaching Assistant",
+    organization: "Southern Methodist University",
+    dates: "Aug. 2023 – May 2024",
+    summary: "Conducted weekly lab sessions and provided comprehensive feedback on assignments for computer science students learning C++.",
+    bullets: [
+      "Conducted weekly lab sessions to clarify complex computer science concepts and provide assistance to students learning C++",
+      "Graded 40+ assignments weekly and provided written feedback for 60+ students to support understanding of algorithmic concepts",
+      "Supported students' transition from Java to C++ by reinforcing foundational programming principles from previous courses"
+    ],
+    skills: ["C++", "Java", "Teaching", "Algorithms", "Data Structures", "Mentoring", "Technical Communication", "Code Review"]
+  },
+  {
+    title: "Data Associate",
+    organization: "Dialogue Institute Dallas",
+    dates: "Aug. 2023 – May 2024",
+    summary: "Conducted data collection and analysis to enhance community outreach, creating databases to manage event organization across the DFW area.",
+    bullets: [
+      "Conducted data collection and analysis to enhance community outreach and engagement at the Dialogue Institute in Dallas",
+      "Created a database with relevant individuals' information for event organization, targeting schools across all of the DFW area",
+      "Supported interfaith and intercultural dialogue events by managing large data sets and researching outreach strategies"
+    ],
+    skills: ["Data Analysis", "Database Design", "SQL", "Event Management", "Research", "Community Engagement", "Outreach", "Information Management"]
   }
 ]
 
