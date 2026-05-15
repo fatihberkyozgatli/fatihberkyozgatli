@@ -131,18 +131,32 @@ export const experiences: Experience[] = [
 
 export const leadership: LeadershipEntry[] = [
   {
-    title: "Organization Name",
-    organization: "Company",
-    role: "Role",
-    dates: "Start Date - Present",
-    summary: "Summary",
+    title: "Dialogue Society",
+    organization: "Southern Methodist University",
+    role: "Founder and President",
+    dates: "Aug. 2023 – May 2026",
+    summary: "Founded and led one of SMU's largest student organizations, securing significant university funding and sponsorships.",
     highlights: [
-      "Achievement 1",
-      "Achievement 2",
-      "Achievement 3",
-      "Achievement 4"
+      "Grew membership from 2 to 300+, making it one of SMU's largest student organizations",
+      "Secured $10K in university funding and sponsorships",
+      "Built a thriving community focused on dialogue and engagement across campus",
+      "Established organizational structure and leadership framework for sustainable growth"
     ],
-    impact: "Impact"
+    impact: "Transformed a concept into a 300+ member organization that became a flagship community initiative at SMU."
+  },
+  {
+    title: "Raindrop Dallas",
+    organization: "Raindrop Dallas",
+    role: "Mentor",
+    dates: "Aug. 2022 – Present",
+    summary: "Mentoring local high-school students through weekly sessions focused on STEM skills, college readiness, and scholarship applications.",
+    highlights: [
+      "Mentored local high-school students through weekly sessions focused on STEM skills, college readiness, and scholarship applications",
+      "Provided personalized guidance on academic pathways and career exploration in tech fields",
+      "Helped students develop technical skills and prepare for college entrance requirements",
+      "Supported scholarship application process and college transition planning"
+    ],
+    impact: "Empowered underrepresented high-school students to pursue STEM careers and higher education opportunities."
   }
 ]
 
