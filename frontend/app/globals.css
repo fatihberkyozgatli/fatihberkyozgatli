@@ -122,13 +122,12 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-  
-  /* Smooth scrolling */
   html {
+    @apply overflow-x-hidden;
     scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
   }
   
   /* Custom scrollbar for dark theme */

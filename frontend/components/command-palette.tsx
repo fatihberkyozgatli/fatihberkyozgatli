@@ -15,10 +15,10 @@ import {
   Users,
   Clock,
   Search,
+  Calendar,
+  Award,
   Code,
-  Brain,
-  Cpu,
-  Image,
+  Briefcase,
 } from "lucide-react"
 import { commands } from "@/lib/data"
 
@@ -29,16 +29,18 @@ interface CommandPaletteProps {
 
 const iconMap: Record<string, React.ReactNode> = {
   "Open Projects": <FolderOpen className="w-4 h-4" />,
-  "Open Billingsley Case Study": <Code className="w-4 h-4" />,
-  "Open Image2Surface Case Study": <Image className="w-4 h-4" />,
-  "Open C++ Search Engine Case Study": <Cpu className="w-4 h-4" />,
-  "Open Sentiment Analyzer Case Study": <Brain className="w-4 h-4" />,
   "View Resume": <FileText className="w-4 h-4" />,
   "Open GitHub": <Github className="w-4 h-4" />,
   "Open LinkedIn": <Linkedin className="w-4 h-4" />,
   "Contact Me": <Mail className="w-4 h-4" />,
   "Toggle Theme": <Sun className="w-4 h-4" />,
+  "Open Skills": <Code className="w-4 h-4" />,
+  "Open Experience": <Briefcase className="w-4 h-4" />,
   "Open Leadership": <Users className="w-4 h-4" />,
+  "Open Events": <Calendar className="w-4 h-4" />,
+  "High School Career Fair": <Calendar className="w-4 h-4" />,
+  "Annual Convention": <Calendar className="w-4 h-4" />,
+  "Open Awards": <Award className="w-4 h-4" />,
   "Open Timeline": <Clock className="w-4 h-4" />,
 }
 

@@ -1,8 +1,9 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { events } from "@/lib/data"
-import { Calendar } from "lucide-react"
+import { Calendar, ArrowRight } from "lucide-react"
 
 export function EventsSection() {
   return (
@@ -48,12 +49,31 @@ export function EventsSection() {
                   </div>
                   <p className="text-sm text-primary mb-3">{event.role}</p>
                   <p className="text-sm text-muted-foreground mb-4">{event.summary}</p>
+                  {event.highlights && event.highlights.length > 0 && (
+                    <div className="mb-4 space-y-2">
+                      {event.highlights.map((highlight, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <span className="text-primary mt-1 flex-shrink-0">•</span>
+                          <p className="text-sm text-muted-foreground">{highlight}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {event.outcome && (
                     <div className="pt-3 border-t border-border">
                       <p className="text-xs font-mono text-primary mb-1">Outcome</p>
-                      <p className="text-sm text-muted-foreground">{event.outcome}</p>
+                      <p className="text-sm text-muted-foreground mb-4">{event.outcome}</p>
                     </div>
                   )}
+                  <div className="mt-4 flex justify-end">
+                    <Link
+                      href={`/events/${event.title.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      Read More
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

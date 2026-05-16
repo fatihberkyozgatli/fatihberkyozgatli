@@ -49,8 +49,14 @@ export type EventEntry = {
   date: string
   role: string
   summary: string
+  highlights?: string[]
   images?: string[]
   outcome?: string
+}
+
+export type AwardEntry = {
+  title: string
+  highlight: string
 }
 
 export const projects: Project[] = [
@@ -131,7 +137,7 @@ export const experiences: Experience[] = [
 
 export const leadership: LeadershipEntry[] = [
   {
-    title: "Dialogue Society",
+    title: "The Dialogue Society",
     organization: "Southern Methodist University",
     role: "Founder and President",
     dates: "Aug. 2023 – May 2026",
@@ -160,36 +166,139 @@ export const leadership: LeadershipEntry[] = [
   }
 ]
 
+export const awards: AwardEntry[] = [
+  {
+    title: "Provost Scholar",
+    highlight: "Recognized for outstanding academic performance and consistent excellence in coursework."
+  },
+  {
+    title: "SMU Discovery Scholarship",
+    highlight: "Full scholarship recognizing exceptional potential in computer science and data science."
+  },
+  {
+    title: "SMU Honors Program",
+    highlight: "Invited to SMU's honors program for high-achieving students pursuing advanced coursework."
+  },
+  {
+    title: "Order of the Engineer & NSPE Induction",
+    highlight: "Honored member of NSPE with lifelong commitment to ethical engineering excellence."
+  }
+]
+
 export const events: EventEntry[] = [
   {
-    title: "Event Name",
-    date: "Date",
-    role: "Role",
-    summary: "Summary",
-    outcome: "Outcome"
+    title: "High School Career Fair",
+    date: "Feb. 14, 2026",
+    role: "Organizer & Speaker",
+    summary: "Hosted 100+ students and helped them explore majors, careers, and real college advice — so many bright futures in one room!",
+    outcome: "Connected high school students with meaningful career guidance and pathways",
+    highlights: [
+      "Reached 100+ high school students exploring STEM majors and career pathways",
+      "Delivered real college advice and mentorship from software engineers and industry professionals",
+      "Connected motivated students with tangible pathways to tech careers and higher education"
+    ]
+  },
+  {
+    title: "Annual Convention",
+    date: "Feb 7, 2026",
+    role: "Founder & Organizer",
+    summary: "The Dialogue Society's 5th Annual Convention brought together 200+ students from 5+ DFW universities for a full day of dialogue, connection, and purposeful engagement in the digital age.",
+    outcome: "Strengthened dialogue and community building across the region with keynote speakers and interactive programming",
+    highlights: [
+      "Gathered 200+ students from 5+ universities for full-day dialogue conference on purpose, identity, and connection",
+      "Featured keynote speakers (Enes Bilgin, Klyne Smith) on building meaningful human connections in the digital age and AI era",
+      "Included panel sessions and interactive workshops on career development, ethical AI engagement, and community building"
+    ]
   }
 ]
 
 export const timeline: TimelineEvent[] = [
   {
-    year: "2025",
-    title: "Current Focus",
-    description: "What are you working on or focused on right now?",
+    year: "2021",
+    title: "Finished High School",
+    description: "Completed secondary education and prepared for university.",
+    type: "milestone"
+  },
+  {
+    year: "2021",
+    title: "Moved to the United States",
+    description: "Relocated from Albania to pursue higher education and new opportunities.",
+    type: "milestone"
+  },
+  {
+    year: "2022",
+    title: "Started SMU",
+    description: "Began studies at Southern Methodist University, pursuing dual degrees in Computer Science and Data Science.",
+    type: "education"
+  },
+  {
+    year: "2022",
+    title: "Started Mentoring at Raindrop Dallas",
+    description: "Began mentoring high-school students through weekly sessions focused on STEM skills and college readiness.",
+    type: "leadership"
+  },
+  {
+    year: "2023",
+    title: "Founded The Dialogue Society",
+    description: "Established and grew one of SMU's largest student organizations from 2 to 300+ members.",
+    type: "leadership"
+  },
+  {
+    year: "2023",
+    title: "Teaching Assistant at SMU",
+    description: "Started conducting C++ lab sessions for 60+ students and grading assignments weekly.",
+    type: "work"
+  },
+  {
+    year: "2023",
+    title: "Intern at Dialogue Institute Dallas",
+    description: "Worked as Data Associate managing community outreach, data collection, and database creation.",
+    type: "work"
+  },
+  {
+    year: "2023",
+    title: "Completed Search Engine Project",
+    description: "Developed a C++ search engine indexing 300,000+ business articles using advanced data structures.",
+    type: "project"
+  },
+  {
+    year: "2024",
+    title: "Left Dialogue Institute Intern Position",
+    description: "Completed internship and concluded data work with the Dialogue Institute.",
     type: "milestone"
   },
   {
     year: "2024",
-    title: "Key Achievement",
-    description: "An important milestone or achievement from this year.",
+    title: "Left SMU Teaching Assistant Position",
+    description: "Completed TA role after providing comprehensive support to computer science students.",
+    type: "milestone"
+  },
+  {
+    year: "2025",
+    title: "AI Trainer at Outlier AI",
+    description: "Designed and evaluated prompts for 50+ real-world web applications, comparing LLM outputs.",
+    type: "work"
+  },
+  {
+    year: "2025",
+    title: "Junior Software & Data Associate at JR Dallas",
+    description: "Started role designing Excel databases and automating data processes for wealth management.",
+    type: "work"
+  },
+  {
+    year: "2026",
+    title: "Billingsley Senior Design Project",
+    description: "Led UI/UX design for centralized data integration platform. 2nd Place Winner at Senior Design Expo.",
     type: "project"
   },
   {
-    year: "2023",
-    title: "Starting Point",
-    description: "An earlier milestone that matters to your journey.",
-    type: "work"
-  }
+    year: "2026",
+    title: "Graduated from SMU",
+    description: "Completed dual Bachelor of Science degrees in Computer Science and Data Science.",
+    type: "education"
+  },
 ]
+
 
 export const skills = {
   languages: ["Python", "C++", "Java", "SQL", "R", "HTML", "CSS", "JavaScript"],
@@ -212,13 +321,18 @@ export const navItems = [
 
 export const commands = [
   { label: "Open Projects", action: "navigate", target: "#projects" },
-  { label: "Open Example Project", action: "navigate", target: "/projects/example-project" },
   { label: "View Resume", action: "external", target: "/Fatih_Berk_Yozgatli_Resume.pdf" },
   { label: "Open GitHub", action: "external", target: "https://github.com/fatihberkyozgatli" },
   { label: "Open LinkedIn", action: "external", target: "https://www.linkedin.com/in/fatih-berk-yozgatli-4b623b261/" },
   { label: "Contact Me", action: "navigate", target: "#contact" },
   { label: "Toggle Theme", action: "theme", target: "" },
+  { label: "Open Skills", action: "navigate", target: "#skills" },
+  { label: "Open Experience", action: "navigate", target: "#experience" },
   { label: "Open Leadership", action: "navigate", target: "#leadership" },
+  { label: "Open Events", action: "navigate", target: "#events" },
+  { label: "High School Career Fair", action: "navigate", target: "/events/high-school-career-fair" },
+  { label: "Annual Convention", action: "navigate", target: "/events/annual-convention" },
+  { label: "Open Awards", action: "navigate", target: "#awards" },
   { label: "Open Timeline", action: "navigate", target: "#timeline" }
 ]
 

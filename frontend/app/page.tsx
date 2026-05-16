@@ -10,6 +10,7 @@ import { SkillsSection } from "@/components/skills-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { LeadershipSection } from "@/components/leadership-section"
 import { EventsSection } from "@/components/events-section"
+import { AwardsSection } from "@/components/awards-section"
 import { Timeline } from "@/components/timeline"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
@@ -64,6 +65,7 @@ export default function Home() {
             <ExperienceSection />
             <LeadershipSection />
             <EventsSection />
+            <AwardsSection />
             <Timeline />
             <ContactSection />
           </main>
