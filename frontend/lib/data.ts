@@ -312,9 +312,10 @@ export const skills = {
 export const navItems = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "#projects" },
-  { label: "Systems", href: "#systems" },
   { label: "Experience", href: "#experience" },
   { label: "Leadership", href: "#leadership" },
+  { label: "Events", href: "#events" },
+  { label: "Awards", href: "#awards" },
   { label: "Timeline", href: "#timeline" },
   { label: "Contact", href: "#contact" }
 ]
