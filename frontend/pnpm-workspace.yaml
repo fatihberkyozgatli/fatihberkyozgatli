@@ -1,2 +1,7 @@
+packages:
+  - '.'
+  - 'admin-dashboard'
+  - 'image2surface-showcase'
+
 allowBuilds:
-  sharp: set this to true or false
+  sharp: true
