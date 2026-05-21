@@ -77,7 +77,7 @@ export const projects: Project[] = [
     category: "technical",
     summary: "Built a centralized data integration platform that automates nightly property data imports from Yardi financial systems and delivers them to internal company applications via secure APIs.",
     role: "Frontend Lead / UI Developer",
-    stack: ["React", "TypeScript", "FastAPI", "Django", "Python", "MySQL", "JWT", "Azure", "Node.js", "Nginx", "SFTP", "Git"],
+    stack: ["React", "TypeScript", "FastAPI", "Python", "MySQL", "JWT", "Azure", "Nginx", "SFTP", "APScheduler", "Paramiko", "Pydantic", "Uvicorn", "WinSW"],
     featured: true,
     links: {
       github: "https://github.com/SamSkanse/Billingsley-Senior-Design-Project"
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     category: "technical",
     summary: "Converts 2D images into interactive 3D surface models with layered architecture demonstrating clean separation of concerns and real-time mesh editing capabilities.",
     role: "Full-Stack Engineer",
-    stack: ["React", "TypeScript", "Three.js", "FastAPI", "Python", "NumPy", "OpenCV", "SciPy", "Pillow", "Uvicorn", "Git"],
+    stack: ["React", "TypeScript", "Three.js", "React Three Fiber", "FastAPI", "Python", "PyTorch", "NumPy", "OpenCV", "SciPy", "Axios", "CUDA/GPU"],
     featured: true,
     links: {
       github: "https://github.com/Patriciomrt05/Image2Surface"
@@ -114,6 +114,60 @@ export const projects: Project[] = [
     problem: "Traditional image-to-3D conversion lacks clear architectural separation, making it difficult to maintain, test, and scale individual components. Manual mesh editing workflows are cumbersome and not interactive in real-time.",
     impact: "Delivers a functional, sub-5 second latency pipeline that converts any 2D image into an editable 3D mesh. The layered architecture enables easy testing, clear responsibilities, and a clear path to distributed microservices deployment.",
     architecture: "The system implements a 5-layer Layered Architecture with clear separation of concerns: Presentation Layer (Next.js React UI) → Communication Layer (Axios HTTP client) → API Layer (FastAPI endpoints) → Business Logic Layer (image processing, depth estimation, mesh generation) → Infrastructure Layer (file storage, PyTorch models).\n\nData Flow: User uploads image → Image validation and storage → Depth estimation via Depth Anything V2 model → Grayscale conversion and height map generation → 3D mesh construction with vertices and indices → Real-time Three.js visualization → Interactive editing (smoothing/scaling) → Mesh reset to original state\n\nKey Components: ImageUpload (file selection), SurfaceViewer (Three.js 3D rendering), EditControls (mesh operations), FastAPI routes for REST endpoints, OpenCV for image processing, PyTorch for depth inference, file system for persistent storage\n\nChallenges & Solutions:\n\n1. Achieving Sub-5 Second Latency\nProblem: Depth estimation using neural networks is computationally expensive, potentially taking 5+ seconds. Real-time user experience requires keeping end-to-end latency under 5 seconds including model inference, image processing, and mesh generation.\nSolution: Leveraged GPU acceleration through PyTorch CUDA support, implemented efficient NumPy vectorization for mesh generation, and optimized image preprocessing to reduce computational overhead. Profiling revealed depth estimation dominates (2800ms), while remaining operations complete in <200ms combined.\n\n2. Managing 1M+ Vertex Meshes on Mobile Devices\nProblem: High-resolution depth maps generate dense meshes with millions of vertices, causing performance bottlenecks and rendering issues on lower-end devices and browsers with limited WebGL support.\nSolution: Implemented downsampling parameter in depth estimation (adjustable 0.25-1.0 scale), created mesh optimization in Three.js using BufferGeometry, and added vertex decimation for mobile rendering. Users can trade detail for performance based on device capabilities.\n\n3. Stateless API with Complex Processing Pipelines\nProblem: REST API constraints require request-response cycles, but image-to-mesh conversion involves multiple sequential processing steps (upload → estimate → generate → edit). Managing session state across multiple requests is complex.\nSolution: Implemented image_id-based session tracking with in-memory storage (maps image_id to image data, depth maps, and mesh states). Each request uses image_id to retrieve prior state, enabling sequential operations while maintaining stateless API design. Stores intermediate results in temporary directories for consistency.\n\nKey Technical Decisions:\n\nLayered Architecture Over MVC: Selected Layered Architecture (scored 8.35/10) over MVC (7.75/10) because it provides better separation between API routes, business logic, and data layers. Clear layer boundaries simplify adding async processing, message queues, or microservices in future phases without major refactoring.\n\nDepth Anything V2 for Depth Estimation: Chose Depth Anything V2 model for superior zero-shot generalization across diverse image domains (indoor/outdoor, different lighting, object types) compared to alternatives. Lightweight ViT-small variant (~90MB) balances accuracy and inference speed.\n\nThree.js for 3D Rendering: Selected Three.js over Babylon.js for its smaller bundle size, mature React Three Fiber integration with Next.js, and superior mobile device support through WebGL optimization. Direct buffer geometry manipulation enables real-time mesh updates during editing operations.\n\nIn-Memory Session Storage: Chose file-based temporary storage with in-memory lookups over database solution because project is single-user, prototypical architecture (Phase 1). Supports easy migration to persistent database in Phase 2 with minimal changes to business logic layer.\n\nResults & Outcomes:\n\nSub-5 Second End-to-End Latency: Achieved average 3-4 second response time from image upload through mesh generation and initial render (GPU-accelerated depth estimation: 2800ms, image processing: 45ms, mesh generation: 35ms, frontend render: 100-200ms).\n\nInteractive 3D Manipulation: Implemented full-featured viewer with zoom (mouse scroll), rotate (click-drag), pan (right-click-drag) controls enabling intuitive exploration of generated 3D meshes from multiple angles and distances.\n\n1M+ Vertices Efficiently Processed: Successfully handled high-resolution meshes with downsampling enabling 1M+ vertices on desktop (native resolution) and 100K-500K vertices on mobile devices (0.25-0.5 downsampling) while maintaining 60 FPS interaction.\n\nFull-Stack Integration Demonstrated: Practical end-to-end system combining deep learning (PyTorch inference), backend orchestration (FastAPI async processing), and frontend rendering (React Three Fiber) showcasing architecture pattern effectiveness for AI-powered 3D applications."
+  },
+  {
+    title: "Turkish Süper Lig Match Prediction",
+    slug: "turkish-super-league-prediction",
+    category: "technical",
+    summary: "Machine learning classification model predicting match outcomes in Turkish Süper Lig with 64% accuracy - a 42% improvement over baseline.",
+    role: "Data Scientist",
+    stack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "Matplotlib", "Seaborn"],
+    featured: false,
+    links: {
+      github: "https://github.com/fatihberkyozgatli/Turkish_Super_League_Match_Prediction"
+    },
+    highlights: [
+      "Built 3-class classification model (Win/Draw/Loss) achieving 64% accuracy - 42% improvement over naive baseline",
+      "Performed data preprocessing, feature engineering, and model evaluation using Scikit-learn pipelines",
+      "Evaluated multiple models (Logistic Regression, Random Forest, SVM) and selected best performer",
+      "Analyzed feature importance revealing home advantage and goals scored as strongest predictors"
+    ]
+  },
+  {
+    title: "Sentiment Analyzer - Tweets",
+    slug: "sentiment-analyzer-tweets",
+    category: "technical",
+    summary: "C++ sentiment classifier analyzing thousands of tweets with custom data structures. Achieved 73% accuracy using frequency-based model.",
+    role: "Full-Stack Engineer",
+    stack: ["C++", "CMake", "STL", "Memory Management", "Valgrind", "Catch2"],
+    featured: false,
+    links: {
+      github: "https://github.com/fatihberkyozgatli/Sentiment_Analyzer_Tweets"
+    },
+    highlights: [
+      "Implemented custom DSString class using Rule of Three with full dynamic memory management",
+      "Built sentiment classifier achieving 73% accuracy on Sentiment140 dataset using frequency-based training",
+      "Designed modular architecture with Tokenizer, FileProcessor, and Classifier components",
+      "Validated memory integrity with Valgrind - zero leaks with comprehensive unit testing"
+    ]
+  },
+  {
+    title: "Search Engine - Articles",
+    slug: "search-engine-articles",
+    category: "technical",
+    summary: "High-performance C++ search engine indexing 300,000+ business articles with AVL Tree and inverted index data structures.",
+    role: "Full-Stack Engineer",
+    stack: ["C++", "CMake", "AVL Tree", "Linked List", "Hash Map", "RapidJSON", "Catch2"],
+    featured: false,
+    links: {
+      github: "https://github.com/fatihberkyozgatli/Search_Engine_Articles"
+    },
+    highlights: [
+      "Indexed 300,000+ articles from Kaggle dataset achieving query response times under 1 second",
+      "Implemented self-balanced AVL Tree serving as core Map data structure with O(log n) operations",
+      "Built document parser with tokenization, stopword filtering, and persistent index storage/reload",
+      "Developed interactive CLI with comprehensive Catch2 unit tests and memory leak validation"
+    ]
   }
 ]
 
@@ -432,12 +486,12 @@ export const timeline: TimelineEvent[] = [
 
 
 export const skills = {
-  languages: ["Python", "C++", "Java", "SQL", "R", "HTML", "CSS", "JavaScript"],
-  frontend: ["React", "TypeScript", "HTML", "CSS", "JavaScript", "Tailwind CSS"],
-  backend: ["Flask", "FastAPI", "Django", "Python", "MySQL", "JWT"],
-  data: ["SQL", "R", "RapidMiner", "Pandas", "NumPy"],
-  tools: ["Git", "MySQL", "VS Code", "IntelliJ", "CLion", "Eclipse", "Node.js", "Azure", "Excel"],
-  concepts: ["Data Structures", "Algorithms", "System Design", "Full Stack Development"]
+  languages: ["Python", "C++", "C++17", "Java", "SQL", "R", "HTML", "CSS", "JavaScript"],
+  frontend: ["React", "TypeScript", "React Three Fiber", "HTML", "CSS", "JavaScript", "Tailwind CSS", "Axios"],
+  backend: ["FastAPI", "Flask", "Django", "Python", "MySQL", "JWT", "Uvicorn", "Pydantic", "Paramiko", "APScheduler"],
+  data: ["SQL", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn", "Jupyter", "PyTorch", "R", "RapidMiner"],
+  tools: ["Git", "MySQL", "VS Code", "IntelliJ", "CLion", "Eclipse", "Node.js", "Azure", "Excel", "CMake", "RapidJSON", "Catch2", "WinSW"],
+  concepts: ["Data Structures", "Algorithms", "System Design", "Full Stack Development", "STL", "Linked List", "Hash Map", "CUDA/GPU", "Memory Management"]
 }
 
 export const navItems = [

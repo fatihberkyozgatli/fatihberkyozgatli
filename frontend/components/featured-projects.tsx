@@ -3,9 +3,11 @@
 import { motion } from "framer-motion"
 import { projects } from "@/lib/data"
 import { ProjectCard } from "./project-card"
+import { SmallerProjectCard } from "./smaller-project-card"
 
 export function FeaturedProjects() {
   const featuredProjects = projects.filter((p) => p.featured)
+  const smallerProjects = projects.filter((p) => !p.featured)
 
   return (
     <section id="projects" className="py-24 px-6">
@@ -28,7 +30,7 @@ export function FeaturedProjects() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.slug}
@@ -39,6 +41,24 @@ export function FeaturedProjects() {
             >
               <ProjectCard project={project} />
             </motion.div>
+          ))}
+        </div>
+
+        {smallerProjects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <h3 className="text-xl font-semibold mb-6">Other Notable Projects</h3>
+          </motion.div>
+        )}
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {smallerProjects.map((project, index) => (
+            <SmallerProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </div>
