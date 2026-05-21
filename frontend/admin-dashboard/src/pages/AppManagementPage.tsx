@@ -265,10 +265,8 @@ export default function AppManagementPage() {
     setClearViewError('')
 
     try {
-      const response = await clearAppViewExclusions(appId, {
-        view: viewBeingCleared,
-      })
-      setSuccess(response.detail)
+      await clearAppViewExclusions(appId, viewBeingCleared)
+      setSuccess('View cleared successfully.')
       setActiveView(viewBeingCleared)
       setClearViewModalOpen(false)
       setPendingClearView(null)
@@ -439,9 +437,9 @@ export default function AppManagementPage() {
           <AppDataAccessManager
             appId={appId!}
             activeView={activeView}
-            onActiveViewChange={setActiveView}
+            onActiveViewChange={(view) => setActiveView(view as AppDataAccessView)}
             statusFilter={statusFilter}
-            onStatusFilterChange={setStatusFilter}
+            onStatusFilterChange={(status) => setStatusFilter(status as AppDataAccessStatus)}
             onDataChanged={loadSummary}
             refreshNonce={dataRefreshNonce}
           />

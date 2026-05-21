@@ -176,7 +176,7 @@ export default function SettingsPage() {
         setHasStoredPassword(config.has_password)
         setSftpPassword('')
 
-        applyScheduleToForm(scheduleResponse.schedule)
+        applyScheduleToForm(scheduleResponse)
 
         if (timezonesResponse?.options?.length) {
           setTimezoneOptions(timezonesResponse.options)
@@ -215,7 +215,7 @@ export default function SettingsPage() {
       })
 
       setSftpHost(updated.sftp_host ?? '')
-      setSftpPort(updated.sftp_port != null ? String(updated.sftp_port) : '22')
+      setSftpPort((updated.sftp_port ?? 22).toString())
       setSftpUsername(updated.sftp_username ?? '')
       setSftpRemotePath(updated.sftp_remote_path ?? '')
       setTrackedTables(updated.tracked_tables ?? [])
