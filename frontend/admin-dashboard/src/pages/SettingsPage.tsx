@@ -210,7 +210,6 @@ export default function SettingsPage() {
         sftp_host: sftpHost,
         sftp_port: sftpPort.trim() ? Number(sftpPort) : undefined,
         sftp_username: sftpUsername,
-        sftp_password: sftpPassword,
         sftp_remote_path: sftpRemotePath,
       })
 
