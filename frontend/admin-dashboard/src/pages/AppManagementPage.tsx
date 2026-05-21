@@ -230,7 +230,7 @@ export default function AppManagementPage() {
     setError('')
 
     try {
-      await revokeAppApiKey(appId)
+      await revokeAppApiKey(appId, 1)
       setMaskedKey('')
       setHasKey(false)
       setGeneratedKey('')
