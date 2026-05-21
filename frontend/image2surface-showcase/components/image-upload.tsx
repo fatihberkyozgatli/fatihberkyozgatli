@@ -67,7 +67,7 @@ export function ImageUpload({
   }, [])
 
   const displayError = validationError || error
-  const canGenerate = selectedFile && !isUploading && !isGenerating
+  const canGenerate = previewUrl && !isUploading && !isGenerating
   const isLoading = isUploading || isGenerating
 
   return (
