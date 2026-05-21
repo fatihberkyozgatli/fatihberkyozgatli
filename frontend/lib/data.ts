@@ -74,7 +74,7 @@ export const projects: Project[] = [
   {
     title: "Intermediary Property DB Management System",
     slug: "billingsley-data-integration",
-    category: "technical",
+    category: "fullstack",
     summary: "Built a centralized data integration platform that automates nightly property data imports from Yardi financial systems and delivers them to internal company applications via secure APIs.",
     role: "Frontend Lead / UI Developer",
     stack: ["React", "TypeScript", "FastAPI", "Python", "MySQL", "JWT", "Azure", "Nginx", "SFTP", "APScheduler", "Paramiko", "Pydantic", "Uvicorn", "WinSW"],
@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     title: "Image2Surface: 3D Mesh\nGeneration from Images",
     slug: "image-2-surface",
-    category: "technical",
+    category: "fullstack",
     summary: "Converts 2D images into interactive 3D surface models with layered architecture demonstrating clean separation of concerns and real-time mesh editing capabilities.",
     role: "Full-Stack Engineer",
     stack: ["React", "TypeScript", "Three.js", "React Three Fiber", "FastAPI", "Python", "PyTorch", "NumPy", "OpenCV", "SciPy", "Axios", "CUDA/GPU"],
@@ -118,7 +118,7 @@ export const projects: Project[] = [
   {
     title: "Turkish Süper Lig Match Prediction",
     slug: "turkish-super-league-prediction",
-    category: "technical",
+    category: "datastructures-ml",
     summary: "Machine learning classification model predicting match outcomes in Turkish Süper Lig with 64% accuracy - a 42% improvement over baseline.",
     role: "Data Scientist",
     stack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "Matplotlib", "Seaborn"],
@@ -136,7 +136,7 @@ export const projects: Project[] = [
   {
     title: "Sentiment Analyzer - Tweets",
     slug: "sentiment-analyzer-tweets",
-    category: "technical",
+    category: "datastructures-ml",
     summary: "C++ sentiment classifier analyzing thousands of tweets with custom data structures. Achieved 73% accuracy using frequency-based model.",
     role: "Full-Stack Engineer",
     stack: ["C++", "CMake", "STL", "Memory Management", "Valgrind", "Catch2"],
@@ -154,7 +154,7 @@ export const projects: Project[] = [
   {
     title: "Search Engine - Articles",
     slug: "search-engine-articles",
-    category: "technical",
+    category: "systems",
     summary: "High-performance C++ search engine indexing 300,000+ business articles with AVL Tree and inverted index data structures.",
     role: "Full-Stack Engineer",
     stack: ["C++", "CMake", "AVL Tree", "Linked List", "Hash Map", "RapidJSON", "Catch2"],
