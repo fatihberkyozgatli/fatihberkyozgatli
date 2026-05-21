@@ -1,100 +1,94 @@
 # fatihOS
 
-A premium portfolio platform built with Next.js 16, TypeScript, Tailwind CSS, and Framer Motion. A fully interactive system that serves as both portfolio and technical showcase.
+Interactive portfolio platform built with Next.js, TypeScript, and modern full-stack architecture.
+Designed as both a technical showcase and creative development environment.
 
-## Quick Start
+**Live:** [fatihberkyozgatli.com](https://fatihberkyozgatli.com)
 
-### Prerequisites
-- Node.js 18+ (LTS recommended)
-- npm or pnpm
+---
 
-### Setup
+## What is fatihOS?
 
-```bash
-# 1. Install frontend dependencies
-cd frontend
-npm install
+fatihOS is an operating-system-inspired portfolio platform built to showcase full-stack engineering, UI/UX design, and modern web architecture.
 
-# 2. Start development server
-npm run dev
-```
+Features include:
 
-The portfolio will be available at **http://localhost:3000**
+- Command palette navigation
+- Terminal-inspired boot sequence
+- Dynamic theming system
+- Interactive project showcase
+- Real-time contact integration
+- Specialized integrated applications
 
-### Environment Variables
+---
 
-Copy `.env.example` to `.env.local` in the frontend directory:
+## Architecture
 
-```bash
-cp frontend/.env.example frontend/.env.local
-```
+### Core Platform (`./frontend`)
 
-Then add your configuration (Resend API key for contact form, etc.)
+The foundation of fatihOS built with Next.js 16, leveraging modern React patterns and server-side rendering for optimal performance.
 
-### Build for Production
+**Technology:**
+Next.js • React • TypeScript • Tailwind CSS • Framer Motion • shadcn/ui
 
-```bash
-npm run build
-npm start
-```
+**Key Features:**
+- Server-side rendering for SEO optimization
+- Dynamic route handling for projects and events
+- API routes for contact form processing
+- Responsive grid-based layouts
+- Dark-first design philosophy
+
+### Integrated Ecosystem
+
+The platform hosts specialized applications that extend core functionality:
+
+**Data Management System** - Admin dashboard for system administration and data configuration
+
+**3D Surface Generator** - Interactive tool for converting 2D images into 3D meshes with real-time rendering
+
+---
 
 ## Project Structure
 
 ```
-├── frontend/          # Next.js application (main portfolio)
-├── backend/           # FastAPI backend (future)
-├── requirements.txt   # Python dependencies
-├── PLANNING.md        # Product vision & roadmap
-└── README.md          # This file
+frontend/
+├── app/                          # Next.js core platform
+│   ├── layout.tsx               # Root layout with theme provider
+│   ├── page.tsx                 # Main portfolio homepage
+│   ├── api/contact/            # Contact form endpoint
+│   └── [dynamic routes]/        # Project and event pages
+├── components/                   # Core components
+│   ├── hero.tsx
+│   ├── featured-projects.tsx
+│   ├── command-palette.tsx
+│   └── ui/                      # shadcn component library
+├── lib/
+│   ├── data.ts                  # Portfolio content
+│   └── utils.ts                 # Utilities
+├── styles/
+│   └── globals.css              # Tailwind configuration
+├── admin-dashboard/             # Data management system (Vite)
+├── image2surface-showcase/      # 3D tool (Next.js)
+└── pnpm-workspace.yaml          # Monorepo configuration
 ```
 
-## Key Features
+## Technology Stack
 
-- **Interactive Terminal-Style Interface** — fatihOS branding with system commands
-- **Command Palette** — Quick navigation with ⌘K
-- **Dark/Light Mode** — Theme toggle with localStorage persistence
-- **Responsive Design** — Mobile-first, optimized for all devices
-- **Animations** — Smooth Framer Motion transitions
-- **Contact Form** — Email integration with Resend
-- **SEO Ready** — Next.js App Router with metadata
+Next.js • React • TypeScript • Tailwind CSS • Framer Motion • shadcn/ui • Resend • Vercel • pnpm (monorepo)
 
-## Tech Stack
+---
 
-### Frontend
-- **Framework**: Next.js 16.2.4 (Turbopack)
-- **Language**: TypeScript 5.7.3 (strict mode)
-- **Styling**: Tailwind CSS 4.2.0
-- **UI Components**: shadcn/ui (56 pre-built components)
-- **Animations**: Framer Motion 12.38.0
-- **Forms**: React Hook Form + Zod
-- **Theming**: next-themes
+## Design Philosophy
 
-### Backend (Future)
-- **Framework**: FastAPI
-- **Email**: Resend
-- **Database**: SQLAlchemy, PostgreSQL (Phase 2+)
+fatihOS uses a dark-first design approach with an emerald green accent color (#22C55E). The interface draws inspiration from classic operating system aesthetics while maintaining modern web standards for accessibility and responsiveness.
 
-## Customization
+---
 
-Edit `frontend/lib/data.ts` to populate:
-- Project portfolio
-- Work experience
-- Leadership roles
-- Events/speaking engagements
-- Skills & technical stack
-- Navigation items
-- Status cards
+---
 
-All placeholder data is templated for easy customization.
+Built by Fatih Berk Yozgatli — Computer Science & Data Science @ SMU.
+Interested in full-stack systems, AI-integrated applications, and human-centered technology.
 
-## Deployment
-
-Ready to deploy on:
-- Vercel
-- Netlify
-- Railway
-- Self-hosted
-
-## License
-
-© 2026 Fatih Berk Yozgatli. All rights reserved.
+Email: fatihberkyozgatli@gmail.com
+GitHub: [github.com/fatihberkyozgatli](https://github.com/fatihberkyozgatli)
+LinkedIn: [Fatih Berk Yozgatli](https://www.linkedin.com/in/fatih-berk-yozgatli-4b623b261/)
