@@ -14,19 +14,19 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Fatih Berk Yozgatli — Software Engineer & Creative Technologist',
+  title: 'Fatih Berk Yozgatli - Software Engineer & Creative Technologist',
   description: 'Computer Science and Data Science graduate building full-stack systems, data workflows, AI-powered tools, and human-centered technology.',
   generator: 'fatihOS',
   keywords: ['Software Engineer', 'Full-Stack Developer', 'Data Engineer', 'AI Engineer', 'Creative Technologist'],
   authors: [{ name: 'Fatih Berk Yozgatli' }],
   openGraph: {
-    title: 'Fatih Berk Yozgatli — Software Engineer & Creative Technologist',
+    title: 'Fatih Berk Yozgatli - Software Engineer & Creative Technologist',
     description: 'Computer Science and Data Science graduate building full-stack systems, data workflows, AI-powered tools, and human-centered technology.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Fatih Berk Yozgatli — Software Engineer & Creative Technologist',
+    title: 'Fatih Berk Yozgatli - Software Engineer & Creative Technologist',
     description: 'Building systems that connect data, people, and ideas.',
   },
   icons: {

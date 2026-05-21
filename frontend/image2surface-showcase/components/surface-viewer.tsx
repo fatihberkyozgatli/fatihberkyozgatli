@@ -49,8 +49,6 @@ function SurfaceMesh({ mesh, heightScale, smoothIntensity, sharpenIntensity, use
       vertexColors: useImageColors && !!mesh.vertexColors,
       side: THREE.DoubleSide,
       flatShading: false,
-      // roughness: 0.5,
-      // metalness: 0.1,
     })
     if (!useImageColors || !mesh.vertexColors) {
       mat.color = new THREE.Color('#8888aa')
@@ -104,7 +102,6 @@ function SurfaceMesh({ mesh, heightScale, smoothIntensity, sharpenIntensity, use
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     geo.setIndex(new THREE.BufferAttribute(indices, 1))
 
-    // Add vertex colors if available and enabled
     if (useImageColors && mesh.vertexColors) {
       const colors = new Float32Array(mesh.vertices.length * 3)
       mesh.vertexColors.forEach((colorStr, i) => {

@@ -18,7 +18,6 @@ export default function LoginPage() {
     e.preventDefault()
     setIsLoading(true)
 
-    // Simulate brief loading
     setTimeout(() => {
       navigate('/dashboard')
     }, 500)

@@ -283,7 +283,7 @@ export default function ProjectPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
                   <p className="text-3xl font-bold text-primary mb-2">∞</p>
-                  <p className="text-sm text-muted-foreground">Customizable scheduled data imports — runs as frequently and flexibly as needed (daily, weekly, custom cadence)</p>
+                  <p className="text-sm text-muted-foreground">Customizable scheduled data imports - runs as frequently and flexibly as needed (daily, weekly, custom cadence)</p>
                 </div>
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
                   <p className="text-xl font-bold text-primary mb-2">Fully Automated</p>
@@ -295,7 +295,7 @@ export default function ProjectPage() {
                 </div>
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
                   <p className="text-3xl font-bold text-primary mb-2">2nd</p>
-                  <p className="text-sm text-muted-foreground">Place at Senior Design Expo (Spring 2026) — Recognition for full-stack systems engineering</p>
+                  <p className="text-sm text-muted-foreground">Place at Senior Design Expo (Spring 2026) - Recognition for full-stack systems engineering</p>
                 </div>
               </div>
             </motion.section>

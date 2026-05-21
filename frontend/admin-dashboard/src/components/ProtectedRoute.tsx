@@ -1,4 +1,3 @@
-// UI-ONLY MODE: All routes are accessible (no auth required)
 import { useEffect, useState } from 'react'
 
 interface ProtectedRouteProps {
@@ -9,7 +8,6 @@ export default function ProtectedRoute({ element }: ProtectedRouteProps) {
   const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
-    // Simulate brief loading for UI appearance
     const timer = setTimeout(() => setIsReady(true), 300)
     return () => clearTimeout(timer)
   }, [])

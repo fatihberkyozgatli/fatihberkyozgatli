@@ -47,11 +47,22 @@ export type LeadershipEntry = {
 export type EventEntry = {
   title: string
   date: string
+  location?: string
   role: string
   summary: string
   highlights?: string[]
   images?: string[]
   outcome?: string
+  openingNarrative?: string
+  designSection?: string
+  logisticsSection?: string
+  momentSection?: string
+  closingReflection?: string
+  heroImage?: string
+  boothImages?: string[]
+  momentImage?: string
+  closingImages?: string[]
+  candidImage?: string
 }
 
 export type AwardEntry = {
@@ -211,26 +222,124 @@ export const events: EventEntry[] = [
   {
     title: "High School Career Fair",
     date: "Feb. 14, 2026",
-    role: "Organizer & Speaker",
-    summary: "Hosted 100+ students and helped them explore majors, careers, and real college advice — so many bright futures in one room!",
+    location: "SMU HTSC Ballrooms",
+    role: "Organizer, Speaker, & Event Host",
+    summary: "Bringing together high school students, university mentors, and industry professionals for an interactive career exploration experience designed around conversation, accessibility, and real guidance.",
+    heroImage: "/images/events/careerfair-heroimage.png",
     outcome: "Connected high school students with meaningful career guidance and pathways",
     highlights: [
       "Reached 100+ high school students exploring STEM majors and career pathways",
       "Delivered real college advice and mentorship from software engineers and industry professionals",
       "Connected motivated students with tangible pathways to tech careers and higher education"
-    ]
+    ],
+    boothImages: [
+      "/images/events/careerfair-boothimage1.jpeg",
+      "/images/events/careerfair-boothimage2.jpeg",
+      "/images/events/careerfair-boothimage3.jpeg"
+    ],
+    momentImage: "/images/events/careerfair-eventimage.jpeg",
+    closingImages: [
+      "/images/events/careerfair-closingimage1.jpeg",
+      "/images/events/careerfair-closingimage2.jpeg",
+      "/images/events/careerfair-closingimage3.jpeg"
+    ],
+    candidImage: "/images/events/careerfair-candidimage.jpeg",
+    openingNarrative: `When I first entered college, I felt completely unguided. I did not fully understand the differences between majors, career paths, internships, networking, or even the kinds of opportunities available within a university environment. A lot of what I learned came from trial and error, conversations with mentors, and events that exposed me to people already walking the paths I was curious about.
+
+That experience stayed with me throughout college. I realized that many high school students, especially local students preparing to make major academic and career decisions, often do not have enough access to meaningful guidance before entering university. Career fairs and mentorship opportunities are usually introduced too late, after students have already committed to schools, majors, or directions they may not fully understand yet.
+
+This event was created to help bridge that gap.
+
+Together with my team, I organized the High School Career Fair at Southern Methodist University to create an environment where students could directly interact with professionals, university students, and mentors across a wide range of industries and academic fields. More than just a presentation-based event, the goal was to create genuine conversations, the kind that make students feel comfortable asking questions, exploring possibilities, and imagining themselves in spaces they may never have previously considered accessible.`,
+    designSection: `One of the most important parts of organizing the event was making sure the experience felt interactive rather than passive. I did not want students sitting through long lectures without engagement. Instead, the event was intentionally designed around movement, conversation, and accessibility.
+
+The career fair featured more than 50 professionals across industries including software engineering, cybersecurity, medicine, law, architecture, aviation, finance, education, public relations, psychology, and entrepreneurship. Students were encouraged to rotate freely between booths, ask questions, and engage in smaller conversations that felt approachable and personal rather than intimidating.
+
+To support this structure, we created professional handbooks for panelists and question guides for students to encourage meaningful discussion. Professionals shared not only technical information about their careers, but also personal stories, misconceptions about their fields, lessons from failure, and advice they would give to their younger selves.
+
+Students were not simply learning about jobs, they were learning about people, journeys, uncertainty, growth, and possibility.`,
+    logisticsSection: `Behind the scenes, organizing the event required extensive coordination between volunteers, professionals, schools, and university administration. Since many attendees were minors visiting a university campus, logistics and supervision became one of the most important responsibilities throughout the planning process.
+
+I served as one of the primary organizers and points of contact with the university, helping coordinate communication, event flow, volunteer management, timing, and overall supervision during the event itself. Weather conditions, scheduling constraints, and maintaining smooth movement throughout the venue all presented challenges that my team and I had to navigate carefully in real time.
+
+Despite these challenges, the turnout exceeded our expectations. Seeing the ballroom filled with students actively engaging with professionals, asking questions, and exploring opportunities made months of preparation feel meaningful.`,
+    momentSection: `One of the moments I remember most happened near the end of the event, when a student came up to me after walking through the booths and conversations throughout the evening. They told me they wanted to create a student organization and community similar to what we had built.
+
+That interaction stayed with me because it represented something larger than career exploration alone.
+
+The event was never only about majors, resumes, or professions. It was also about showing students that meaningful communities, mentorship, leadership, and impact are accessible to them much earlier than they may think. Sometimes all it takes is seeing people only a few years older creating something meaningful to begin imagining yourself doing the same.
+
+For me, that was one of the clearest signs that the event accomplished what we hoped it would.`,
+    closingReflection: `Looking back, the High School Career Fair became much more than a single event. It became a reminder of how important access, mentorship, and conversation can be during formative stages of life.
+
+Seeing students confidently approach professionals, ask questions about careers and college, and begin imagining futures for themselves reminded me why spaces like this matter. It also reminded me how much impact community-driven initiatives can have when people come together with a shared purpose.
+
+As someone who once entered college feeling uncertain and uninformed, helping create an environment that gave younger students clarity, encouragement, and inspiration was deeply meaningful to me.`
   },
   {
-    title: "Annual Convention",
-    date: "Feb 7, 2026",
+    title: "5th Annual Convention",
+    date: "Feb. 7, 2026",
+    location: "UT Dallas ECSW 1315",
     role: "Founder & Organizer",
     summary: "The Dialogue Society's 5th Annual Convention brought together 200+ students from 5+ DFW universities for a full day of dialogue, connection, and purposeful engagement in the digital age.",
+    heroImage: "/images/events/convention-heroimage.jpg",
     outcome: "Strengthened dialogue and community building across the region with keynote speakers and interactive programming",
     highlights: [
       "Gathered 200+ students from 5+ universities for full-day dialogue conference on purpose, identity, and connection",
-      "Featured keynote speakers (Enes Bilgin, Klyne Smith) on building meaningful human connections in the digital age and AI era",
+      "Featured keynote speakers on building meaningful human connections in the digital age and AI era",
       "Included panel sessions and interactive workshops on career development, ethical AI engagement, and community building"
-    ]
+    ],
+    boothImages: [
+      "/images/events/convention-boothimage1.jpg",
+      "/images/events/convention-boothimage2.jpg"
+    ],
+    closingImages: [
+      "/images/events/convention-closingimage1.jpg",
+      "/images/events/convention-closingimage2.JPG",
+      "/images/events/convention-closingimage3.jpg"
+    ],
+    candidImage: "/images/events/convention-candidimageJPG.JPG",
+    openingNarrative: `In a world increasingly shaped by artificial intelligence and rapid technological transformation, this convention brought together students, professionals, and speakers from diverse fields to explore one central question:
+
+What does it mean to stay human?
+
+Through keynote talks, panel discussions, workshops, and open dialogue, the convention explored how technology is reshaping communication, careers, identity, and human relationships across every field, from software engineering and finance to healthcare, law, and education.`,
+    designSection: `Artificial intelligence is no longer a distant concept limited to science fiction or research labs. It is actively reshaping industries, education, communication, and everyday life at a pace that many people are still trying to understand. Whether in medicine, finance, law, engineering, media, or education, nearly every field is beginning to integrate AI into the way people work, learn, and create.
+
+At the same time, this transformation has introduced uncertainty and anxiety, especially among students preparing to enter a future that feels increasingly unpredictable.
+
+This convention was created around the belief that technological advancement should not come at the expense of human connection, purpose, or identity.
+
+Rather than approaching AI only from a technical perspective, we wanted to create conversations around the human side of change: how we communicate, how we maintain authentic relationships, how careers are evolving, and how people across different disciplines can adapt while still preserving empathy, ethics, and meaningful connection.
+
+The goal was not to reject technology, but to better understand how humanity can grow alongside it.`,
+    logisticsSection: `Organizing the convention required extensive coordination across logistics, speaker outreach, event planning, marketing, and live event management. I worked on organizing and supervising the convention from start to finish, coordinating speakers, managing communication and promotion, and helping oversee the experience throughout the event itself.
+
+The convention featured keynote speakers, professional panelists, interactive workshops, and networking sessions designed to encourage active participation rather than passive listening. More than 200 students attended throughout the day, engaging with conversations that connected technology to real human experiences and future challenges.
+
+One of the most rewarding parts of the event was seeing students from completely different academic and professional interests engage with the same ideas from different perspectives. Discussions around AI were no longer limited to computer science, they extended into healthcare, law, business, communication, psychology, and education.
+
+That interdisciplinary exchange was exactly what we hoped to create.`,
+    momentSection: `What made the convention feel meaningful was not simply the scale of the event, but the quality of the conversations taking place throughout the day.
+
+Students discussed questions that many people are currently struggling to answer in real time:
+
+How will AI reshape different careers?
+What skills will remain uniquely human?
+How do we maintain authentic communication in increasingly digital spaces?
+What responsibilities come with rapidly advancing technology?
+How can people adapt without losing themselves in the process?
+
+The workshops and panels created an environment where students were encouraged to think critically, exchange perspectives, and reflect on the kind of future they want to help build rather than simply react to.
+
+One of the most memorable moments for me personally was seeing my workshop group win the workshop competition. More than the competition itself, it was rewarding to watch students from different backgrounds collaborate, exchange ideas, and engage deeply with topics that genuinely matter for the future they are entering.`,
+    closingReflection: `Organizing this convention changed the way I think about technology, leadership, and the future itself.
+
+As a Computer Science and Data Science student, I already understood how rapidly AI and emerging technologies are developing. However, helping lead conversations around these topics from a human-centered perspective made me realize that technical advancement alone is not enough. The future will also depend on communication, ethics, adaptability, empathy, and the ability to bring people together across different disciplines and perspectives.
+
+Looking around the room during the convention, seeing students networking, exchanging ideas, asking difficult questions, and engaging deeply with topics larger than themselves, made me optimistic about the future despite the uncertainty surrounding it.
+
+More than anything, the convention reinforced my belief that dialogue remains one of the most important tools we have during periods of rapid transformation.`
   }
 ]
 
@@ -354,7 +463,9 @@ export const commands = [
   { label: "Open Leadership", action: "navigate", target: "#leadership" },
   { label: "Open Events", action: "navigate", target: "#events" },
   { label: "High School Career Fair", action: "navigate", target: "/events/high-school-career-fair" },
-  { label: "Annual Convention", action: "navigate", target: "/events/annual-convention" },
+  { label: "5th Annual Convention", action: "navigate", target: "/events/5th-annual-convention" },
+  { label: "Billingsley Data Integration", action: "navigate", target: "/projects/billingsley-data-integration" },
+  { label: "Image2Surface 3D Mesh", action: "navigate", target: "/projects/image-2-surface" },
   { label: "Open Awards", action: "navigate", target: "#awards" },
   { label: "Open Timeline", action: "navigate", target: "#timeline" }
 ]

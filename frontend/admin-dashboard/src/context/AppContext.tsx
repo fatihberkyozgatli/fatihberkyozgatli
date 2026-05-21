@@ -28,7 +28,6 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
-// Mock data
 const MOCK_APPS: App[] = [
   {
     id: 1,
@@ -54,7 +53,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Simulate loading
     const timer = setTimeout(() => {
       setLoading(false)
     }, 500)
@@ -65,7 +63,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       setLoading(true)
       setError(null)
-      // Mock data already set on init
       await new Promise((resolve) => setTimeout(resolve, 300))
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to load apps'

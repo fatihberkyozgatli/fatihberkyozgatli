@@ -39,7 +39,9 @@ const iconMap: Record<string, React.ReactNode> = {
   "Open Leadership": <Users className="w-4 h-4" />,
   "Open Events": <Calendar className="w-4 h-4" />,
   "High School Career Fair": <Calendar className="w-4 h-4" />,
-  "Annual Convention": <Calendar className="w-4 h-4" />,
+  "5th Annual Convention": <Calendar className="w-4 h-4" />,
+  "Billingsley Data Integration": <Code className="w-4 h-4" />,
+  "Image2Surface 3D Mesh": <Code className="w-4 h-4" />,
   "Open Awards": <Award className="w-4 h-4" />,
   "Open Timeline": <Clock className="w-4 h-4" />,
 }

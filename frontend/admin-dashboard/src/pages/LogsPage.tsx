@@ -8,7 +8,6 @@ function LogsPage() {
 
   const handleRefresh = async () => {
     setIsRefreshing(true)
-    // Simulate loading
     await new Promise(r => setTimeout(r, 500))
     setIsRefreshing(false)
   }
