@@ -56,11 +56,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-border text-center">
-          <p className="text-xs text-muted-foreground font-mono">
-            Built with Next.js, TypeScript, and Tailwind CSS.
-          </p>
-        </div>
+
       </div>
     </footer>
   )
