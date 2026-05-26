@@ -6,7 +6,7 @@ import { Users } from "lucide-react"
 
 export function LeadershipSection() {
   return (
-    <section id="leadership" className="pt-24 pb-12 px-6">
+    <section id="leadership" className="pt-12 pb-12 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

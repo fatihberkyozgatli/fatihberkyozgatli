@@ -45,7 +45,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="pt-24 pb-12 px-6 bg-card/30">
+    <section id="contact" className="pt-12 pb-12 px-6 bg-card/30">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

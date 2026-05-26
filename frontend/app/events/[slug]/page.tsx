@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { eventsWithReadingTime } from "@/lib/data"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
 
 export default function EventDetailPage() {
   const params = useParams()
@@ -56,12 +57,12 @@ export default function EventDetailPage() {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center">
+        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/#events">
-            <button className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-semibold cursor-pointer">
+            <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
               Back to Events
-            </button>
+            </Button>
           </Link>
         </div>
       </header>

@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { projectsWithReadingTime } from "@/lib/data"
 import { ProjectCard } from "./project-card"
 import { SmallerProjectCard } from "./smaller-project-card"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
 type FocusFilter = "all" | "fullstack" | "data-ai" | "systems"
 
@@ -26,7 +29,7 @@ export function FeaturedProjects() {
   ]
 
   return (
-    <section id="projects" className="pt-24 pb-12 px-6">
+    <section id="projects" className="pt-12 pb-12 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -162,6 +165,24 @@ export function FeaturedProjects() {
             )}
           </>
         )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="pt-12 flex justify-center"
+        >
+          <Link href="/projects">
+            <Button
+              size="lg"
+              className="group bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
+              View All Projects
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )
