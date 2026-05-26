@@ -61,8 +61,10 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
+          storageKey="theme-preference"
           disableTransitionOnChange
+          forcedTheme={undefined}
         >
           {children}
           <SpeedInsights />
