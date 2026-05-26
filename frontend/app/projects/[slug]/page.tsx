@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft, Github, ExternalLink, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { projects } from "@/lib/data"
+import { projectsWithReadingTime } from "@/lib/data"
 import { ArchitectureDiagram } from "@/components/architecture-diagram"
 import { ArchitectureDiagramImage2Surface } from "@/components/architecture-diagram-image2surface"
 import ProductShowcase from "@/components/product-showcase"
@@ -15,7 +15,7 @@ export default function ProjectPage() {
   const params = useParams()
   const slug = params.slug as string
   
-  const project = projects.find((p) => p.slug === slug)
+  const project = projectsWithReadingTime.find((p) => p.slug === slug)
   
   if (!project) {
     notFound()
@@ -74,6 +74,11 @@ export default function ProjectPage() {
             <Badge variant="outline" className="text-sm capitalize">
               {project.category}
             </Badge>
+            {project.readingTime && (
+              <Badge variant="outline" className="text-sm">
+                {project.readingTime} min read
+              </Badge>
+            )}
           </div>
 
           {/* Tech Stack */}
@@ -191,8 +196,8 @@ export default function ProjectPage() {
                     </div>
                   </div>
                 </div>
-                {/* Placeholder for Interactive Architecture Diagram */}
-                <div className="mt-6">
+                {/* Interactive Architecture Diagram - Hidden on mobile */}
+                <div className="mt-6 hidden md:block">
                   <ArchitectureDiagram />
                 </div>
               </div>
@@ -337,7 +342,7 @@ export default function ProjectPage() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6">
+                <div className="mt-6 hidden md:block">
                   <ArchitectureDiagramImage2Surface />
                 </div>
               </div>
@@ -514,9 +519,9 @@ export default function ProjectPage() {
           className="pt-12 border-t border-border"
         >
           <h3 className="text-lg font-semibold mb-6">Other Projects</h3>
-          {projects.filter((p) => p.slug !== slug && p.featured).length > 0 ? (
+          {projectsWithReadingTime.filter((p) => p.slug !== slug && p.featured).length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {projects
+              {projectsWithReadingTime
                 .filter((p) => p.slug !== slug && p.featured)
                 .slice(0, 2)
                 .map((otherProject) => (

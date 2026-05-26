@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { events } from "@/lib/data"
+import { eventsWithReadingTime } from "@/lib/data"
 import { Calendar, ArrowRight } from "lucide-react"
 
 export function EventsSection() {
@@ -27,7 +27,7 @@ export function EventsSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {events.map((event, index) => (
+          {eventsWithReadingTime.map((event, index) => (
             <motion.div
               key={event.title}
               initial={{ opacity: 0, y: 20 }}
@@ -43,9 +43,14 @@ export function EventsSection() {
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="text-lg font-semibold">{event.title}</h3>
-                    <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">
-                      {event.date}
-                    </span>
+                    <div className="text-right">
+                      <p className="text-xs font-mono text-muted-foreground">{event.date}</p>
+                      {event.readingTime && (
+                        <p className="text-xs font-mono text-primary">
+                          {event.readingTime} min read
+                        </p>
+                      )}
+                    </div>
                   </div>
                   <p className="text-sm text-primary mb-3">{event.role}</p>
                   <p className="text-sm text-muted-foreground mb-4">{event.summary}</p>

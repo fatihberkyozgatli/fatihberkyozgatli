@@ -17,6 +17,7 @@ export type Project = {
   problem?: string
   impact?: string
   architecture?: string
+  readingTime?: number
 }
 
 export type Experience = {
@@ -64,6 +65,7 @@ export type EventEntry = {
   momentImage?: string
   closingImages?: string[]
   candidImage?: string
+  readingTime?: number
 }
 
 export type AwardEntry = {
@@ -93,7 +95,7 @@ export const projects: Project[] = [
     ],
     problem: "Billingsley was manually downloading all property data from third-party financial software each time, uploading it to separate internal applications, and repeating constantly. This process was slow, tedious, and created data inconsistencies as information changed over time.",
     impact: "Removed the manual process entirely. The system now automatically ingests data on a customizable schedule, stores it centrally in MySQL, and serves it to multiple internal apps via authenticated APIs. Eliminates data sync errors and operational overhead.",
-    architecture: ""
+    architecture: "The system follows a 6-layer ETL (Extract, Transform, Load) architecture optimized for data consistency, security, and scalability. Third-party Financial Software → Python Preprocessing → MySQL Storage → FastAPI API (Interaction Layer) → React Frontend (Admin) + External Applications. Data flows through multiple validation layers ensuring enterprise-grade reliability with financial records. APScheduler orchestrates customizable, scheduled data imports via SFTP using Paramiko for secure connections. Python preprocessing handles validation and data cleaning before MySQL storage with strict schema constraints. FastAPI with Uvicorn provides high-performance async access supporting concurrent requests. Pydantic ensures strict schema validation preventing malformed data from entering the database. JWT tokens with refresh token rotation secure all endpoints, while 5-minute rate limiting prevents brute-force attacks. Technical Decisions: FastAPI over Django for async-first architecture enabling high concurrency, plus automatic OpenAPI documentation for transparency. Paramiko for SFTP provides low-level control over connection lifecycle and security, integrating cleanly with APScheduler scheduling. JWT plus Rate Limiting enforces 5-minute lockout after 5 failed logins without permanent account blocks, balancing security and usability. User Deactivation (not deletion) maintains historical audit trail for compliance while allowing re-activation. Challenges & Solutions: Service Management required pivoting from NSSM to WinSW plus Nginx architecture when NSSM wasn't supported on Windows Server post-2020. WinSW wraps FastAPI as Windows service while Nginx acts as reverse proxy handling HTTP/S traffic and routing. Data source delays were addressed with manual import fallback allowing CSV uploads from local files while maintaining identical pipeline logic, enabling development continuation. Data integrity under load was solved with multi-layer validation: Pydantic schemas validate all ingested data before insertion, Python preprocessing handles missing fields gracefully, database constraints prevent invalid data at storage level, comprehensive error logging enables rapid troubleshooting of edge cases. Results: System processes monthly property updates for 500+ records across multiple property management divisions with zero data loss or corruption incidents since deployment. Customizable scheduled imports run as frequently as needed (daily, weekly, or custom cadence) eliminating manual processes entirely. Completely automated platform replaced recurring manual operations with autonomous scheduled data ingestion and delivery, increasing reliability and scalability. Senior Design Expo recognition validates full-stack systems engineering approach combining secure authentication, automated scheduling, data validation, and enterprise-grade infrastructure."
   },
   {
     title: "Image2Surface: 3D Mesh\nGeneration from Images",
@@ -122,7 +124,7 @@ export const projects: Project[] = [
     title: "Turkish Süper Lig Match Prediction",
     slug: "turkish-super-league-prediction",
     category: "datastructures-ml",
-    summary: "Machine learning classification model predicting match outcomes in Turkish Süper Lig with 64% accuracy - a 42% improvement over baseline.",
+    summary: "Machine learning classification model predicting match outcomes in Turkish Süper Lig with 64% accuracy, a 42% improvement over baseline.",
     role: "Data Scientist",
     stack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "Matplotlib", "Seaborn"],
     featured: false,
@@ -258,6 +260,31 @@ export const leadership: LeadershipEntry[] = [
     impact: "Empowered underrepresented high-school students to pursue STEM careers and higher education opportunities."
   }
 ]
+
+export function enrichProjectsWithReadingTime(projectsList: Project[]): Project[] {
+  const { calculateReadingTime } = require("./utils")
+  return projectsList.map(project => {
+    if (project.problem || project.impact || project.architecture) {
+      const contentToRead = [
+        project.summary,
+        project.role,
+        project.problem,
+        project.impact,
+        project.architecture,
+        project.highlights?.join(" ")
+      ]
+        .filter(Boolean)
+        .join(" ")
+      return {
+        ...project,
+        readingTime: calculateReadingTime(contentToRead)
+      }
+    }
+    return project
+  })
+}
+
+export const projectsWithReadingTime = enrichProjectsWithReadingTime(projects)
 
 export const awards: AwardEntry[] = [
   {
@@ -402,6 +429,31 @@ Looking around the room during the convention, seeing students networking, excha
 More than anything, the convention reinforced my belief that dialogue remains one of the most important tools we have during periods of rapid transformation.`
   }
 ]
+
+export function enrichEventsWithReadingTime(eventsList: EventEntry[]): EventEntry[] {
+  const { calculateReadingTime } = require("./utils")
+  return eventsList.map(event => {
+    const contentToRead = [
+      event.openingNarrative,
+      event.designSection,
+      event.logisticsSection,
+      event.momentSection,
+      event.closingReflection
+    ]
+      .filter(Boolean)
+      .join(" ")
+    
+    if (contentToRead.length > 0) {
+      return {
+        ...event,
+        readingTime: calculateReadingTime(contentToRead)
+      }
+    }
+    return event
+  })
+}
+
+export const eventsWithReadingTime = enrichEventsWithReadingTime(events)
 
 export const timeline: TimelineEvent[] = [
   {

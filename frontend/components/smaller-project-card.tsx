@@ -20,9 +20,16 @@ export function SmallerProjectCard({ project, showBlankLine = false }: SmallerPr
       className="group relative rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
     >
       <div className="mb-3">
-        <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1">
-          {project.title}
-        </h3>
+        <div className="flex items-start justify-between gap-2 mb-1">
+          <h3 className="text-base font-semibold group-hover:text-primary transition-colors flex-1">
+            {project.title}
+          </h3>
+          {project.readingTime && (
+            <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">
+              {project.readingTime} min
+            </span>
+          )}
+        </div>
         <span className="inline-block px-2 py-0.5 rounded text-xs font-mono bg-primary/10 text-primary">
           {project.category}
         </span>

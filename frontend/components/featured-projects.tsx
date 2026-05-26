@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { projects } from "@/lib/data"
+import { projectsWithReadingTime } from "@/lib/data"
 import { ProjectCard } from "./project-card"
 import { SmallerProjectCard } from "./smaller-project-card"
 
@@ -11,8 +11,8 @@ type FocusFilter = "all" | "fullstack" | "data-ai" | "systems"
 export function FeaturedProjects() {
   const [filter, setFilter] = useState<FocusFilter>("all")
 
-  const featuredProjects = projects.filter((p) => p.featured)
-  const smallerProjects = projects.filter((p) => !p.featured)
+  const featuredProjects = projectsWithReadingTime.filter((p) => p.featured)
+  const smallerProjects = projectsWithReadingTime.filter((p) => !p.featured)
   const allProjects = [...featuredProjects, ...smallerProjects]
 
   const filteredProjects =

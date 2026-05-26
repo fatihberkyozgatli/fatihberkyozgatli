@@ -1,17 +1,17 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowLeft, Calendar, MapPin } from "lucide-react"
+import { ArrowLeft, Calendar, MapPin, Clock } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { events } from "@/lib/data"
+import { eventsWithReadingTime } from "@/lib/data"
 import Image from "next/image"
 
 export default function EventDetailPage() {
   const params = useParams()
   const slug = params.slug as string
 
-  const event = events.find((e) => 
+  const event = eventsWithReadingTime.find((e) => 
     e.title.toLowerCase().replace(/\s+/g, "-") === slug
   )
 
@@ -108,6 +108,12 @@ export default function EventDetailPage() {
                 <div className="flex items-center gap-2">
                   <MapPin className="w-5 h-5" />
                   <span>{event.location}</span>
+                </div>
+              )}
+              {event.readingTime && (
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5" />
+                  <span>{event.readingTime} min read</span>
                 </div>
               )}
             </div>
@@ -365,7 +371,7 @@ export default function EventDetailPage() {
           >
             <h2 className="text-3xl font-bold mb-12">Other Events</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {events
+              {eventsWithReadingTime
                 .filter((e) => e.title.toLowerCase().replace(/\s+/g, "-") !== slug)
                 .map((otherEvent, idx) => (
                   <motion.div

@@ -24,11 +24,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
             {project.title}
           </h3>
-          <span className="px-2 py-1 rounded text-xs font-mono bg-primary/10 text-primary">
+          <span className="px-3 py-1.5 rounded-full border border-border bg-card/50 text-xs font-mono text-primary whitespace-nowrap">
             {project.category}
           </span>
         </div>
         <p className="text-sm text-muted-foreground mb-3">{project.role}</p>
+        {project.readingTime && (
+          <p className="text-xs font-mono text-primary/60">
+            {project.readingTime} min read
+          </p>
+        )}
       </div>
 
       <p className="text-sm text-foreground/80 mb-4 leading-relaxed">
