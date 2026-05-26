@@ -6,6 +6,7 @@ export type Project = {
   role: string
   stack?: string[]
   featured: boolean
+  focus?: "fullstack" | "data-ai" | "systems"
   image?: string
   links?: {
     github?: string
@@ -79,6 +80,7 @@ export const projects: Project[] = [
     role: "Frontend Lead / UI Developer",
     stack: ["React", "TypeScript", "FastAPI", "Python", "MySQL", "JWT", "Azure", "Nginx", "SFTP", "APScheduler", "Paramiko", "Pydantic", "Uvicorn", "WinSW"],
     featured: true,
+    focus: "fullstack",
     links: {
       github: "https://github.com/SamSkanse/Billingsley-Senior-Design-Project"
     },
@@ -101,6 +103,7 @@ export const projects: Project[] = [
     role: "Full-Stack Engineer",
     stack: ["React", "TypeScript", "Three.js", "React Three Fiber", "FastAPI", "Python", "PyTorch", "NumPy", "OpenCV", "SciPy", "Axios", "CUDA/GPU"],
     featured: true,
+    focus: "fullstack",
     links: {
       github: "https://github.com/Patriciomrt05/Image2Surface"
     },
@@ -123,6 +126,7 @@ export const projects: Project[] = [
     role: "Data Scientist",
     stack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "Matplotlib", "Seaborn"],
     featured: false,
+    focus: "data-ai",
     links: {
       github: "https://github.com/fatihberkyozgatli/Turkish_Super_League_Match_Prediction"
     },
@@ -141,6 +145,7 @@ export const projects: Project[] = [
     role: "Full-Stack Engineer",
     stack: ["C++", "CMake", "STL", "Memory Management", "Valgrind", "Catch2"],
     featured: false,
+    focus: "data-ai",
     links: {
       github: "https://github.com/fatihberkyozgatli/Sentiment_Analyzer_Tweets"
     },
@@ -159,6 +164,7 @@ export const projects: Project[] = [
     role: "Full-Stack Engineer",
     stack: ["C++", "CMake", "AVL Tree", "Linked List", "Hash Map", "RapidJSON", "Catch2"],
     featured: false,
+    focus: "systems",
     links: {
       github: "https://github.com/fatihberkyozgatli/Search_Engine_Articles"
     },

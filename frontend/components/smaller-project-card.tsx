@@ -7,9 +7,10 @@ import type { Project } from "@/lib/data"
 
 interface SmallerProjectCardProps {
   project: Project
+  showBlankLine?: boolean
 }
 
-export function SmallerProjectCard({ project }: SmallerProjectCardProps) {
+export function SmallerProjectCard({ project, showBlankLine = false }: SmallerProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -44,12 +45,23 @@ export function SmallerProjectCard({ project }: SmallerProjectCardProps) {
         </div>
       )}
 
+      {project.title === "Sentiment Analyzer - Tweets" && showBlankLine && (
+        <div className="h-4" />
+      )}
+
       <div className="flex gap-2 pt-3 border-t border-border">
         {project.links?.github && (
           <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
             <a href={project.links.github} target="_blank" rel="noopener noreferrer">
               <Github className="w-4 h-4" />
               View Code
+            </a>
+          </Button>
+        )}
+        {project.links?.caseStudy && (
+          <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
+            <a href={project.links.caseStudy} target="_blank" rel="noopener noreferrer">
+              Case Study
             </a>
           </Button>
         )}
