@@ -414,7 +414,7 @@ What I'm taking into the next semester and the next chapter of this journey:
   {
     id: "professional-growth-nspe",
     title: "The Engineers Ring",
-    slug: "the-engineer-s-ring-a-commitment-to-impact",
+    slug: "the-engineers-ring",
     category: "growth",
     featured: true,
     date: "Apr 2025",
