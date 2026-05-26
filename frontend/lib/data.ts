@@ -550,12 +550,12 @@ export const timeline: TimelineEvent[] = [
 
 
 export const skills = {
-  languages: ["Python", "C++", "C++17", "Java", "SQL", "R", "HTML", "CSS", "JavaScript"],
-  frontend: ["React", "TypeScript", "React Three Fiber", "HTML", "CSS", "JavaScript", "Tailwind CSS", "Axios"],
-  backend: ["FastAPI", "Flask", "Django", "Python", "MySQL", "JWT", "Uvicorn", "Pydantic", "Paramiko", "APScheduler"],
-  data: ["SQL", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn", "Jupyter", "PyTorch", "R", "RapidMiner"],
-  tools: ["Git", "MySQL", "VS Code", "IntelliJ", "CLion", "Eclipse", "Node.js", "Azure", "Excel", "CMake", "RapidJSON", "Catch2", "WinSW"],
-  concepts: ["Data Structures", "Algorithms", "System Design", "Full Stack Development", "STL", "Linked List", "Hash Map", "CUDA/GPU", "Memory Management"]
+  languages: ["Python", "C++", "Java", "SQL", "Bash/Shell"],
+  frontend: ["React", "TypeScript", "React Three Fiber", "Tailwind CSS", "Three.js"],
+  backend: ["FastAPI", "Flask", "Django", "JWT", "PostgreSQL"],
+  data: ["Pandas", "NumPy", "Scikit-learn", "Jupyter", "PyTorch"],
+  tools: ["Git", "VS Code", "Docker", "Node.js", "Azure"],
+  concepts: ["Data Structures", "Algorithms", "System Design", "Full Stack Development"]
 }
 
 export const navItems = [

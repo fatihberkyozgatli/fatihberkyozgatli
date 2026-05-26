@@ -45,7 +45,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-card/30">
+    <section id="contact" className="pt-24 pb-12 px-6 bg-card/30">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ export function ContactSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            {"Let's Build Something Together"}
+            {"Building something meaningful? Let's talk."}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-12 text-center">
             {"I'm"} currently seeking full-stack, data engineering, and AI engineering opportunities.

@@ -14,7 +14,7 @@ export function SkillsSection() {
   ]
 
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="pt-24 pb-12 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}

@@ -6,7 +6,7 @@ import { Award } from "lucide-react"
 
 export function AwardsSection() {
   return (
-    <section id="awards" className="py-24 px-6 bg-card/30">
+    <section id="awards" className="pt-24 pb-12 px-6 bg-card/30">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
