@@ -143,7 +143,7 @@ export function ContactSection() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full gap-2"
+                    className="w-full gap-2 cursor-pointer"
                     disabled={status === "loading"}
                   >
                     {status === "loading" ? (
@@ -177,7 +177,7 @@ export function ContactSection() {
                     href="/Fatih_Berk_Yozgatli_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors group"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors group cursor-pointer"
                   >
                     <FileText className="w-5 h-5 text-primary" />
                     <div>
@@ -192,7 +192,7 @@ export function ContactSection() {
                     href="https://github.com/fatihberkyozgatli"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors group"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors group cursor-pointer"
                   >
                     <Github className="w-5 h-5" />
                     <div>
@@ -207,7 +207,7 @@ export function ContactSection() {
                     href="https://www.linkedin.com/in/fatih-berk-yozgatli-4b623b261/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors group"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors group cursor-pointer"
                   >
                     <Linkedin className="w-5 h-5" />
                     <div>

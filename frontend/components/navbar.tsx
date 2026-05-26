@@ -67,11 +67,11 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="hidden sm:flex items-center gap-2 text-muted-foreground"
+              className="hidden sm:flex items-center gap-2 text-muted-foreground cursor-pointer"
               onClick={onOpenCommandPalette}
             >
               <Command className="w-4 h-4" />
-              <kbd className="hidden lg:inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-secondary text-xs">
+              <kbd className="hidden lg:inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-secondary text-xs cursor-pointer">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -82,7 +82,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="text-muted-foreground"
+                className="text-muted-foreground cursor-pointer"
               >
                 {theme === "dark" ? (
                   <Sun className="w-4 h-4" />

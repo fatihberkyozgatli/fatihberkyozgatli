@@ -41,7 +41,7 @@ export function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="p-5 rounded-lg border border-border bg-card"
+              className="p-5 rounded-lg border border-border bg-card hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-shadow"
             >
               <h3 className="text-sm font-mono text-primary mb-3">
                 {category.title}

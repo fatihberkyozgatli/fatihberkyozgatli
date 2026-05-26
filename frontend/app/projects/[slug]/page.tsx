@@ -26,7 +26,7 @@ export default function ProjectPage() {
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/#projects">
-            <Button variant="ghost" size="sm" className="gap-2">
+            <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
               Back to Projects
             </Button>
@@ -192,7 +192,7 @@ export default function ProjectPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground mb-2">API Layer</h4>
-                      <p className="text-sm text-muted-foreground">FastAPI with Uvicorn provides high-performance async access. Pydantic ensures strict schema validation. JWT tokens secure all endpoints.</p>
+                      <p className="text-sm text-muted-foreground">FastAPI with Uvicorn provides high-performance async access. Pydantic ensures strict schema validation. JWT tokens and 5-minute rate limiting secure all endpoints.</p>
                     </div>
                   </div>
                 </div>
@@ -265,7 +265,7 @@ export default function ProjectPage() {
                   <p className="text-sm"><span className="font-semibold text-foreground">Paramiko for SFTP:</span> <span className="text-muted-foreground">Low-level control over connection lifecycle and security. Handles password-protected access reliably and integrates cleanly with APScheduler.</span></p>
                 </div>
                 <div className="bg-card border border-border rounded-lg p-4">
-                  <p className="text-sm"><span className="font-semibold text-foreground">JWT + Rate Limiting:</span> <span className="text-muted-foreground">Stateless authentication scales across VMs. 5-minute lockout after 5 failed logins prevents brute-force attacks without permanent account blocks.</span></p>
+                  <p className="text-sm"><span className="font-semibold text-foreground">JWT + Rate Limiting:</span> <span className="text-muted-foreground">Stateless secure authentication scales across VMs. 5-minute lockout after 5 failed logins prevents brute-force attacks without permanent account blocks.</span></p>
                 </div>
                 <div className="bg-card border border-border rounded-lg p-4">
                   <p className="text-sm"><span className="font-semibold text-foreground">User Deactivation (not deletion):</span> <span className="text-muted-foreground">Maintains historical audit trail. Admins can deactivate users while preserving all logs and action history for compliance.</span></p>
@@ -379,7 +379,7 @@ export default function ProjectPage() {
                 </div>
 
                 <div className="bg-card border border-border rounded-lg p-6">
-                  <h3 className="font-semibold text-foreground mb-2">Challenge 3: Stateless API with Complex Processing</h3>
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 3: Complex Processing Pipelines</h3>
                   <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
                     <p className="text-sm text-muted-foreground">REST API requires request-response cycles, but image-to-mesh conversion involves multiple sequential steps. Managing session state across requests while maintaining stateless API design is complex.</p>
                   </div>
@@ -402,7 +402,7 @@ export default function ProjectPage() {
               </div>
               <div className="space-y-3">
                 <div className="bg-card border border-border rounded-lg p-4">
-                  <p className="text-sm"><span className="font-semibold text-foreground">Layered Architecture over MVC:</span> <span className="text-muted-foreground">Better separation between routes, business logic, and data layers. Simplifies adding async processing, message queues, or microservices in future phases.</span></p>
+                  <p className="text-sm"><span className="font-semibold text-foreground">5-layer Layered Architecture:</span> <span className="text-muted-foreground">Provides clear separation of concerns between Presentation, Communication, API, Business Logic, and Infrastructure layers. Simplifies adding async processing or microservices in future phases.</span></p>
                 </div>
                 <div className="bg-card border border-border rounded-lg p-4">
                   <p className="text-sm"><span className="font-semibold text-foreground">Depth Anything V2 Model:</span> <span className="text-muted-foreground">Superior zero-shot generalization across diverse image domains. Lightweight ViT-small variant (~90MB) balances accuracy and inference speed.</span></p>
@@ -528,7 +528,7 @@ export default function ProjectPage() {
                   <Link
                     key={otherProject.slug}
                     href={`/projects/${otherProject.slug}`}
-                    className="group p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors"
+                    className="group p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer"
                   >
                     <h4 className="font-semibold group-hover:text-primary transition-colors">
                       {otherProject.title}

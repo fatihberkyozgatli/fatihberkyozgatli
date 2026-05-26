@@ -93,7 +93,7 @@ export const projects: Project[] = [
       "Implemented secure authentication with JWT tokens, API key management, 5-minute rate limiting, and Pydantic data validation preventing database corruption",
       "Delivered fully functional platform replacing manual recurring processes with automated scheduled data delivery; 2nd Place Winner at Senior Design Expo"
     ],
-    problem: "Billingsley was manually downloading all property data from third-party financial software each time, uploading it to separate internal applications, and repeating constantly. This process was slow, tedious, and created data inconsistencies as information changed over time.",
+    problem: "Billingsley was manually downloading all property data from third-party financial software each time, uploading it to separate internal applications, and repeating constantly. This process was slow, tedious, and created data inconsistencies as information changed over time. Awarded 2nd Place Winner at Senior Design Expo.",
     impact: "Removed the manual process entirely. The system now automatically ingests data on a customizable schedule, stores it centrally in MySQL, and serves it to multiple internal apps via authenticated APIs. Eliminates data sync errors and operational overhead.",
     architecture: "The system follows a 6-layer ETL (Extract, Transform, Load) architecture optimized for data consistency, security, and scalability. Third-party Financial Software → Python Preprocessing → MySQL Storage → FastAPI API (Interaction Layer) → React Frontend (Admin) + External Applications. Data flows through multiple validation layers ensuring enterprise-grade reliability with financial records. APScheduler orchestrates customizable, scheduled data imports via SFTP using Paramiko for secure connections. Python preprocessing handles validation and data cleaning before MySQL storage with strict schema constraints. FastAPI with Uvicorn provides high-performance async access supporting concurrent requests. Pydantic ensures strict schema validation preventing malformed data from entering the database. JWT tokens with refresh token rotation secure all endpoints, while 5-minute rate limiting prevents brute-force attacks. Technical Decisions: FastAPI over Django for async-first architecture enabling high concurrency, plus automatic OpenAPI documentation for transparency. Paramiko for SFTP provides low-level control over connection lifecycle and security, integrating cleanly with APScheduler scheduling. JWT plus Rate Limiting enforces 5-minute lockout after 5 failed logins without permanent account blocks, balancing security and usability. User Deactivation (not deletion) maintains historical audit trail for compliance while allowing re-activation. Challenges & Solutions: Service Management required pivoting from NSSM to WinSW plus Nginx architecture when NSSM wasn't supported on Windows Server post-2020. WinSW wraps FastAPI as Windows service while Nginx acts as reverse proxy handling HTTP/S traffic and routing. Data source delays were addressed with manual import fallback allowing CSV uploads from local files while maintaining identical pipeline logic, enabling development continuation. Data integrity under load was solved with multi-layer validation: Pydantic schemas validate all ingested data before insertion, Python preprocessing handles missing fields gracefully, database constraints prevent invalid data at storage level, comprehensive error logging enables rapid troubleshooting of edge cases. Results: System processes monthly property updates for 500+ records across multiple property management divisions with zero data loss or corruption incidents since deployment. Customizable scheduled imports run as frequently as needed (daily, weekly, or custom cadence) eliminating manual processes entirely. Completely automated platform replaced recurring manual operations with autonomous scheduled data ingestion and delivery, increasing reliability and scalability. Senior Design Expo recognition validates full-stack systems engineering approach combining secure authentication, automated scheduling, data validation, and enterprise-grade infrastructure."
   },
@@ -238,7 +238,7 @@ export const leadership: LeadershipEntry[] = [
     dates: "Aug. 2023 – May 2026",
     summary: "Founded and led one of SMU's largest student organizations, securing significant university funding and sponsorships.",
     highlights: [
-      "Grew membership from 2 to 300+, making it one of SMU's largest student organizations",
+      "Grew membership from 2 to 300+ members, making it one of SMU's largest student organizations",
       "Secured $10K in university funding and sponsorships",
       "Built a thriving community focused on dialogue and engagement across campus",
       "Established organizational structure and leadership framework for sustainable growth"
@@ -368,11 +368,11 @@ As someone who once entered college feeling uncertain and uninformed, helping cr
     date: "Feb. 7, 2026",
     location: "UT Dallas ECSW 1315",
     role: "Founder & Organizer",
-    summary: "The Dialogue Society's 5th Annual Convention brought together 200+ students from 5+ DFW universities for a full day of dialogue, connection, and purposeful engagement in the digital age.",
+    summary: "The Dialogue Society's 5th Annual Convention brought together hundreds of students from DFW universities for a full day of dialogue, connection, and purposeful engagement in the digital age.",
     heroImage: "/images/events/convention-heroimage.jpg",
     outcome: "Strengthened dialogue and community building across the region with keynote speakers and interactive programming",
     highlights: [
-      "Gathered 200+ students from 5+ universities for full-day dialogue conference on purpose, identity, and connection",
+      "Gathered 200+ students from 5+ DFW universities for full-day dialogue conference on purpose, identity, and connection",
       "Featured keynote speakers on building meaningful human connections in the digital age and AI era",
       "Included panel sessions and interactive workshops on career development, ethical AI engagement, and community building"
     ],
@@ -402,7 +402,7 @@ Rather than approaching AI only from a technical perspective, we wanted to creat
 The goal was not to reject technology, but to better understand how humanity can grow alongside it.`,
     logisticsSection: `Organizing the convention required extensive coordination across logistics, speaker outreach, event planning, marketing, and live event management. I worked on organizing and supervising the convention from start to finish, coordinating speakers, managing communication and promotion, and helping oversee the experience throughout the event itself.
 
-The convention featured keynote speakers, professional panelists, interactive workshops, and networking sessions designed to encourage active participation rather than passive listening. More than 200 students attended throughout the day, engaging with conversations that connected technology to real human experiences and future challenges.
+The convention featured keynote speakers, professional panelists, interactive workshops, and networking sessions designed to encourage active participation rather than passive listening. More than 200+ students attended throughout the day, engaging with conversations that connected technology to real human experiences and future challenges.
 
 One of the most rewarding parts of the event was seeing students from completely different academic and professional interests engage with the same ideas from different perspectives. Discussions around AI were no longer limited to computer science, they extended into healthcare, law, business, communication, psychology, and education.
 
@@ -506,14 +506,14 @@ export const timeline: TimelineEvent[] = [
   },
   {
     year: "2024",
-    title: "Left Dialogue Institute Intern Position",
-    description: "Completed internship and concluded data work with the Dialogue Institute.",
+    title: "Established Interfaith Programming at SMU",
+    description: "Developed new programs focused on building bridges.",
     type: "milestone"
   },
   {
     year: "2024",
-    title: "Left SMU Teaching Assistant Position",
-    description: "Completed TA role after providing comprehensive support to computer science students.",
+    title: "Secured Chartered Funding",
+    description: "Earned $6K in funding from school for excellence in programs.",
     type: "milestone"
   },
   {
@@ -539,6 +539,12 @@ export const timeline: TimelineEvent[] = [
     title: "Graduated from SMU",
     description: "Completed dual Bachelor of Science degrees in Computer Science and Data Science.",
     type: "education"
+  },
+  {
+    year: "2026",
+    title: "Building My Portfolio",
+    description: "Launched fatihOS, a premium portfolio system showcasing full-stack engineering, data workflows, and interactive design.",
+    type: "project"
   },
 ]
 

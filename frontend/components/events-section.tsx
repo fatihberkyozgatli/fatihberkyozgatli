@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { eventsWithReadingTime } from "@/lib/data"
+import { highlightMetrics } from "@/lib/metrics"
 import { Calendar, ArrowRight } from "lucide-react"
 
 export function EventsSection() {
@@ -34,7 +35,7 @@ export function EventsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="rounded-lg border border-border bg-card p-6"
+              className="rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer"
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-lg bg-primary/10">

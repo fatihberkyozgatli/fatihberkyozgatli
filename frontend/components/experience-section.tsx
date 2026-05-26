@@ -32,7 +32,7 @@ export function ExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative rounded-lg border border-border bg-card p-6"
+              className="relative rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
                 <div>

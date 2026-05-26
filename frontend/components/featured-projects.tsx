@@ -61,7 +61,7 @@ export function FeaturedProjects() {
                 <button
                   key={btn.value}
                   onClick={() => setFilter(btn.value)}
-                  className={`px-3 py-1.5 rounded-full border text-sm font-mono transition-all ${
+                  className={`px-3 py-1.5 rounded-full border text-sm font-mono transition-all cursor-pointer ${
                     filter === btn.value
                       ? "bg-primary text-primary-foreground border-primary"
                       : "border-border bg-card/50 text-foreground hover:border-primary"

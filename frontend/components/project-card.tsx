@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink, Github, ChevronDown, ChevronUp, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { highlightMetrics } from "@/lib/metrics"
 import Link from "next/link"
 import type { Project } from "@/lib/data"
 
@@ -17,7 +18,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div
       id={project.slug}
-      className="group relative rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
+      className="group relative rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 cursor-pointer"
     >
       <div className="mb-4">
         <div className="flex items-start justify-between gap-4 mb-2">
@@ -56,7 +57,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="space-y-3">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
         >
           {isExpanded ? (
             <ChevronUp className="w-4 h-4" />

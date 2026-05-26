@@ -17,7 +17,7 @@ export function SmallerProjectCard({ project, showBlankLine = false }: SmallerPr
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="group relative rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
+      className="group relative rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 cursor-pointer"
     >
       <div className="mb-3">
         <div className="flex items-start justify-between gap-2 mb-1">

@@ -92,7 +92,7 @@ export function Timeline() {
                             isEven ? "md:pl-12" : "md:pr-12"
                           }`}
                         >
-                          <div className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors">
+                          <div className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer">
                             <h3 className="font-semibold mb-1">{item.title}</h3>
                             <p className="text-sm text-muted-foreground">
                               {item.description}
