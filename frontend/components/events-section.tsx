@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { eventsWithReadingTime } from "@/lib/data"
-import { highlightMetrics } from "@/lib/metrics"
 import { Calendar, ArrowRight } from "lucide-react"
 
 export function EventsSection() {
@@ -44,8 +43,11 @@ export function EventsSection() {
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="text-lg font-semibold">{event.title}</h3>
-                    <div className="text-right">
-                      <p className="text-xs font-mono text-muted-foreground">{event.date}</p>
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-xs font-mono text-muted-foreground hidden sm:block">{event.date}</p>
+                      <p className="text-xs font-mono text-muted-foreground sm:hidden">
+                        {event.date.split(" ").filter((_, i, arr) => i === 0 || i === arr.length - 1).map((word, i) => i === 0 ? word.replace(".", "") : word).join(" ")}
+                      </p>
                       {event.readingTime && (
                         <p className="text-xs font-mono text-primary">
                           {event.readingTime} min read

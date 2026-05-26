@@ -73,6 +73,19 @@ export type AwardEntry = {
   highlight: string
 }
 
+export type BlogPost = {
+  id: string
+  title: string
+  slug: string
+  category: "career" | "leadership" | "growth" | "reflection"
+  content: string
+  excerpt: string
+  featured: boolean
+  date: string
+  readingTime: number
+  images: string[]
+}
+
 export const projects: Project[] = [
   {
     title: "Intermediary Property DB Management System",
@@ -217,7 +230,7 @@ export const experiences: Experience[] = [
     skills: ["C++", "Java", "Teaching", "Algorithms", "Data Structures", "Mentoring", "Technical Communication", "Code Review"]
   },
   {
-    title: "Data Associate",
+    title: "Intern",
     organization: "Dialogue Institute Dallas",
     dates: "Aug. 2023 – May 2024",
     summary: "Conducted data collection and analysis to enhance community outreach, creating databases to manage event organization across the DFW area.",
@@ -304,6 +317,164 @@ export const awards: AwardEntry[] = [
     highlight: "Honored member of NSPE with lifelong commitment to ethical engineering excellence."
   }
 ]
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: "resilience-job-search",
+    title: "You're Not Alone. We've Got This.",
+    slug: "you-re-not-alone-we-ve-got-this",
+    category: "career",
+    featured: false,
+    date: "Sep 2024",
+    readingTime: 3,
+    excerpt: "Four years ago, I moved from Albania to the U.S. chasing an opportunity I believed in building a future through technology and education. Here's what the journey has taught me about resilience and persistence.",
+    images: ["/images/blog/resilience/image1.jpeg"],
+    content: `Four years ago, I moved from Albania to the U.S. chasing an opportunity I believed in building a future through technology and education.
+
+It hasn’t been easy. I took a gap year... not to fall behind, but to give myself the chance to pursue the college and career I truly wanted.
+
+Fast forward to now:
+
+– 300+ applications for software & data roles
+
+– 40 rejections
+
+– A handful of interviews
+
+– Still waiting for that one “yes”
+
+But here’s what keeps me going:
+
+– Every rejection is proof that I’m trying
+
+– Every step builds resilience and experience
+
+– One day, I know I will support and mentor others facing this same journey
+
+I know that one YES will make every no worth it.
+
+Life isn’t a race, it’s a timeline you get to write.
+Greatness isn’t rushed. It’s built. 
+
+To anyone else navigating this path:
+
+You’re not alone. We’ve got this.
+`
+  },
+  {
+    id: "reflection-pause-to-breathe",
+    title: "Life Keeps Moving Even When You Pause",
+    slug: "life-keeps-moving-even-when-you-pause",
+    category: "reflection",
+    featured: false,
+    date: "Oct 2024",
+    readingTime: 4,
+    excerpt: "The last couple of weeks reminded me of something I forget far too easily: Life keeps moving even when you pause. I've been in such a long grind... and for once, I let myself slow down.",
+    images: ["/images/blog/reflection/image1.jpeg"],
+    content: `The last couple of weeks reminded me of something I forget far too easily: Life keeps moving even when you pause.
+
+I've been in such a long grind with applications, interviews, projects, school… always thinking about the next step, the next opportunity, the next thing I have to prove. And for once, I let myself slow down.
+
+Not to stop, just to breathe.
+
+And in that small break, two things hit me really deeply.
+
+**1. The Dialogue Society at SMU** 
+
+Giving enough as a leader to my student organization always feels like a struggle, but I finally had the time to see the quiet payoff of showing up. We ended this semester with 50+ new active members, and that number honestly means so much to me. Not because it's "growth," but because I saw what consistency can do.
+
+Every small event, every late-night planning session, every moment spent making sure people felt seen all added up to show in the impact on our statistics. I didn't notice it while it was happening, but stepping back made it clear: showing up with intention actually matters. People feel it. Community grows from it.
+
+And being part of that reminded me why I love building things that bring people together.
+
+**2. Time with my family and my friends**
+
+The parts of life that ground you, center you, and remind you of what you are striving for. The holidays gave me something I didn't even realize I was running low on: Warmth. Presence. Actual connection.
+
+Seeing my family, spending time with the people I love, it reminded me why I work so hard in the first place.
+
+We don't build skills and careers just to stack accomplishments.
+We do it so we can become better people for the communities around us.
+
+It's so easy to lose that perspective when you're deep in the job hunt.
+But stepping away for a bit made everything feel clearer again. Let's continue bringing our humanity and our connections with each other to the forefront, and continue reminding ourselves that everyone needs to recharge and re-inspire themselves to be able to grow forward.
+
+What I'm taking into the next semester and the next chapter of this journey:
+
+– Consistency is powerful, even when the progress feels invisible.
+
+– Community will always matter more than titles.
+
+– The small things you do for people end up being the big things.
+
+– Growth isn't just technical. It's human.
+
+– And none of this means anything if you forget the people who make your life feel like home.`
+  },
+  {
+    id: "professional-growth-nspe",
+    title: "The Engineers Ring",
+    slug: "the-engineer-s-ring-a-commitment-to-impact",
+    category: "growth",
+    featured: true,
+    date: "Apr 2025",
+    readingTime: 2,
+    excerpt: "I am honored to share that I have been inducted into NSPE and the Order of the Engineer. This moment represents a lifelong commitment to integrity, responsibility, and service to humanity through engineering.",
+    images: ["/images/blog/nspe/image1.jpeg", "/images/blog/nspe/image2.jpeg"],
+    content: `I’m honored to share that I have been inducted into the National Society of Professional Engineers (NSPE) and the Order of the Engineer.
+
+    Participating in the Engineer’s Ring Ceremony and taking the Obligation of an Engineer was a deeply meaningful experience. Receiving the ring and certificate is more than a milestone, it represents a lifelong commitment to integrity, responsibility, and service to humanity through engineering.
+
+The ring itself is a constant reminder: that the work we do as engineers carries real impact, and that we are entrusted to use our knowledge ethically, thoughtfully, and for the greater good.
+
+This moment was especially meaningful to me because of the inspiration I gained from Dr. Klyne Smith, Dr.Eng.'s ethics in Computing course. That class fundamentally shaped how I think about technology, not just as something we build, but something we are accountable for.
+
+As I approach graduation, I carry this responsibility with pride. I’m grateful for the mentors, peers, and experiences that brought me here, and I’m excited to continue growing as an engineer committed to making a positive impact.`
+  },
+  {
+    id: "leadership-graduation",
+    title: "From SMU to the World",
+    slug: "from-smu-to-the-world",
+    category: "leadership",
+    featured: true,
+    date: "May 2025",
+    readingTime: 3,
+    excerpt: "I am honored and excited to announce that I have graduated from Southern Methodist University with a double major in Computer Science and Data Science, along with a minor in Mathematics.",
+    images: ["/images/blog/graduation/image1.jpeg", "/images/blog/graduation/image2.jpeg", "/images/blog/graduation/image3.jpeg"],
+    content: `I am honored and excited to announce that I have graduated from Southern Methodist University with a double major in Computer Science and Data Science, along with a minor in Mathematics!
+
+A few years ago, I moved to the United States trying to adapt to a completely new environment, culture, and system. Since then, SMU became much more than just a university for me. It became the place where I grew technically, professionally, and personally through challenges, leadership, friendships, and opportunities I will always be grateful for.
+
+Over the past years, I have had the chance to:
+
+– Build full-stack software and data systems
+
+– Work on AI and analytics projects
+
+– Lead and grow The Dialogue Society at SMU
+
+– Contribute to a senior design project sponsored by Billingsley Company
+
+– Work across software engineering, data, and AI-focused roles
+
+– Meet incredible people who pushed me to grow
+
+I’m especially thankful to my professors, mentors, teammates, friends, and family who supported me throughout this journey.
+
+I’m excited for what comes next as I continue building in software engineering, AI, and data systems.
+
+Thank you, SMU. 
+Pony up, and pony out!`
+  }
+]
+
+export const enrichBlogPostsWithReadingTime = (blogPosts: BlogPost[]) => {
+  return blogPosts.map(post => ({
+    ...post
+  }))
+}
+
+export const blogPostsWithReadingTime = enrichBlogPostsWithReadingTime(blogPosts)
 
 export const events: EventEntry[] = [
   {
@@ -564,6 +735,7 @@ export const navItems = [
   { label: "Experience", href: "#experience" },
   { label: "Leadership", href: "#leadership" },
   { label: "Events", href: "#events" },
+  { label: "Blog", href: "#blog" },
   { label: "Awards", href: "#awards" },
   { label: "Timeline", href: "#timeline" },
   { label: "Contact", href: "#contact" }
@@ -571,21 +743,29 @@ export const navItems = [
 
 export const commands = [
   { label: "Open Projects", action: "navigate", target: "#projects" },
-  { label: "View Resume", action: "external", target: "/Fatih_Berk_Yozgatli_Resume.pdf" },
-  { label: "Open GitHub", action: "external", target: "https://github.com/fatihberkyozgatli" },
-  { label: "Open LinkedIn", action: "external", target: "https://www.linkedin.com/in/fatih-berk-yozgatli-4b623b261/" },
-  { label: "Contact Me", action: "navigate", target: "#contact" },
-  { label: "Toggle Theme", action: "theme", target: "" },
+  { label: "Billingsley Data Integration", action: "navigate", target: "/projects/billingsley-data-integration" },
+  { label: "Image2Surface 3D Mesh", action: "navigate", target: "/projects/image-2-surface" },
+  { label: "Turkish Super League Prediction", action: "navigate", target: "/projects/turkish-super-league-prediction" },
+  { label: "Sentiment Analyzer", action: "navigate", target: "/projects/sentiment-analyzer-tweets" },
+  { label: "Search Engine", action: "navigate", target: "/projects/search-engine-articles" },
   { label: "Open Skills", action: "navigate", target: "#skills" },
   { label: "Open Experience", action: "navigate", target: "#experience" },
   { label: "Open Leadership", action: "navigate", target: "#leadership" },
   { label: "Open Events", action: "navigate", target: "#events" },
   { label: "High School Career Fair", action: "navigate", target: "/events/high-school-career-fair" },
   { label: "5th Annual Convention", action: "navigate", target: "/events/5th-annual-convention" },
-  { label: "Billingsley Data Integration", action: "navigate", target: "/projects/billingsley-data-integration" },
-  { label: "Image2Surface 3D Mesh", action: "navigate", target: "/projects/image-2-surface" },
+  { label: "Open Blog", action: "navigate", target: "#blog" },
+  { label: "You're Not Alone. We've Got This", action: "navigate", target: "/blog/you-re-not-alone-we-ve-got-this" },
+  { label: "Life Keeps Moving Even When You Pause", action: "navigate", target: "/blog/life-keeps-moving-even-when-you-pause" },
+  { label: "The Engineers Ring", action: "navigate", target: "/blog/the-engineer-s-ring-a-commitment-to-impact" },
+  { label: "From SMU to the World", action: "navigate", target: "/blog/from-smu-to-the-world" },
   { label: "Open Awards", action: "navigate", target: "#awards" },
-  { label: "Open Timeline", action: "navigate", target: "#timeline" }
+  { label: "Open Timeline", action: "navigate", target: "#timeline" },
+  { label: "View Resume", action: "external", target: "/Fatih_Berk_Yozgatli_Resume.pdf" },
+  { label: "Open GitHub", action: "external", target: "https://github.com/fatihberkyozgatli" },
+  { label: "Open LinkedIn", action: "external", target: "https://www.linkedin.com/in/fatih-berk-yozgatli-4b623b261/" },
+  { label: "Contact Me", action: "navigate", target: "#contact" },
+  { label: "Toggle Theme", action: "theme", target: "" }
 ]
 
 export const statusCards = [

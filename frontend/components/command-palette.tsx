@@ -19,6 +19,7 @@ import {
   Award,
   Code,
   Briefcase,
+  BookOpen,
 } from "lucide-react"
 import { commands } from "@/lib/data"
 
@@ -29,27 +30,43 @@ interface CommandPaletteProps {
 
 const iconMap: Record<string, React.ReactNode> = {
   "Open Projects": <FolderOpen className="w-4 h-4" />,
-  "View Resume": <FileText className="w-4 h-4" />,
-  "Open GitHub": <Github className="w-4 h-4" />,
-  "Open LinkedIn": <Linkedin className="w-4 h-4" />,
-  "Contact Me": <Mail className="w-4 h-4" />,
-  "Toggle Theme": <Sun className="w-4 h-4" />,
+  "Billingsley Data Integration": <Code className="w-4 h-4" />,
+  "Image2Surface 3D Mesh": <Code className="w-4 h-4" />,
+  "Turkish Super League Prediction": <Code className="w-4 h-4" />,
+  "Sentiment Analyzer": <Code className="w-4 h-4" />,
+  "Search Engine": <Code className="w-4 h-4" />,
   "Open Skills": <Code className="w-4 h-4" />,
   "Open Experience": <Briefcase className="w-4 h-4" />,
   "Open Leadership": <Users className="w-4 h-4" />,
   "Open Events": <Calendar className="w-4 h-4" />,
   "High School Career Fair": <Calendar className="w-4 h-4" />,
   "5th Annual Convention": <Calendar className="w-4 h-4" />,
-  "Billingsley Data Integration": <Code className="w-4 h-4" />,
-  "Image2Surface 3D Mesh": <Code className="w-4 h-4" />,
+  "Open Blog": <BookOpen className="w-4 h-4" />,
+  "You're Not Alone. We've Got This": <BookOpen className="w-4 h-4" />,
+  "Life Keeps Moving Even When You Pause": <BookOpen className="w-4 h-4" />,
+  "The Engineers Ring": <BookOpen className="w-4 h-4" />,
+  "From SMU to the World": <BookOpen className="w-4 h-4" />,
   "Open Awards": <Award className="w-4 h-4" />,
   "Open Timeline": <Clock className="w-4 h-4" />,
+  "View Resume": <FileText className="w-4 h-4" />,
+  "Open GitHub": <Github className="w-4 h-4" />,
+  "Open LinkedIn": <Linkedin className="w-4 h-4" />,
+  "Contact Me": <Mail className="w-4 h-4" />,
+  "Toggle Theme": <Sun className="w-4 h-4" />,
 }
 
 export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [search, setSearch] = useState("")
   const [selectedIndex, setSelectedIndex] = useState(0)
   const { theme, setTheme } = useTheme()
+  const scrollContainerRef = useCallback((element: HTMLDivElement | null) => {
+    if (element && selectedIndex >= 0) {
+      const selectedButton = element.querySelector(
+        `button:nth-child(${selectedIndex + 1})`
+      ) as HTMLButtonElement | null
+      selectedButton?.scrollIntoView({ block: "nearest", behavior: "smooth" })
+    }
+  }, [selectedIndex])
 
   const filteredCommands = commands.filter((cmd) =>
     cmd.label.toLowerCase().includes(search.toLowerCase())
@@ -155,7 +172,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 </kbd>
               </div>
 
-              <div className="max-h-80 overflow-y-auto p-2">
+              <div className="max-h-80 overflow-y-auto p-2" ref={scrollContainerRef}>
                 {filteredCommands.length === 0 ? (
                   <p className="px-4 py-8 text-center text-sm text-muted-foreground">
                     No commands found.

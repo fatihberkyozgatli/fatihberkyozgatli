@@ -43,7 +43,14 @@ export function LeadershipSection() {
                   <h3 className="text-lg font-semibold">{entry.title}</h3>
                   <p className="text-sm text-primary">{entry.role}</p>
                   <p className="text-xs text-muted-foreground font-mono mt-1">
-                    {entry.organization} • {entry.dates}
+                    <span className="hidden sm:inline">
+                      {entry.organization} • {entry.dates}
+                    </span>
+                    <span className="sm:hidden">
+                      {entry.organization}
+                      <br />
+                      {entry.dates}
+                    </span>
                   </p>
                 </div>
               </div>

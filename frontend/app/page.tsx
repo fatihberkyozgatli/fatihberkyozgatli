@@ -6,6 +6,7 @@ import { BootSequence } from "@/components/boot-sequence"
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { FeaturedProjects } from "@/components/featured-projects"
+import { BlogSection } from "@/components/blog-section"
 import { SkillsSection } from "@/components/skills-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { LeadershipSection } from "@/components/leadership-section"
@@ -65,6 +66,7 @@ export default function Home() {
             <ExperienceSection />
             <LeadershipSection />
             <EventsSection />
+            <BlogSection />
             <AwardsSection />
             <Timeline />
             <ContactSection />
