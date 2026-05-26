@@ -29,7 +29,7 @@ export default function BlogPage() {
     <main className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/#blog">
+          <Link href="/#blogs">
             <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ChevronLeft className="w-4 h-4" />
               Back to Portfolio
@@ -47,7 +47,7 @@ export default function BlogPage() {
             className="mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-primary font-mono text-sm">/blog</span>
+              <span className="text-primary font-mono text-sm">/blogs</span>
               <div className="h-px flex-1 bg-border" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Stories & Reflections</h1>
@@ -96,7 +96,7 @@ export default function BlogPage() {
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   className="rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer"
                 >
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/blogs/${post.slug}`}>
                     <div className="flex items-start gap-4">
                       <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
                         <BookOpen className="w-5 h-5 text-primary" />
@@ -109,8 +109,7 @@ export default function BlogPage() {
                             <p className="text-xs font-mono text-primary">{post.readingTime} min read</p>
                           </div>
                         </div>
-                        <p className="text-sm text-primary mb-3 capitalize">{post.category}</p>
-                        <p className="text-sm text-muted-foreground">{post.excerpt}</p>
+                        <p className="text-sm text-primary capitalize">{post.category}</p>
                       </div>
                     </div>
                   </Link>
@@ -118,16 +117,9 @@ export default function BlogPage() {
               ))}
             </motion.div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center py-12"
-            >
-              <p className="text-muted-foreground text-lg">
-                No posts found in this category.
-              </p>
-            </motion.div>
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">No posts found in this category.</p>
+            </div>
           )}
         </div>
       </section>

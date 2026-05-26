@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowLeft, BookOpen } from "lucide-react"
+import { ArrowLeft, BookOpen, Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useParams } from "next/navigation"
@@ -24,7 +24,7 @@ export default function BlogPostPage() {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
           <p className="text-muted-foreground mb-8">The blog post you're looking for doesn't exist.</p>
-          <Link href="/#blog">
+          <Link href="/#blogs">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Portfolio
@@ -39,7 +39,7 @@ export default function BlogPostPage() {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/#blog">
+          <Link href="/#blogs">
             <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
               Back to Portfolio
@@ -55,8 +55,8 @@ export default function BlogPostPage() {
           transition={{ duration: 0.5 }}
         >
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
-            <Link href="/#blog" className="hover:text-foreground transition-colors">
-              Blog
+            <Link href="/#blogs" className="hover:text-foreground transition-colors">
+              Blogs
             </Link>
             <span>/</span>
             <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-mono font-semibold capitalize">
@@ -189,7 +189,7 @@ export default function BlogPostPage() {
               <h3 className="text-2xl font-semibold mb-8">Other Stories</h3>
               <div className="grid md:grid-cols-2 gap-6">
                 {otherPosts.map((otherPost, index) => (
-                  <Link key={otherPost.id} href={`/blog/${otherPost.slug}`}>
+                  <Link key={otherPost.id} href={`/blogs/${otherPost.slug}`}>
                     <div className="rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer h-full">
                       <div className="flex items-start gap-4">
                         <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">

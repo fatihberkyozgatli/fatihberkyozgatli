@@ -10,7 +10,7 @@ export function BlogSection() {
   const featuredPosts = blogPostsWithReadingTime.filter((p) => p.featured)
 
   return (
-    <section id="blog" className="pt-12 pb-12 px-6 border-b border-border/50">
+    <section id="blogs" className="pt-12 pb-12 px-6 border-b border-border/50">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +20,7 @@ export function BlogSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary font-mono text-sm">/blog</span>
+            <span className="text-primary font-mono text-sm">/blogs</span>
             <div className="h-px flex-1 bg-border" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Stories</h2>
@@ -39,7 +39,7 @@ export function BlogSection() {
               viewport={{ once: true }}
               className="rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer"
             >
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={`/blogs/${post.slug}`}>
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
                     <BookOpen className="w-5 h-5 text-primary" />
@@ -67,7 +67,7 @@ export function BlogSection() {
           viewport={{ once: true }}
           className="flex justify-center"
         >
-          <Link href="/blog">
+          <Link href="/blogs">
             <Button
               size="lg"
               className="group bg-primary hover:bg-primary/90 text-primary-foreground"
