@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight, FileText, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar } from "@/components/avatar"
+import { GitHubStats } from "@/components/github-stats"
 import { statusCards } from "@/lib/data"
 
 export function Hero() {
@@ -14,12 +15,14 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap gap-3 mb-16 justify-center"
+          className="flex flex-wrap gap-3 mb-4 justify-center"
         >
           {statusCards.map((card, index) => (
             <div
               key={card.label}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/50 text-xs font-mono"
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/50 text-xs font-mono ${
+                card.label === "Mode" ? "hidden sm:flex" : "flex"
+              }`}
             >
               <span className="text-muted-foreground">{card.label}:</span>
               <span className="text-foreground">{card.value}</span>
@@ -29,6 +32,11 @@ export function Hero() {
             </div>
           ))}
         </motion.div>
+
+        {/* GitHub Stats Widget */}
+        <div className="flex justify-center mb-8">
+          <GitHubStats />
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-center justify-center max-w-6xl mx-auto">
           <div className="flex flex-col justify-center">

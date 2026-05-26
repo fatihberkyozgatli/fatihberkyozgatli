@@ -444,13 +444,13 @@ export default function ProjectPage() {
           </>
         )}
 
-        {/* See the Product - Both Billingsley & Image2Surface */}
+        {/* See the Product - Both Billingsley & Image2Surface - Hidden on Mobile */}
         {(project.slug === "billingsley-data-integration" || project.slug === "image-2-surface") && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.65 }}
-            className="mb-12"
+            className="mb-12 hidden md:block"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-6 bg-primary rounded-full" />

@@ -84,7 +84,6 @@ fatihOS uses a dark-first design approach with an emerald green accent color (#2
 
 ---
 
----
 
 Built by Fatih Berk Yozgatli — Computer Science & Data Science @ SMU.
 Interested in full-stack systems, AI-integrated applications, and human-centered technology.
