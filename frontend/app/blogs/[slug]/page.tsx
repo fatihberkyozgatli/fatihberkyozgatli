@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowLeft, BookOpen, Calendar, Clock } from "lucide-react"
+import { ArrowLeft, BookOpen, Calendar, Clock, Linkedin } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useParams } from "next/navigation"
@@ -38,13 +38,20 @@ export default function BlogPostPage() {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/#blogs">
             <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
               Back to Portfolio
             </Button>
           </Link>
+          {post.linkedinUrl && (
+            <Button variant="ghost" size="icon" asChild>
+              <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </Button>
+          )}
         </div>
       </header>
 
@@ -76,6 +83,25 @@ export default function BlogPostPage() {
               <span>{post.readingTime} min read</span>
             </div>
           </div>
+
+          {post.linkedinUrl && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="mb-12"
+            >
+              <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
+                  className="gap-2 border-primary/30 hover:border-primary/60 hover:bg-primary/5 cursor-pointer"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  Read on LinkedIn
+                </Button>
+              </a>
+            </motion.div>
+          )}
 
           {post.images[0] && (
             <motion.div
@@ -188,27 +214,32 @@ export default function BlogPostPage() {
             >
               <h3 className="text-2xl font-semibold mb-8">Other Stories</h3>
               <div className="grid md:grid-cols-2 gap-6">
-                {otherPosts.map((otherPost, index) => (
-                  <Link key={otherPost.id} href={`/blogs/${otherPost.slug}`}>
-                    <div className="rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer h-full">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
-                          <BookOpen className="w-5 h-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between gap-2 mb-2">
-                            <h4 className="text-lg font-semibold line-clamp-2">{otherPost.title}</h4>
-                            <div className="text-right flex-shrink-0">
-                              <p className="text-xs font-mono text-muted-foreground">{otherPost.date}</p>
-                              <p className="text-xs font-mono text-primary">{otherPost.readingTime} min read</p>
-                            </div>
-                          </div>
-                          <p className="text-sm text-primary mb-2 capitalize">{otherPost.category}</p>
-                          <p className="text-sm text-muted-foreground line-clamp-2">{otherPost.excerpt}</p>
-                        </div>
-                      </div>
+                {otherPosts.map((otherPost) => (
+                  <div
+                    key={otherPost.id}
+                    className="group rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 cursor-pointer"
+                  >
+                    <div className="mb-4">
+                      <h4 className="text-lg font-semibold group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                        <Link href={`/blogs/${otherPost.slug}`}>{otherPost.title}</Link>
+                      </h4>
+                      <p className="text-xs font-mono text-muted-foreground mb-1">{otherPost.date}</p>
+                      <span className="inline-block px-2 py-0.5 rounded text-xs font-mono bg-primary/10 text-primary capitalize">
+                        {otherPost.category}
+                      </span>
                     </div>
-                  </Link>
+
+                    <div className="flex gap-2 pt-3 border-t border-border">
+                      {otherPost.linkedinUrl && (
+                        <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
+                          <a href={otherPost.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                            <BookOpen className="w-4 h-4" />
+                            View on LinkedIn
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
             </motion.div>

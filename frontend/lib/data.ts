@@ -84,6 +84,7 @@ export type BlogPost = {
   date: string
   readingTime: number
   images: string[]
+  linkedinUrl?: string
 }
 
 export const projects: Project[] = [
@@ -329,6 +330,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: 3,
     excerpt: "Four years ago, I moved from Albania to the U.S. chasing an opportunity I believed in building a future through technology and education. Here's what the journey has taught me about resilience and persistence.",
     images: ["/images/blog/resilience/image1.jpeg"],
+    linkedinUrl: "https://www.linkedin.com/posts/fatih-berk-yozgatli-4b623b261_four-years-ago-i-moved-from-albania-to-the-activity-7390864381481435136-azeU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEBI6AoBm0aPDz0MS1FPSuxYTrvxjx1w35g",
     content: `Four years ago, I moved from Albania to the U.S. chasing an opportunity I believed in building a future through technology and education.
 
 It hasn’t been easy. I took a gap year... not to fall behind, but to give myself the chance to pursue the college and career I truly wanted.
@@ -369,6 +371,7 @@ You’re not alone. We’ve got this.
     featured: false,
     date: "Oct 2024",
     readingTime: 4,
+    linkedinUrl: "https://www.linkedin.com/posts/fatih-berk-yozgatli-4b623b261_the-last-couple-of-weeks-reminded-me-of-something-activity-7402926396618158080-g_GF?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEBI6AoBm0aPDz0MS1FPSuxYTrvxjx1w35g",
     excerpt: "The last couple of weeks reminded me of something I forget far too easily: Life keeps moving even when you pause. I've been in such a long grind... and for once, I let myself slow down.",
     images: ["/images/blog/reflection/image1.jpeg"],
     content: `The last couple of weeks reminded me of something I forget far too easily: Life keeps moving even when you pause.
@@ -419,6 +422,7 @@ What I'm taking into the next semester and the next chapter of this journey:
     featured: true,
     date: "Apr 2025",
     readingTime: 2,
+    linkedinUrl: "https://www.linkedin.com/posts/fatih-berk-yozgatli-4b623b261_im-honored-to-share-that-i-have-been-inducted-activity-7451870080428191744-noQ4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEBI6AoBm0aPDz0MS1FPSuxYTrvxjx1w35g",
     excerpt: "I am honored to share that I have been inducted into NSPE and the Order of the Engineer. This moment represents a lifelong commitment to integrity, responsibility, and service to humanity through engineering.",
     images: ["/images/blog/nspe/image1.jpeg", "/images/blog/nspe/image2.jpeg"],
     content: `I’m honored to share that I have been inducted into the National Society of Professional Engineers (NSPE) and the Order of the Engineer.
@@ -438,6 +442,7 @@ As I approach graduation, I carry this responsibility with pride. I’m grateful
     category: "leadership",
     featured: true,
     date: "May 2025",
+    linkedinUrl: "https://www.linkedin.com/posts/fatih-berk-yozgatli-4b623b261_i-am-honored-and-excited-to-announce-that-activity-7463759528162009088-suFz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEBI6AoBm0aPDz0MS1FPSuxYTrvxjx1w35g",
     readingTime: 3,
     excerpt: "I am honored and excited to announce that I have graduated from Southern Methodist University with a double major in Computer Science and Data Science, along with a minor in Mathematics.",
     images: ["/images/blog/graduation/image1.jpeg", "/images/blog/graduation/image2.jpeg", "/images/blog/graduation/image3.jpeg"],

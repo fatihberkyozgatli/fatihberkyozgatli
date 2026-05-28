@@ -37,25 +37,34 @@ export function BlogSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="rounded-lg border border-border bg-card p-6 hover:border-primary/50 transition-colors cursor-pointer"
+              className="rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 flex flex-col h-full"
             >
-              <Link href={`/blogs/${post.slug}`}>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
-                    <BookOpen className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-lg font-semibold line-clamp-2">{post.title}</h3>
-                      <div className="text-right flex-shrink-0">
-                        <p className="text-xs font-mono text-muted-foreground">{post.date}</p>
-                        <p className="text-xs font-mono text-primary">{post.readingTime} min read</p>
-                      </div>
-                    </div>
-                    <p className="text-sm text-primary capitalize">{post.category}</p>
-                  </div>
+              <div className="flex-1">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <Link href={`/blogs/${post.slug}`} className="flex-1">
+                    <h3 className="text-lg font-semibold line-clamp-2 hover:text-primary transition-colors">
+                      {post.title}
+                    </h3>
+                  </Link>
+                  <p className="text-xs font-mono text-muted-foreground flex-shrink-0 whitespace-nowrap">
+                    {post.date} • {post.readingTime} min
+                  </p>
                 </div>
-              </Link>
+                <span className="inline-block px-2 py-0.5 rounded text-xs font-mono bg-primary/10 text-primary capitalize">
+                  {post.category}
+                </span>
+              </div>
+
+              <div className="flex gap-2 pt-4 mt-4 border-t border-border">
+                {post.linkedinUrl && (
+                  <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
+                    <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                      <BookOpen className="w-4 h-4" />
+                      View on LinkedIn
+                    </a>
+                  </Button>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
