@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { leadership } from "@/lib/data"
 import { Users, ChevronDown, ChevronUp } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 export function LeadershipSection() {
   const [expandedLeadership, setExpandedLeadership] = useState<Set<string>>(new Set())
@@ -92,19 +91,17 @@ export function LeadershipSection() {
                 </div>
 
                 <div className="md:hidden">
-                  <Button
+                  <button
                     onClick={() => toggleExpanded(entry.title)}
-                    variant="ghost"
-                    size="sm"
-                    className="w-full justify-between px-0 py-2"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4 cursor-pointer"
                   >
-                    {isExpanded ? "Hide details" : "More Details"}
                     {isExpanded ? (
-                      <ChevronUp className="w-4 h-4 ml-2" />
+                      <ChevronUp className="w-4 h-4" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 ml-2" />
+                      <ChevronDown className="w-4 h-4" />
                     )}
-                  </Button>
+                    {isExpanded ? "Hide details" : "More Details"}
+                  </button>
 
                   {isExpanded && (
                     <motion.div

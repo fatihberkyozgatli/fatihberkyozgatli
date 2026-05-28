@@ -27,7 +27,7 @@ export default function EventDetailPage() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Events
+            Back to Portfolio
           </Link>
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function EventDetailPage() {
           <Link href="/#events">
             <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
-              Back to Events
+              Back to Portfolio
             </Button>
           </Link>
         </div>
@@ -358,7 +358,7 @@ export default function EventDetailPage() {
             <Link href="/#events">
               <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors cursor-pointer">
                 <ArrowLeft className="w-4 h-4" />
-                Back to Events
+                Back to Portfolio
               </button>
             </Link>
           </motion.div>

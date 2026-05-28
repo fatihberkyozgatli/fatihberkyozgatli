@@ -28,7 +28,7 @@ export default function ProjectPage() {
           <Link href="/#projects">
             <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
               <ArrowLeft className="w-4 h-4" />
-              Back to Projects
+              Back to Portfolio
             </Button>
           </Link>
           <div className="flex items-center gap-2">
