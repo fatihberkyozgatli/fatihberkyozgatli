@@ -43,14 +43,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       {project.stack && (
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 rounded-md text-xs font-mono bg-secondary text-secondary-foreground"
-            >
-              {tech}
-            </span>
-          ))}
+          {project.stack.map((tech, idx) => {
+            const isMobileHidden = idx >= 3
+            return (
+              <span
+                key={tech}
+                className={`px-2 py-1 rounded-md text-xs font-mono bg-secondary text-secondary-foreground ${
+                  isMobileHidden ? "hidden md:inline-block" : ""
+                }`}
+              >
+                {tech}
+              </span>
+            )
+          })}
         </div>
       )}
 

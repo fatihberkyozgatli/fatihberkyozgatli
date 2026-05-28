@@ -57,14 +57,19 @@ export function ExperienceSection() {
 
               {exp.skills && (
                 <div className="flex flex-wrap gap-2">
-                  {exp.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-1 rounded-md text-xs font-mono bg-secondary text-secondary-foreground"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                  {exp.skills.map((skill, idx) => {
+                    const isMobileHidden = idx >= 2
+                    return (
+                      <span
+                        key={skill}
+                        className={`px-2 py-1 rounded-md text-xs font-mono bg-secondary text-secondary-foreground ${
+                          isMobileHidden ? "hidden md:inline-block" : ""
+                        }`}
+                      >
+                        {skill}
+                      </span>
+                    )
+                  })}
                 </div>
               )}
             </motion.div>

@@ -80,13 +80,13 @@ export default function BlogPage() {
       </section>
 
       <section className="pt-8 pb-24 px-6 bg-card/20">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {filteredPosts.length > 0 ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid md:grid-cols-2 gap-8"
+              className="grid md:grid-cols-4 gap-4"
             >
               {filteredPosts.map((post, index) => (
                 <motion.div
@@ -94,29 +94,27 @@ export default function BlogPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
-                  className="rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 flex flex-col h-full"
+                  className="rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 flex flex-col h-full"
                 >
                   <div className="flex-1">
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <Link href={`/blogs/${post.slug}`} className="flex-1">
-                        <h3 className="text-lg font-semibold line-clamp-2 hover:text-primary transition-colors">
+                    <div className="mb-3">
+                      <Link href={`/blogs/${post.slug}`} className="block">
+                        <h3 className="text-sm font-semibold line-clamp-2 hover:text-primary transition-colors">
                           {post.title}
                         </h3>
                       </Link>
-                      <p className="text-xs font-mono text-muted-foreground flex-shrink-0 whitespace-nowrap">
-                        {post.date} • {post.readingTime} min
-                      </p>
                     </div>
+                    <p className="text-xs text-muted-foreground mb-2">{post.date}</p>
                     <span className="inline-block px-2 py-0.5 rounded text-xs font-mono bg-primary/10 text-primary capitalize">
                       {post.category}
                     </span>
                   </div>
 
-                  <div className="flex gap-2 pt-4 mt-4 border-t border-border">
+                  <div className="flex gap-2 pt-2 mt-2 border-t border-border">
                     {post.linkedinUrl && (
-                      <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
+                      <Button size="sm" variant="ghost" className="gap-2 flex-1 text-xs h-8" asChild>
                         <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                          <BookOpen className="w-4 h-4" />
+                          <BookOpen className="w-3 h-3" />
                           View on LinkedIn
                         </a>
                       </Button>
