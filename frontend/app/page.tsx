@@ -15,11 +15,11 @@ import { AwardsSection } from "@/components/awards-section"
 import { Timeline } from "@/components/timeline"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
-import { CommandPalette } from "@/components/command-palette"
+import { useCommandPalette } from "@/components/command-palette-provider"
 
 export default function Home() {
   const [isBooting, setIsBooting] = useState<boolean | null>(null)
-  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
+  const { open: openCommandPalette } = useCommandPalette()
 
   const handleBootComplete = useCallback(() => {
     setIsBooting(false)
@@ -32,16 +32,15 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault()
-        setIsCommandPaletteOpen((prev) => !prev)
-      }
+    if (isBooting !== false) return
+    const target = sessionStorage.getItem("pendingScroll")
+    if (target) {
+      sessionStorage.removeItem("pendingScroll")
+      setTimeout(() => {
+        document.querySelector(target)?.scrollIntoView({ behavior: "smooth" })
+      }, 150)
     }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [])
+  }, [isBooting])
 
   if (isBooting === null) {
     return (
@@ -57,7 +56,7 @@ export default function Home() {
 
       {!isBooting && (
         <>
-          <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
+          <Navbar onOpenCommandPalette={openCommandPalette} />
           
           <main>
             <Hero />
@@ -73,11 +72,6 @@ export default function Home() {
           </main>
 
           <Footer />
-
-          <CommandPalette
-            isOpen={isCommandPaletteOpen}
-            onClose={() => setIsCommandPaletteOpen(false)}
-          />
         </>
       )}
     </>

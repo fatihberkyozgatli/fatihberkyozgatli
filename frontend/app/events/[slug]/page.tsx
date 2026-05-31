@@ -7,10 +7,13 @@ import { useParams } from "next/navigation"
 import { eventsWithReadingTime } from "@/lib/data"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { NavbarActions } from "@/components/navbar-actions"
+import { useCommandPalette } from "@/components/command-palette-provider"
 
 export default function EventDetailPage() {
   const params = useParams()
   const slug = params.slug as string
+  const { open: openCommandPalette } = useCommandPalette()
 
   const event = eventsWithReadingTime.find((e) => 
     e.title.toLowerCase().replace(/\s+/g, "-") === slug
@@ -64,11 +67,11 @@ export default function EventDetailPage() {
               Back to Portfolio
             </Button>
           </Link>
+          <NavbarActions onOpenCommandPalette={openCommandPalette} />
         </div>
       </header>
 
       <main className="pb-24">
-        {/* Hero Section with Image */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -122,7 +125,6 @@ export default function EventDetailPage() {
         </motion.div>
 
         <div className="max-w-5xl mx-auto px-6 py-16">
-          {/* Summary */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,7 +136,6 @@ export default function EventDetailPage() {
             </p>
           </motion.section>
 
-          {/* Opening Narrative */}
           {event.openingNarrative && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -174,7 +175,6 @@ export default function EventDetailPage() {
             </motion.section>
           )}
 
-          {/* Design Section */}
           {event.designSection && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -221,7 +221,6 @@ export default function EventDetailPage() {
             </motion.section>
           )}
 
-          {/* Logistics Section */}
           {event.logisticsSection && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -246,7 +245,6 @@ export default function EventDetailPage() {
             </motion.section>
           )}
 
-          {/* Moment Section */}
           {event.momentSection && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -289,7 +287,6 @@ export default function EventDetailPage() {
             </motion.section>
           )}
 
-          {/* Closing Reflection */}
           {event.closingReflection && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -348,7 +345,6 @@ export default function EventDetailPage() {
             </motion.section>
           )}
 
-          {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -363,7 +359,6 @@ export default function EventDetailPage() {
             </Link>
           </motion.div>
 
-          {/* Other Events Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

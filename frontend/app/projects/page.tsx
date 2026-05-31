@@ -8,11 +8,14 @@ import { SmallerProjectCard } from "@/components/smaller-project-card"
 import Link from "next/link"
 import { ChevronLeft, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { NavbarActions } from "@/components/navbar-actions"
+import { useCommandPalette } from "@/components/command-palette-provider"
 
 type FocusFilter = "all" | "fullstack" | "data-ai" | "systems"
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<FocusFilter>("all")
+  const { open } = useCommandPalette()
 
   const featuredProjects = projectsWithReadingTime.filter((p) => p.featured)
   const smallerProjects = projectsWithReadingTime.filter((p) => !p.featured)
@@ -38,11 +41,14 @@ export default function ProjectsPage() {
               Back to Portfolio
             </Button>
           </Link>
-          <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com/fatihberkyozgatli" target="_blank" rel="noopener noreferrer">
-              <Github className="w-4 h-4" />
-            </a>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" asChild>
+              <a href="https://github.com/fatihberkyozgatli" target="_blank" rel="noopener noreferrer">
+                <Github className="w-4 h-4" />
+              </a>
+            </Button>
+            <NavbarActions onOpenCommandPalette={open} />
+          </div>
         </div>
       </header>
 

@@ -3,8 +3,10 @@
 import { useParams, notFound } from "next/navigation"
 import { motion } from "framer-motion"
 import { ArrowLeft, Github, ExternalLink, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { NavbarActions } from "@/components/navbar-actions"
+import { useCommandPalette } from "@/components/command-palette-provider"
 import { projectsWithReadingTime } from "@/lib/data"
 import { ArchitectureDiagram } from "@/components/architecture-diagram"
 import { ArchitectureDiagramImage2Surface } from "@/components/architecture-diagram-image2surface"
@@ -14,6 +16,7 @@ import Link from "next/link"
 export default function ProjectPage() {
   const params = useParams()
   const slug = params.slug as string
+  const { open: openCommandPalette } = useCommandPalette()
   
   const project = projectsWithReadingTime.find((p) => p.slug === slug)
   
@@ -33,19 +36,16 @@ export default function ProjectPage() {
           </Link>
           <div className="flex items-center gap-2">
             {project.links?.github && (
-              <Button variant="ghost" size="icon" asChild>
-                <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4" />
-                </a>
-              </Button>
+              <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer p-2">
+                <Github className="w-4 h-4" />
+              </a>
             )}
             {project.links?.demo && (
-              <Button variant="ghost" size="icon" asChild>
-                <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
+              <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer p-2">
+                <ExternalLink className="w-4 h-4" />
+              </a>
             )}
+            <NavbarActions onOpenCommandPalette={openCommandPalette} />
           </div>
         </div>
       </header>
@@ -81,7 +81,6 @@ export default function ProjectPage() {
             )}
           </div>
 
-          {/* Tech Stack */}
           {project.stack && (
             <div className="flex flex-wrap gap-2 mb-12">
               {project.stack.map((tech) => (
@@ -141,7 +140,6 @@ export default function ProjectPage() {
           </ul>
         </motion.section>
 
-        {/* Impact Section */}
         {project.impact && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -161,10 +159,8 @@ export default function ProjectPage() {
           </motion.section>
         )}
 
-        {/* Case Study Sections - Billingsley Only */}
         {project.slug === "billingsley-data-integration" && (
           <>
-            {/* Case Study: Technical Architecture */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -196,7 +192,6 @@ export default function ProjectPage() {
                     </div>
                   </div>
                 </div>
-                {/* Interactive Architecture Diagram - Hidden on mobile */}
                 <div className="mt-6 hidden md:block">
                   <ArchitectureDiagram />
                 </div>
@@ -204,7 +199,6 @@ export default function ProjectPage() {
             </motion.section>
 
 
-            {/* Case Study: Challenges & Solutions */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -246,7 +240,6 @@ export default function ProjectPage() {
             </motion.section>
 
 
-            {/* Case Study: Key Technical Decisions */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -274,7 +267,6 @@ export default function ProjectPage() {
             </motion.section>
 
 
-            {/* Case Study: Results & Outcomes */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -307,10 +299,8 @@ export default function ProjectPage() {
           </>
         )}
 
-        {/* Case Study Sections - Image2Surface Only */}
         {project.slug === "image-2-surface" && (
           <>
-            {/* Case Study: Technical Architecture */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -348,7 +338,6 @@ export default function ProjectPage() {
               </div>
             </motion.section>
 
-            {/* Case Study: Challenges & Solutions */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -389,7 +378,6 @@ export default function ProjectPage() {
               </div>
             </motion.section>
 
-            {/* Case Study: Key Technical Decisions */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -416,7 +404,6 @@ export default function ProjectPage() {
               </div>
             </motion.section>
 
-            {/* Case Study: Results & Outcomes */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -449,7 +436,6 @@ export default function ProjectPage() {
           </>
         )}
 
-        {/* See the Product - Both Billingsley & Image2Surface - Hidden on Mobile */}
         {(project.slug === "billingsley-data-integration" || project.slug === "image-2-surface") && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -463,7 +449,6 @@ export default function ProjectPage() {
             </div>
             <ProductShowcase projectSlug={project.slug} />
             
-            {/* Showcase Disclaimer for Image2Surface */}
             {project.slug === "image-2-surface" && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -486,7 +471,6 @@ export default function ProjectPage() {
               </motion.div>
             )}
 
-            {/* Showcase Disclaimer for Billingsley */}
             {project.slug === "billingsley-data-integration" && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -511,7 +495,6 @@ export default function ProjectPage() {
           </motion.section>
         )}
 
-        {/* Navigation to Other Projects */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

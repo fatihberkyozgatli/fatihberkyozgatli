@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowLeft, BookOpen, Calendar, Clock, Linkedin } from "lucide-react"
 import Link from "next/link"
@@ -7,16 +8,21 @@ import Image from "next/image"
 import { useParams } from "next/navigation"
 import { blogPostsWithReadingTime } from "@/lib/data"
 import { Button } from "@/components/ui/button"
+import { NavbarActions } from "@/components/navbar-actions"
+import { useCommandPalette } from "@/components/command-palette-provider"
 
 export default function BlogPostPage() {
   const params = useParams()
   const slug = params.slug as string
+  const { open: openCommandPalette } = useCommandPalette()
 
   const post = blogPostsWithReadingTime.find((p) => p.slug === slug)
-  const allOtherPosts = blogPostsWithReadingTime.filter((p) => p.slug !== slug)
-  const otherPosts = allOtherPosts
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 2)
+  const [otherPosts, setOtherPosts] = useState<typeof blogPostsWithReadingTime>([])
+
+  useEffect(() => {
+    const others = blogPostsWithReadingTime.filter((p) => p.slug !== slug)
+    setOtherPosts([...others].sort(() => Math.random() - 0.5).slice(0, 2))
+  }, [slug])
 
   if (!post) {
     return (
@@ -45,13 +51,14 @@ export default function BlogPostPage() {
               Back to Portfolio
             </Button>
           </Link>
-          {post.linkedinUrl && (
-            <Button variant="ghost" size="icon" asChild>
-              <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer">
+          <div className="flex items-center gap-2">
+            {post.linkedinUrl && (
+              <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer p-2">
                 <Linkedin className="w-4 h-4" />
               </a>
-            </Button>
-          )}
+            )}
+            <NavbarActions onOpenCommandPalette={openCommandPalette} />
+          </div>
         </div>
       </header>
 
@@ -84,25 +91,6 @@ export default function BlogPostPage() {
             </div>
           </div>
 
-          {post.linkedinUrl && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="mb-12"
-            >
-              <a href={post.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                <Button
-                  variant="outline"
-                  className="gap-2 border-primary/30 hover:border-primary/60 hover:bg-primary/5 cursor-pointer"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  Read on LinkedIn
-                </Button>
-              </a>
-            </motion.div>
-          )}
-
           {post.images[0] && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -126,7 +114,6 @@ export default function BlogPostPage() {
             className="text-lg leading-relaxed text-foreground space-y-4 mb-12"
           >
             {post.content.split("\n\n").map((paragraph, idx) => {
-              // Check if this paragraph is a bullet list (starts with –)
               if (paragraph.trim().startsWith("–")) {
                 const bullets = paragraph.split("\n").filter(line => line.trim().startsWith("–"))
                 return (
@@ -152,7 +139,6 @@ export default function BlogPostPage() {
                   </ul>
                 )
               }
-              // Regular paragraph with bold formatting
               const parts = paragraph.split(/\*\*(.*?)\*\*/g)
               return (
                 <p key={idx}>

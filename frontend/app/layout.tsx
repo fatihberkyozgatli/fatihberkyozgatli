@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { CommandPaletteProvider } from '@/components/command-palette-provider'
 import './globals.css'
 
 const geistSans = Geist({
@@ -57,19 +58,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark bg-background" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <ThemeProvider
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
+        <NextThemesProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           storageKey="theme-preference"
           disableTransitionOnChange
-          forcedTheme={undefined}
+          suppressHydrationWarning
         >
-          {children}
-          <SpeedInsights />
-          <Analytics />
-        </ThemeProvider>
+          <CommandPaletteProvider>
+            {children}
+          </CommandPaletteProvider>
+        </NextThemesProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )

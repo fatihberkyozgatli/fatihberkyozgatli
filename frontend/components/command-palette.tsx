@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react"
 import { useTheme } from "next-themes"
-import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   FolderOpen,
@@ -11,7 +10,6 @@ import {
   Linkedin,
   Mail,
   Sun,
-  Moon,
   Users,
   Clock,
   Search,
@@ -77,8 +75,13 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
       switch (command.action) {
         case "navigate":
           if (command.target.startsWith("#")) {
-            const element = document.querySelector(command.target)
-            element?.scrollIntoView({ behavior: "smooth" })
+            if (window.location.pathname === "/") {
+              const element = document.querySelector(command.target)
+              element?.scrollIntoView({ behavior: "smooth" })
+            } else {
+              sessionStorage.setItem("pendingScroll", command.target)
+              window.location.href = "/"
+            }
           } else {
             window.location.href = command.target
           }

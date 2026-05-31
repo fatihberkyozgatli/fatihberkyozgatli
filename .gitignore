@@ -5,9 +5,6 @@ __v0_jsx-dev-runtime.ts
 .snowflake/
 .v0-trash/
 
-# Local development files
-TODOs.md
-
 # Environment variables
 .env*.local
 .env

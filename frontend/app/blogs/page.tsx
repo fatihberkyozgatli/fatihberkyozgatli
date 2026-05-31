@@ -6,11 +6,14 @@ import Link from "next/link"
 import { blogPostsWithReadingTime } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, BookOpen } from "lucide-react"
+import { NavbarActions } from "@/components/navbar-actions"
+import { useCommandPalette } from "@/components/command-palette-provider"
 
 type CategoryFilter = "all" | "career" | "leadership" | "growth" | "reflection"
 
 export default function BlogPage() {
   const [filter, setFilter] = useState<CategoryFilter>("all")
+  const { open } = useCommandPalette()
 
   const filteredPosts =
     filter === "all"
@@ -35,6 +38,7 @@ export default function BlogPage() {
               Back to Portfolio
             </Button>
           </Link>
+          <NavbarActions onOpenCommandPalette={open} />
         </div>
       </header>
 
