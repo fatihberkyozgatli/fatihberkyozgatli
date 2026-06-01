@@ -135,7 +135,7 @@ export function EventsSection() {
 
                     <div className="mt-4 flex justify-end">
                       <Link
-                        href={`/events/${event.title.toLowerCase().replace(/\s+/g, "-")}`}
+                        href={`/events/${event.slug}`}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
                       >
                         Read More

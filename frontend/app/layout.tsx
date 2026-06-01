@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Fatih Berk Yozgatli - Software Engineer & Creative Technologist',
     description: 'Building systems that connect data, people, and ideas.',
   },
@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark bg-background" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="en" className="dark bg-background" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <NextThemesProvider
           attribute="class"

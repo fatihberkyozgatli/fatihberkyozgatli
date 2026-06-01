@@ -1,7 +1,9 @@
+import { calculateReadingTime } from "./utils"
+
 export type Project = {
   title: string
   slug: string
-  category: "technical" | "leadership" | "professional" | "event"
+  category: "fullstack" | "datastructures-ml" | "systems" | "leadership" | "professional"
   summary: string
   role: string
   stack?: string[]
@@ -47,6 +49,7 @@ export type LeadershipEntry = {
 }
 
 export type EventEntry = {
+  slug: string
   title: string
   date: string
   location?: string
@@ -112,7 +115,7 @@ export const projects: Project[] = [
     architecture: "The system follows a 6-layer ETL (Extract, Transform, Load) architecture optimized for data consistency, security, and scalability. Third-party Financial Software → Python Preprocessing → MySQL Storage → FastAPI API (Interaction Layer) → React Frontend (Admin) + External Applications. Data flows through multiple validation layers ensuring enterprise-grade reliability with financial records. APScheduler orchestrates customizable, scheduled data imports via SFTP using Paramiko for secure connections. Python preprocessing handles validation and data cleaning before MySQL storage with strict schema constraints. FastAPI with Uvicorn provides high-performance async access supporting concurrent requests. Pydantic ensures strict schema validation preventing malformed data from entering the database. JWT tokens with refresh token rotation secure all endpoints, while 5-minute rate limiting prevents brute-force attacks. Technical Decisions: FastAPI over Django for async-first architecture enabling high concurrency, plus automatic OpenAPI documentation for transparency. Paramiko for SFTP provides low-level control over connection lifecycle and security, integrating cleanly with APScheduler scheduling. JWT plus Rate Limiting enforces 5-minute lockout after 5 failed logins without permanent account blocks, balancing security and usability. User Deactivation (not deletion) maintains historical audit trail for compliance while allowing re-activation. Challenges & Solutions: Service Management required pivoting from NSSM to WinSW plus Nginx architecture when NSSM wasn't supported on Windows Server post-2020. WinSW wraps FastAPI as Windows service while Nginx acts as reverse proxy handling HTTP/S traffic and routing. Data source delays were addressed with manual import fallback allowing CSV uploads from local files while maintaining identical pipeline logic, enabling development continuation. Data integrity under load was solved with multi-layer validation: Pydantic schemas validate all ingested data before insertion, Python preprocessing handles missing fields gracefully, database constraints prevent invalid data at storage level, comprehensive error logging enables rapid troubleshooting of edge cases. Results: System processes monthly property updates for 500+ records across multiple property management divisions with zero data loss or corruption incidents since deployment. Customizable scheduled imports run as frequently as needed (daily, weekly, or custom cadence) eliminating manual processes entirely. Completely automated platform replaced recurring manual operations with autonomous scheduled data ingestion and delivery, increasing reliability and scalability. Senior Design Expo recognition validates full-stack systems engineering approach combining secure authentication, automated scheduling, data validation, and enterprise-grade infrastructure."
   },
   {
-    title: "Image2Surface: 3D Mesh\nGeneration from Images",
+    title: "Image2Surface: 3D Mesh Generation from Images",
     slug: "image-2-surface",
     category: "fullstack",
     summary: "Converts 2D images into interactive 3D surface models with layered architecture demonstrating clean separation of concerns and real-time mesh editing capabilities.",
@@ -276,7 +279,6 @@ export const leadership: LeadershipEntry[] = [
 ]
 
 export function enrichProjectsWithReadingTime(projectsList: Project[]): Project[] {
-  const { calculateReadingTime } = require("./utils")
   return projectsList.map(project => {
     if (project.problem || project.impact || project.architecture) {
       const contentToRead = [
@@ -473,16 +475,11 @@ Pony up, and pony out!`
   }
 ]
 
-export const enrichBlogPostsWithReadingTime = (blogPosts: BlogPost[]) => {
-  return blogPosts.map(post => ({
-    ...post
-  }))
-}
-
-export const blogPostsWithReadingTime = enrichBlogPostsWithReadingTime(blogPosts)
+export const blogPostsWithReadingTime = blogPosts
 
 export const events: EventEntry[] = [
   {
+    slug: "high-school-career-fair",
     title: "High School Career Fair",
     date: "Feb. 14, 2026",
     location: "SMU HTSC Ballrooms",
@@ -540,6 +537,7 @@ Seeing students confidently approach professionals, ask questions about careers 
 As someone who once entered college feeling uncertain and uninformed, helping create an environment that gave younger students clarity, encouragement, and inspiration was deeply meaningful to me.`
   },
   {
+    slug: "5th-annual-convention",
     title: "5th Annual Convention",
     date: "Feb. 7, 2026",
     location: "UT Dallas ECSW 1315",
@@ -607,7 +605,6 @@ More than anything, the convention reinforced my belief that dialogue remains on
 ]
 
 export function enrichEventsWithReadingTime(eventsList: EventEntry[]): EventEntry[] {
-  const { calculateReadingTime } = require("./utils")
   return eventsList.map(event => {
     const contentToRead = [
       event.openingNarrative,

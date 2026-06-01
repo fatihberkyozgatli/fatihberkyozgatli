@@ -31,6 +31,29 @@
 
 ---
 
+## Fixes
+
+### Critical
+- [x] ~~**Add favicon files to `frontend/public/`**~~ ✅ DONE
+- [x] ~~**Remove `ignoreBuildErrors: true` from `next.config.mjs`**~~ ✅ DONE
+- [x] ~~**Fix `Project.category` type definition**~~ ✅ DONE (aligned to `"fullstack" | "datastructures-ml" | "systems" | "leadership" | "professional"`)
+- [x] ~~**Convert detail pages from `"use client"` to server components**~~ ✅ DONE (all 4 pages split into server page + client component; `generateMetadata` + `generateStaticParams` added to `/projects/[slug]`, `/blogs/[slug]`, `/events/[slug]`, `/blogs`)
+
+### Moderate
+- [x] ~~**Fix Twitter card — downgraded to `summary`**~~ ✅ DONE
+- [x] ~~**Remove `enrichBlogPostsWithReadingTime` no-op**~~ ✅ DONE (`blogPostsWithReadingTime = blogPosts` directly)
+- [x] ~~**Remove `\n` from Image2Surface project title**~~ ✅ DONE
+- [x] ~~**Delete placeholder files from `frontend/public/`**~~ ✅ DONE
+- [x] ~~**Add `slug` field to `EventEntry` type and data**~~ ✅ DONE (both events have slug; `events-section.tsx` updated to use `event.slug`)
+- [x] ~~**Make "Other Stories" cards fully clickable on blog detail**~~ ✅ DONE (absolute inset `<Link>` overlay; LinkedIn button gets `relative z-10`)
+
+### Minor
+- [x] ~~**Remove dead `data-scroll-behavior="smooth"` from `layout.tsx`**~~ ✅ DONE
+- [x] ~~**Replace `require()` with `import` in data.ts**~~ ✅ DONE (top-level `import { calculateReadingTime } from "./utils"`)
+- [x] ~~**Replace raw `<button>` with `<Button>` on event detail page**~~ ✅ DONE (event-client.tsx uses `<Button>` component)
+
+---
+
 ## High Priority Next
 - [ ] Add "View All Events" button & dedicated /events page (when 4+ events available) (2 hrs)
 - [ ] Enhanced case studies for C++/Sentiment/Süper Lig (2-3 hrs)
@@ -43,6 +66,9 @@
 - [ ] Structured data Schema.org (1 hr)
 - [ ] Meta tags optimization (1 hr)
 - [ ] Sitemap generation (30 min)
+- [ ] RSS feed for blog (/feed.xml) (30 min) — missing for any blog with regular posts
+- [ ] Open Graph images for blog posts & projects (1 hr) — social previews are blank without this
+- [ ] robots.txt + canonical URL tags (20 min) — basic SEO hygiene gap
 
 ### Content & Design
 - [ ] Add smooth scroll anchoring (1 hr)
@@ -59,6 +85,10 @@
 - [ ] Speaking engagements section (30 min)
 - [ ] Open source contributions section (30 min)
 - [ ] Newsletter signup (1 hr)
+- [ ] Reading progress bar on blog post detail pages (30 min)
+- [ ] Table of contents for long blog posts (1 hr)
+- [ ] Related posts section at bottom of blog detail (1 hr)
+- [ ] Back to top button on long pages (20 min)
 
 ### Phase 2 (Lower Priority, MAYBE)
 - [ ] Terminal Mode (3-4 hrs)
@@ -70,3 +100,6 @@
 - [ ] Recruiter Mode
 - [ ] Interactive ML Playground (4-5 hrs)
 - [ ] Live Search Engine Demo (3-4 hrs)
+- [ ] Full-text search across blog + projects (2-3 hrs)
+- [ ] Print/PDF styles for case studies (30 min)
+- [ ] Loading skeleton screens for dynamic sections (1-2 hrs)
