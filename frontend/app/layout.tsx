@@ -65,7 +65,6 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="theme-preference"
           disableTransitionOnChange
-          suppressHydrationWarning
         >
           <CommandPaletteProvider>
             {children}
