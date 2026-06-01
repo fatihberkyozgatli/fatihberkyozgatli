@@ -120,41 +120,6 @@ export function ArchitectureDiagram() {
     )
   }
 
-  const Arrow = ({ x1, y1, x2, y2, from, to }: { x1: number; y1: number; x2: number; y2: number; from: ComponentKey; to: ComponentKey }) => {
-    const isActive = hovered === from || hovered === to
-    const arrowId = `arrow-${from}-${to}`
-    return (
-      <defs key={`${arrowId}-defs`}>
-        <marker
-          id={arrowId}
-          markerWidth="10"
-          markerHeight="10"
-          refX="9"
-          refY="3"
-          orient="auto"
-          markerUnits="strokeWidth"
-        >
-          <path d="M0,0 L0,6 L9,3 z" fill={isActive ? "#22C55E" : "#6F7D76"} />
-        </marker>
-      </defs>
-    ) || (
-      <motion.line
-        key={`${arrowId}-line`}
-        x1={x1}
-        y1={y1}
-        x2={x2}
-        y2={y2}
-        stroke={isActive ? "#22C55E" : "#6F7D76"}
-        strokeWidth={isActive ? 2 : 1}
-        markerEnd={`url(#${arrowId})`}
-        animate={{
-          opacity: isActive ? 1 : 0.6
-        }}
-        transition={{ duration: 0.3 }}
-      />
-    )
-  }
-
   return (
     <div className="space-y-4">
       <div className="bg-secondary/20 border border-border rounded-lg p-6 relative">
