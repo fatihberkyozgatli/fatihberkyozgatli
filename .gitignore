@@ -8,6 +8,9 @@ __v0_jsx-dev-runtime.ts
 # Environment variables
 .env*.local
 .env
+.claude
+.codegraph
+.mcp.json
 
 # Frontend (Next.js)
 frontend/node_modules

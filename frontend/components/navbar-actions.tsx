@@ -22,7 +22,7 @@ export function NavbarActions({ onOpenCommandPalette }: NavbarActionsProps) {
       <Button
         variant="ghost"
         size="sm"
-        className="hidden sm:flex items-center gap-2 text-foreground cursor-pointer hover:text-primary transition-colors"
+        className="hidden sm:flex items-center gap-2 text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
         onClick={onOpenCommandPalette}
       >
         <Command className="w-4 h-4" />
@@ -37,7 +37,7 @@ export function NavbarActions({ onOpenCommandPalette }: NavbarActionsProps) {
           variant="ghost"
           size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="text-foreground hover:text-primary transition-colors cursor-pointer"
+          className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
         >
           {theme === "dark" ? (
             <Sun className="w-4 h-4" />
