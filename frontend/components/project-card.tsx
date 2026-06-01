@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink, Github, ChevronDown, ChevronUp, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { highlightMetrics } from "@/lib/metrics"
 import Link from "next/link"
 import type { Project } from "@/lib/data"
 
