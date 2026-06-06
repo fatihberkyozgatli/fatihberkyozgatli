@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     description: 'Building systems that connect data, people, and ideas.',
   },
   icons: {
-    icon: '/avatar.svg',
-    apple: '/avatar.svg',
+    icon: '/icon.png',
+    apple: '/icon.png',
   },
 }
 
