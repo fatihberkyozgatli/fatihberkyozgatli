@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowLeft, BookOpen, Calendar, Clock, Linkedin } from "lucide-react"
 import Link from "next/link"
@@ -8,6 +7,7 @@ import Image from "next/image"
 import { blogPostsWithReadingTime } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { NavbarActions } from "@/components/navbar-actions"
+import { BackToTop } from "@/components/back-to-top"
 import { useCommandPalette } from "@/components/command-palette-provider"
 
 export default function BlogPostClient({ slug }: { slug: string }) {
@@ -225,6 +225,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
           )}
         </motion.div>
       </main>
+      <BackToTop />
     </div>
   )
 }

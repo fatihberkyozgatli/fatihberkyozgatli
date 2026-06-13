@@ -17,6 +17,7 @@ export function FeaturedProjects() {
   const featuredProjects = projectsWithReadingTime.filter((p) => p.featured)
   const smallerProjects = projectsWithReadingTime.filter((p) => !p.featured)
   const allProjects = [...featuredProjects, ...smallerProjects]
+  const [flagshipProject, ...supportingFeaturedProjects] = featuredProjects
 
   const filteredProjects =
     filter === "all" ? null : allProjects.filter((p) => p.focus === filter)
@@ -42,7 +43,6 @@ export function FeaturedProjects() {
             <span className="text-primary font-mono text-sm">/projects</span>
             <div className="h-px flex-1 bg-border" />
           </div>
-          {/* Header with Filters */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
@@ -52,7 +52,6 @@ export function FeaturedProjects() {
               </p>
             </div>
 
-            {/* Focus Filters */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +76,6 @@ export function FeaturedProjects() {
           </div>
         </motion.div>
 
-        {/* Show unified view when filter is active */}
         {filter !== "all" && (
           <>
             <motion.div
@@ -99,7 +97,7 @@ export function FeaturedProjects() {
                     {project.featured ? (
                       <ProjectCard project={project} />
                     ) : (
-                      <SmallerProjectCard project={project} showBlankLine={true} />
+                      <SmallerProjectCard project={project} />
                     )}
                   </motion.div>
                 ))
@@ -112,17 +110,51 @@ export function FeaturedProjects() {
           </>
         )}
 
-        {/* Show normal two-section view when "All" filter is selected */}
         {filter === "all" && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="grid md:grid-cols-2 gap-6 mb-16"
-            >
-              {featuredProjects.map((project, index) => (
+            {flagshipProject && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="mb-6"
+              >
+                <ProjectCard project={flagshipProject} />
+              </motion.div>
+            )}
+
+            {supportingFeaturedProjects.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                viewport={{ once: true }}
+                className="grid md:grid-cols-2 gap-6 mb-16"
+              >
+                {supportingFeaturedProjects.map((project, index) => (
+                  <motion.div
+                    key={project.slug}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <ProjectCard project={project} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            {!flagshipProject && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="grid md:grid-cols-2 gap-6 mb-16"
+              >
+                {featuredProjects.map((project, index) => (
                 <motion.div
                   key={project.slug}
                   initial={{ opacity: 0, y: 20 }}
@@ -132,10 +164,10 @@ export function FeaturedProjects() {
                 >
                   <ProjectCard project={project} />
                 </motion.div>
-              ))}
-            </motion.div>
+                ))}
+              </motion.div>
+            )}
 
-            {/* Other Notable Projects */}
             {smallerProjects.length > 0 && (
               <>
                 <motion.div

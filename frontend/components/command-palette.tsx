@@ -28,6 +28,7 @@ interface CommandPaletteProps {
 
 const iconMap: Record<string, React.ReactNode> = {
   "Open Projects": <FolderOpen className="w-4 h-4" />,
+  "WhatsMyGrade": <Code className="w-4 h-4" />,
   "Billingsley Data Integration": <Code className="w-4 h-4" />,
   "Image2Surface 3D Mesh": <Code className="w-4 h-4" />,
   "Turkish Super League Prediction": <Code className="w-4 h-4" />,

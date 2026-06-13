@@ -7,6 +7,7 @@ import { eventsWithReadingTime } from "@/lib/data"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { NavbarActions } from "@/components/navbar-actions"
+import { BackToTop } from "@/components/back-to-top"
 import { useCommandPalette } from "@/components/command-palette-provider"
 
 const itemVariants = {
@@ -386,6 +387,7 @@ export default function EventClient({ slug }: { slug: string }) {
           </motion.section>
         </div>
       </main>
+      <BackToTop />
     </div>
   )
 }

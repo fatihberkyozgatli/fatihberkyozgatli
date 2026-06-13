@@ -15,6 +15,7 @@ import { AwardsSection } from "@/components/awards-section"
 import { Timeline } from "@/components/timeline"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import { BackToTop } from "@/components/back-to-top"
 import { useCommandPalette } from "@/components/command-palette-provider"
 
 export default function Home() {
@@ -72,6 +73,7 @@ export default function Home() {
           </main>
 
           <Footer />
+          <BackToTop />
         </>
       )}
     </>

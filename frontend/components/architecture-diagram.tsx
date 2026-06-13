@@ -59,21 +59,6 @@ export function ArchitectureDiagram() {
   const [hovered, setHovered] = useState<ComponentKey | null>(null)
   const [selected, setSelected] = useState<ComponentKey | null>(null)
 
-  const isConnected = (from: ComponentKey, to: ComponentKey) => {
-    const connections: [ComponentKey, ComponentKey][] = [
-      ["ftp", "preprocessing"],
-      ["preprocessing", "mysql"],
-      ["mysql", "delivery"],
-      ["mysql", "interaction"],
-      ["interaction", "frontend"],
-      ["frontend", "admin"],
-      ["delivery", "applications"],
-    ]
-    return connections.some(
-      ([f, t]) => (f === from && t === to) || (f === to && t === from)
-    )
-  }
-
   const Box = ({ id, label, x, y, width, height }: { id: ComponentKey; label: string; x: number; y: number; width: number; height: number }) => {
     const isActive = hovered === id || selected === id
     const lines = label.split('\n')
@@ -124,7 +109,6 @@ export function ArchitectureDiagram() {
     <div className="space-y-4">
       <div className="bg-secondary/20 border border-border rounded-lg p-6 relative">
         <svg viewBox="0 0 1000 700" className="w-full" style={{ minHeight: "400px" }}>
-          {/* Define arrow markers */}
           <defs>
             <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
               <path d="M0,0 L0,6 L9,3 z" fill="#22C55E" />
@@ -134,41 +118,28 @@ export function ArchitectureDiagram() {
             </marker>
           </defs>
 
-          {/* FTP Source - Outside Azure */}
           <Box id="ftp" label={`Yardi FTP`} x={60} y={20} width={140} height={80} />
 
-          {/* Azure Server Border - Encapsulates Pre-processing, MySQL, Delivery, Interaction, Frontend */}
           <rect x={40} y={130} width={650} height={420} fill="none" stroke="#22C55E" strokeWidth="2" strokeDasharray="5,5" rx="8" opacity="0.4" />
           <text x={55} y={150} className="text-xs font-mono" fill="#22C55E" opacity="0.7">
             Azure Server
           </text>
 
-          {/* LEFT COLUMN - Vertical Stack */}
-          {/* Pre-processing */}
           <Box id="preprocessing" label={`Pre-processing\n(Python)`} x={60} y={160} width={140} height={100} />
 
-          {/* MySQL */}
           <Box id="mysql" label={`MySQL\nServer`} x={60} y={300} width={140} height={100} />
 
-          {/* Delivery */}
           <Box id="delivery" label={`Delivery\n(FastAPI)`} x={60} y={440} width={140} height={100} />
 
-          {/* Applications - Outside Azure */}
           <Box id="applications" label={`Applications\n(1...n)`} x={60} y={580} width={140} height={100} />
 
-          {/* CENTER-RIGHT - Horizontal Row at MySQL Level */}
-          {/* Interaction Layer */}
           <Box id="interaction" label={`Interaction\nLayer\n(FastAPI)`} x={280} y={300} width={140} height={100} />
 
-          {/* Frontend */}
           <Box id="frontend" label={`Frontend\n(React)`} x={500} y={300} width={140} height={100} />
 
-          {/* Admin User - Outside Azure */}
           <Box id="admin" label={`Admin\nUser`} x={720} y={310} width={120} height={80} />
 
-          {/* ARROWS - As Specified */}
 
-          {/* 1) Straight line between FTP and Preprocessing */}
           <motion.line
             x1={130}
             y1={100}
@@ -180,7 +151,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 2) Arrow from Preprocessing to MySQL */}
           <motion.line
             x1={130}
             y1={260}
@@ -193,7 +163,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 3) Straight line between MySQL and Delivery */}
           <motion.line
             x1={130}
             y1={400}
@@ -205,7 +174,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 4) Arrow from Delivery to Applications */}
           <motion.line
             x1={130}
             y1={540}
@@ -218,7 +186,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 5) Straight line between MySQL and Interaction */}
           <motion.line
             x1={200}
             y1={350}
@@ -230,7 +197,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 6) Arrow from Interaction to MySQL */}
           <motion.line
             x1={280}
             y1={350}
@@ -243,7 +209,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 7) Arrow from Interaction to Frontend */}
           <motion.line
             x1={420}
             y1={350}
@@ -256,7 +221,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 8) Straight line between Interaction and Frontend */}
           <motion.line
             x1={420}
             y1={350}
@@ -268,7 +232,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 9) Arrow from Admin to Frontend */}
           <motion.line
             x1={720}
             y1={350}
@@ -281,7 +244,6 @@ export function ArchitectureDiagram() {
             transition={{ duration: 0.3 }}
           />
 
-          {/* 10) Arrow from Frontend to Admin */}
           <motion.line
             x1={640}
             y1={350}
@@ -295,7 +257,6 @@ export function ArchitectureDiagram() {
           />
         </svg>
 
-        {/* Tooltip - Top Right of Diagram Window */}
         {selected && (
           <div 
             className="absolute top-6 right-6 bg-card border border-primary/20 rounded-lg p-4 max-w-sm z-50 shadow-lg"

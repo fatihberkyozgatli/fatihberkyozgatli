@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
 
-type StageKey = "upload" | "validation" | "estimation" | "heightmap" | "mesh" | "rendering" | "editing"
+type StageKey = "user" | "spa" | "api" | "controllers" | "engine" | "db" | "ai" | "openai"
 
 interface StageDetails {
   title: string
@@ -14,72 +14,78 @@ interface StageDetails {
 }
 
 const stageDetails: Record<StageKey, StageDetails> = {
-  upload: {
-    title: "Image Upload",
-    description: "User selects and uploads 2D image for processing",
-    technologies: ["File Input", "Validation"],
-    layer: "Presentation"
+  user: {
+    title: "Student",
+    description: "An authenticated student tracking courses, entering grades, and planning outcomes",
+    technologies: [],
+    layer: "Client",
   },
-  validation: {
-    title: "Validation & Storage",
-    description: "Validate image format and store temporarily on disk for processing pipeline",
-    technologies: ["FastAPI", "File System", "Format Check"],
-    layer: "API Layer"
+  spa: {
+    title: "React SPA",
+    description: "Single-page app: JWT stored in localStorage, protected routes, live course views, dark mode, and a mobile-friendly layout",
+    technologies: ["React 18", "Vite", "Tailwind", "Framer Motion", "React Router"],
+    layer: "Presentation",
   },
-  estimation: {
-    title: "Depth Estimation",
-    description: "GPU-accelerated depth map generation using Depth Anything V2 PyTorch model",
-    technologies: ["PyTorch", "CUDA", "Depth Anything V2"],
-    layer: "Business Logic"
+  api: {
+    title: "Express REST API",
+    description: "Stateless API. Every request carries the JWT and every protected handler verifies ownership before reading or writing",
+    technologies: ["Node", "Express", "JWT", "Rate Limiting"],
+    layer: "API Layer",
   },
-  heightmap: {
-    title: "Height Map Generation",
-    description: "Convert depth map to normalized height map via grayscale and NumPy vectorization",
-    technologies: ["NumPy", "OpenCV", "Python"],
-    layer: "Business Logic"
+  controllers: {
+    title: "Controllers + Services",
+    description: "Routes apply auth, controllers validate with Joi and check ownership, then call the pg pool or a pure service",
+    technologies: ["Joi", "pg pool", "TypeScript"],
+    layer: "Business Logic",
   },
-  mesh: {
-    title: "3D Mesh Construction",
-    description: "Generate vertices and indices from height map with configurable resolution",
-    technologies: ["NumPy", "SciPy", "Geometry"],
-    layer: "Business Logic"
+  engine: {
+    title: "Grade Engine",
+    description: "Pure computeResult: current grade, projected maximum, and the required average for each letter grade. Covered by Vitest with no DB or AI call",
+    technologies: ["Pure Function", "Vitest"],
+    layer: "Business Logic",
   },
-  rendering: {
-    title: "Three.js Rendering",
-    description: "Interactive WebGL visualization with zoom, rotate, and pan controls",
-    technologies: ["React Three Fiber", "WebGL", "Three.js"],
-    layer: "Presentation"
+  db: {
+    title: "PostgreSQL",
+    description: "User-scoped data: users, courses, grade components, and per-course JSONB grade scales, with cascade deletes and updated_at triggers",
+    technologies: ["PostgreSQL", "JSONB", "pg pool"],
+    layer: "Data",
   },
-  editing: {
-    title: "Real-time Editing",
-    description: "Interactive mesh manipulation (smoothing, scaling, denoising) with instant visual feedback",
-    technologies: ["React", "Three.js", "State Management"],
-    layer: "Presentation"
-  }
+  ai: {
+    title: "AI Service",
+    description: "One shared OpenAI client behind ownership and validation, used by the Grade Coach, syllabus parser, and natural language grade entry",
+    technologies: ["services/ai.ts", "Tool Calling"],
+    layer: "AI Layer",
+  },
+  openai: {
+    title: "OpenAI gpt-4o",
+    description: "The model behind the shared client. The coach uses read and write tools; syllabus parsing and grade entry use structured extraction",
+    technologies: ["gpt-4o", "JSON Mode"],
+    layer: "External",
+  },
 }
 
-export function ArchitectureDiagramImage2Surface() {
+export function ArchitectureDiagramWhatsMyGrade() {
   const [hovered, setHovered] = useState<StageKey | null>(null)
   const [selected, setSelected] = useState<StageKey | null>(null)
 
-  const Box = ({ 
-    id, 
-    label, 
-    x, 
-    y, 
-    width, 
-    height 
-  }: { 
+  const Box = ({
+    id,
+    label,
+    x,
+    y,
+    width,
+    height,
+  }: {
     id: StageKey
     label: string
     x: number
     y: number
     width: number
-    height: number 
+    height: number
   }) => {
     const isActive = hovered === id || selected === id
-    const lines = label.split('\n')
-    const lineHeight = 16
+    const lines = label.split("\n")
+    const lineHeight = 18
     const totalHeight = lines.length * lineHeight
     const startY = y + height / 2 - totalHeight / 2 + lineHeight / 2
 
@@ -101,7 +107,7 @@ export function ArchitectureDiagramImage2Surface() {
           stroke={isActive ? "var(--color-primary)" : "var(--color-border)"}
           strokeWidth={isActive ? 2.5 : 1.5}
           animate={{
-            filter: isActive ? "drop-shadow(0 0 12px var(--color-primary))" : "drop-shadow(0 0 0px transparent)"
+            filter: isActive ? "drop-shadow(0 0 12px var(--color-primary))" : "drop-shadow(0 0 0px transparent)",
           }}
           transition={{ duration: 0.3 }}
         />
@@ -122,10 +128,24 @@ export function ArchitectureDiagramImage2Surface() {
     )
   }
 
-  const Arrow = ({ x1, y1, x2, y2, from, to }: { x1: number; y1: number; x2: number; y2: number; from: StageKey; to: StageKey }) => {
+  const Arrow = ({
+    x1,
+    y1,
+    x2,
+    y2,
+    from,
+    to,
+  }: {
+    x1: number
+    y1: number
+    x2: number
+    y2: number
+    from: StageKey
+    to: StageKey
+  }) => {
     const isActive = hovered === from || hovered === to
-    const arrowId = `arrow-${from}-${to}`
-    
+    const arrowId = `wmg-arrow-${from}-${to}`
+
     return (
       <>
         <defs key={`${arrowId}-defs`}>
@@ -150,9 +170,7 @@ export function ArchitectureDiagramImage2Surface() {
           stroke={isActive ? "#22C55E" : "#94A3A0"}
           strokeWidth={isActive ? 2 : 1.5}
           markerEnd={`url(#${arrowId})`}
-          animate={{
-            opacity: isActive ? 1 : 0.5
-          }}
+          animate={{ opacity: isActive ? 1 : 0.5 }}
           transition={{ duration: 0.3 }}
         />
       </>
@@ -162,35 +180,26 @@ export function ArchitectureDiagramImage2Surface() {
   return (
     <div className="space-y-4">
       <div className="bg-secondary/20 border border-border rounded-lg p-6 relative">
-        <svg viewBox="0 0 1200 700" className="w-full" style={{ minHeight: "100px" }}>
-          <defs>
-            <marker id="arrowGreenImage2Surface" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-              <path d="M0,0 L0,6 L9,3 z" fill="#22C55E" />
-            </marker>
-            <marker id="arrowGrayImage2Surface" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-              <path d="M0,0 L0,6 L9,3 z" fill="#94A3A0" />
-            </marker>
-          </defs>
+        <svg viewBox="0 0 900 720" className="w-full" style={{ minHeight: "100px" }}>
+          <Box id="user" label={`User`} x={40} y={40} width={170} height={85} />
+          <Box id="spa" label={`React SPA\n(Vite)`} x={40} y={180} width={170} height={85} />
+          <Box id="api" label={`Express\nREST API`} x={40} y={320} width={170} height={85} />
+          <Box id="controllers" label={`Controllers\n+ Services`} x={40} y={460} width={170} height={85} />
 
-          <Box id="upload" label={`Image\nUpload`} x={30} y={50} width={160} height={110} />
-          <Box id="validation" label={`Validation &\nStorage`} x={30} y={250} width={160} height={110} />
-          <Box id="estimation" label={`Depth\nEstimation`} x={30} y={450} width={160} height={110} />
+          <Box id="engine" label={`Grade Engine\n(pure, tested)`} x={360} y={360} width={190} height={85} />
+          <Box id="db" label={`PostgreSQL`} x={360} y={480} width={190} height={85} />
+          <Box id="ai" label={`AI Service\n(OpenAI)`} x={360} y={600} width={190} height={85} />
+          <Box id="openai" label={`OpenAI\ngpt-4o`} x={650} y={600} width={190} height={85} />
 
-          <Box id="heightmap" label={`Height Map\nGeneration`} x={290} y={450} width={160} height={110} />
+          <Arrow x1={125} y1={125} x2={125} y2={180} from="user" to="spa" />
+          <Arrow x1={125} y1={265} x2={125} y2={320} from="spa" to="api" />
+          <Arrow x1={125} y1={405} x2={125} y2={460} from="api" to="controllers" />
 
-          <Box id="mesh" label={`3D Mesh\nConstruction`} x={550} y={450} width={160} height={110} />
-          <Box id="rendering" label={`Three.js\nRendering`} x={550} y={250} width={160} height={110} />
-          <Box id="editing" label={`Real-time\nEditing`} x={550} y={50} width={160} height={110} />
+          <Arrow x1={210} y1={485} x2={360} y2={402} from="controllers" to="engine" />
+          <Arrow x1={210} y1={502} x2={360} y2={522} from="controllers" to="db" />
+          <Arrow x1={210} y1={520} x2={360} y2={642} from="controllers" to="ai" />
 
-          <Arrow x1={110} y1={160} x2={110} y2={250} from="upload" to="validation" />
-          <Arrow x1={110} y1={360} x2={110} y2={450} from="validation" to="estimation" />
-
-          <Arrow x1={190} y1={505} x2={290} y2={505} from="estimation" to="heightmap" />
-
-          <Arrow x1={450} y1={505} x2={550} y2={505} from="heightmap" to="mesh" />
-
-          <Arrow x1={630} y1={450} x2={630} y2={360} from="mesh" to="rendering" />
-          <Arrow x1={630} y1={250} x2={630} y2={160} from="rendering" to="editing" />
+          <Arrow x1={550} y1={642} x2={650} y2={642} from="ai" to="openai" />
         </svg>
 
         <AnimatePresence>
@@ -216,9 +225,7 @@ export function ArchitectureDiagramImage2Surface() {
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-sm text-muted-foreground mb-3">
-                {stageDetails[selected].description}
-              </p>
+              <p className="text-sm text-muted-foreground mb-3">{stageDetails[selected].description}</p>
               {stageDetails[selected].technologies && stageDetails[selected].technologies!.length > 0 && (
                 <div className="space-y-2">
                   <p className="text-xs font-semibold text-foreground">Technologies:</p>

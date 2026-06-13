@@ -38,7 +38,6 @@ export function GitHubStats() {
 
   if (error || !stats || !stats.languages || stats.languages.length === 0) return null
 
-  // Limit to top 3 languages
   const topLanguages = stats.languages.slice(0, 3)
 
   return (

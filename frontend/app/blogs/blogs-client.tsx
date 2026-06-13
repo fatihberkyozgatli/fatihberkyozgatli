@@ -7,6 +7,7 @@ import { blogPostsWithReadingTime } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, BookOpen } from "lucide-react"
 import { NavbarActions } from "@/components/navbar-actions"
+import { BackToTop } from "@/components/back-to-top"
 import { useCommandPalette } from "@/components/command-palette-provider"
 
 type CategoryFilter = "all" | "career" | "leadership" | "growth" | "reflection"
@@ -133,6 +134,7 @@ export default function BlogsClient() {
           )}
         </div>
       </section>
+      <BackToTop />
     </main>
   )
 }

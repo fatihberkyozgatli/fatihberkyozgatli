@@ -33,7 +33,6 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* GitHub Stats Widget */}
         <div className="flex justify-center mb-8">
           <GitHubStats />
         </div>

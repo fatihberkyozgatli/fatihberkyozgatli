@@ -92,6 +92,30 @@ export type BlogPost = {
 
 export const projects: Project[] = [
   {
+    title: "WhatsMyGrade",
+    slug: "whats-my-grade",
+    category: "fullstack",
+    summary: "Full-stack grade planning platform that helps students track course performance, calculate what they need on remaining work, and use AI to parse syllabi, log grades, and plan outcomes.",
+    role: "Full-Stack Engineer",
+    stack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "JWT", "bcrypt", "Joi", "OpenAI", "Vitest", "Railway", "Vercel"],
+    featured: true,
+    focus: "fullstack",
+    links: {
+      github: "https://github.com/fatihberkyozgatli/WhatsMyGrade"
+    },
+    highlights: [
+      "Built a grade engine that calculates current grade, maximum obtainable grade, and exact required averages for each letter grade using editable course scales",
+      "Implemented AI Grade Coach with live course context and write tools for adding, renaming, reweighting, removing components, and logging grades from chat",
+      "Added syllabus PDF parsing that extracts course name, grading components, weights, and scale into a reviewable draft before database creation",
+      "Built natural language grade entry that turns phrases like 'I got an 85 on my midterm' into a previewed and confirmed grade update",
+      "Hardened authentication with JWT, bcrypt, server-side session validation, 8-hour token expiry, 30-minute idle timeout, and protected user-scoped data",
+      "Covered the pure grade engine and grade-entry resolver with Vitest tests and deployed the app with a Railway API/Postgres backend and Vercel frontend"
+    ],
+    problem: "Students often know their assignment scores but still struggle to answer the practical question: what do I need to get from here? Traditional grade calculators require manual setup, do not adapt to custom grading scales, and rarely help students reason through remaining assignments, scenarios, or syllabus structure.",
+    impact: "WhatsMyGrade turns grade tracking into a planning workflow. Students can model remaining work, understand whether a target letter grade is still possible, upload a syllabus to reduce setup time, and use an AI coach that works from real course data instead of generic advice.",
+    architecture: "The application uses a React 18 + TypeScript + Vite single-page frontend backed by a Node/Express TypeScript API and PostgreSQL database. The frontend stores JWT auth state, routes protected pages through React Router, and talks to the API through an Axios client. The backend is organized around routes, controllers, services, middleware, and a pg pool. Core grade math lives in a pure service so the calculation engine can be reused and tested without the database. AI features share one OpenAI service layer and are exposed through separate controllers for Grade Coach, syllabus parsing, and natural language grade entry. The database stores users, courses, grade components, and per-course grade scales, with ownership checks on protected operations. The app deploys with Railway for API/Postgres and Vercel for the frontend."
+  },
+  {
     title: "Intermediary Property DB Management System",
     slug: "billingsley-data-integration",
     category: "fullstack",
@@ -154,13 +178,16 @@ export const projects: Project[] = [
       "Performed data preprocessing, feature engineering, and model evaluation using Scikit-learn pipelines",
       "Evaluated multiple models (Logistic Regression, Random Forest, SVM) and selected best performer",
       "Analyzed feature importance revealing home advantage and goals scored as strongest predictors"
-    ]
+    ],
+    problem: "Predicting football match outcomes is a genuinely hard three-class problem: the Turkish Süper Lig has high parity between teams, relatively few matches per season, and heavy volatility from injuries, red cards, and momentum swings. Draws in particular are notoriously difficult to forecast, and a naive guess sits around 45% accuracy.",
+    impact: "The final logistic regression model reached 64% accuracy on win/draw/loss prediction, a 42% relative improvement over the multi-class baseline. Feature-importance analysis surfaced home advantage and goals scored as the strongest predictors, confirming the model learned meaningful structure rather than noise.",
+    architecture: "An end-to-end supervised learning pipeline built in Python. Data preprocessing handles missing values, applies one-hot encoding to categorical features, and normalizes numeric inputs before a 70/30 train-test split. Three classifiers were trained and compared head-to-head, Logistic Regression, Random Forest, and Support Vector Machine, with Logistic Regression selected as the best overall performer. Model evaluation combined accuracy scoring with feature-importance analysis to interpret which signals drove predictions. The stack is scikit-learn for modeling, pandas and NumPy for data handling, and Matplotlib and Seaborn for visualization, all developed in a Jupyter notebook for reproducible, presentation-ready analysis."
   },
   {
     title: "Sentiment Analyzer - Tweets",
     slug: "sentiment-analyzer-tweets",
     category: "datastructures-ml",
-    summary: "C++ sentiment classifier analyzing thousands of tweets with custom data structures. Achieved 73% accuracy using frequency-based model.",
+    summary: "C++ sentiment classifier analyzing thousands of tweets with custom data structures. Achieved 68% accuracy using frequency-based model.",
     role: "Full-Stack Engineer",
     stack: ["C++", "CMake", "STL", "Memory Management", "Valgrind", "Catch2"],
     featured: false,
@@ -170,10 +197,13 @@ export const projects: Project[] = [
     },
     highlights: [
       "Implemented custom DSString class using Rule of Three with full dynamic memory management",
-      "Built sentiment classifier achieving 73% accuracy on Sentiment140 dataset using frequency-based training",
+      "Built sentiment classifier achieving 68% accuracy on Sentiment140 dataset using frequency-based training",
       "Designed modular architecture with Tokenizer, FileProcessor, and Classifier components",
       "Validated memory integrity with Valgrind - zero leaks with comprehensive unit testing"
-    ]
+    ],
+    problem: "The challenge was to classify the sentiment of thousands of tweets as positive or negative using no machine-learning framework and not even the C++ standard string class. As a data-structures and algorithms exercise, the project demanded a from-scratch string implementation, manual memory management, and efficient text processing that could train and classify large datasets within reasonable time and memory bounds.",
+    impact: "The result is a fully functional frequency-based classifier trained on the Sentiment140 dataset that reaches about 68% accuracy, comfortably above the assignment benchmark. A custom DSString class implements the Rule of Three for safe copying and assignment, and Valgrind plus AddressSanitizer confirmed zero memory leaks across the full training and classification run.",
+    architecture: "A modular C++17 system with clear separation between data structures and logic. A custom DSString class provides all string operations, concatenation, comparison, substring, without std::string, using dynamic allocation and the Rule of Three. The Tokenizer splits tweets into words without strtok or stringstream, the FileProcessor handles reading the labeled training and test datasets and writing results, and the Classifier builds positive and negative word-frequency dictionaries during training and scores unseen tweets by comparing word counts. Training runs in O(M*N + K) over M tweets, N average words, and K unique terms, while classification runs in O(L*N) using average constant-time hash-map lookups. The build is managed with CMake, and test_DSString.cpp provides automated tests for string correctness and memory safety."
   },
   {
     title: "Search Engine - Articles",
@@ -192,7 +222,10 @@ export const projects: Project[] = [
       "Implemented self-balanced AVL Tree serving as core Map data structure with O(log n) operations",
       "Built document parser with tokenization, stopword filtering, and persistent index storage/reload",
       "Developed interactive CLI with comprehensive Catch2 unit tests and memory leak validation"
-    ]
+    ],
+    problem: "Searching across a corpus of more than 300,000 news articles requires sub-second lookups and meaningful relevance ranking. A naive linear scan of every document per query is far too slow, so the project needed an efficient inverted index built from scratch in C++, backed by a self-balancing data structure, plus entity recognition so users could query specifically by organization or person.",
+    impact: "The finished engine indexes 300,000+ articles and returns ranked results in under a second per query. The index persists to disk and reloads on startup, so the corpus is parsed only once, and results are ranked by term frequency with the top matches surfaced first. Entity indices for organizations and people let users run targeted queries beyond plain keyword search.",
+    architecture: "A modular C++ search engine organized around a clean class hierarchy. The DocumentParser reads each JSON article with RapidJSON, removes stopwords, and applies Porter stemming before producing a ParsedDocument of tokens and entities. The IndexHandler maintains the core inverted index, a self-balancing AVL Tree mapping stemmed terms to document IDs in O(log n), alongside hash maps for organization and person entities. The QueryProcessor parses user input into SearchTerms, looks them up across the indices, computes relevance scores by term frequency, and returns a sorted result set, which the UserInterface presents through an interactive CLI. The index serializes to disk for fast reload, the build is managed with CMake, and Catch2 provides unit tests with memory-leak validation."
   }
 ]
 
@@ -278,6 +311,12 @@ export const leadership: LeadershipEntry[] = [
   }
 ]
 
+export const interactiveCaseStudySlugs = [
+  "billingsley-data-integration",
+  "image-2-surface",
+  "whats-my-grade",
+]
+
 export function enrichProjectsWithReadingTime(projectsList: Project[]): Project[] {
   return projectsList.map(project => {
     if (project.problem || project.impact || project.architecture) {
@@ -291,9 +330,10 @@ export function enrichProjectsWithReadingTime(projectsList: Project[]): Project[
       ]
         .filter(Boolean)
         .join(" ")
+      const caseStudyBonus = interactiveCaseStudySlugs.includes(project.slug) ? 3 : 0
       return {
         ...project,
-        readingTime: calculateReadingTime(contentToRead)
+        readingTime: calculateReadingTime(contentToRead) + caseStudyBonus
       }
     }
     return project
@@ -724,10 +764,10 @@ export const timeline: TimelineEvent[] = [
 
 export const skills = {
   languages: ["Python", "C++", "Java", "SQL", "Bash/Shell"],
-  frontend: ["React", "TypeScript", "React Three Fiber", "Tailwind CSS", "Three.js"],
-  backend: ["FastAPI", "Flask", "Django", "JWT", "PostgreSQL"],
-  data: ["Pandas", "NumPy", "Scikit-learn", "Jupyter", "PyTorch"],
-  tools: ["Git", "VS Code", "Docker", "Node.js", "Azure"],
+  frontend: ["React", "TypeScript", "React Three Fiber", "Tailwind CSS", "Framer Motion", "Vercel"],
+  backend: ["FastAPI", "Flask", "Django", "Express", "JWT", "PostgreSQL"],
+  data: ["Pandas", "NumPy", "Scikit-learn", "Jupyter", "PyTorch", "LLM Integration"],
+  tools: ["Git", "VS Code", "Docker", "Node.js", "Vite", "Azure", "Railway"],
   concepts: ["Data Structures", "Algorithms", "System Design", "Full Stack Development"]
 }
 
@@ -745,6 +785,7 @@ export const navItems = [
 
 export const commands = [
   { label: "Open Projects", action: "navigate", target: "#projects" },
+  { label: "WhatsMyGrade", action: "navigate", target: "/projects/whats-my-grade" },
   { label: "Billingsley Data Integration", action: "navigate", target: "/projects/billingsley-data-integration" },
   { label: "Image2Surface 3D Mesh", action: "navigate", target: "/projects/image-2-surface" },
   { label: "Turkish Super League Prediction", action: "navigate", target: "/projects/turkish-super-league-prediction" },

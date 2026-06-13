@@ -17,7 +17,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div
       id={project.slug}
-      className="group relative rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 cursor-pointer"
+      className="group relative flex h-full flex-col rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
     >
       <div className="mb-4">
         <div className="flex items-start justify-between gap-4 mb-2">
@@ -107,7 +107,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </motion.div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
+      <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-border">
         <Button size="sm" variant="default" className="gap-2" asChild>
           <Link href={`/projects/${project.slug}`}>
             View Case Study

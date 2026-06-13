@@ -11,11 +11,16 @@ export default function ProductShowcase({ projectSlug = "billingsley-data-integr
     dashboardUrl = process.env.NEXT_PUBLIC_BILLINGSLEY_DASHBOARD_URL || "http://localhost:5173"
   } else if (projectSlug === "image-2-surface") {
     dashboardUrl = process.env.NEXT_PUBLIC_IMAGE2SURFACE_DASHBOARD_URL || ""
+  } else if (projectSlug === "whats-my-grade") {
+    dashboardUrl = process.env.NEXT_PUBLIC_WHATSMYGRADE_DASHBOARD_URL || "https://whatsmygrade.app/"
   }
-  
-  const projectTitle = projectSlug === "billingsley-data-integration" 
-    ? "Intermediary Property DB Management System - Interactive Demo"
-    : "Image2Surface - Interactive Demo"
+
+  const projectTitle =
+    projectSlug === "billingsley-data-integration"
+      ? "Intermediary Property DB Management System - Interactive Demo"
+      : projectSlug === "whats-my-grade"
+      ? "WhatsMyGrade - Live App"
+      : "Image2Surface - Interactive Demo"
   
   return (
     <div className="flex justify-center items-center bg-gray-900 w-full" style={{ aspectRatio: "16/9", maxWidth: "960px", margin: "0 auto" }}>

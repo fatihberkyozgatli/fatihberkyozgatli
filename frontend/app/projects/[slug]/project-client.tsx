@@ -6,10 +6,12 @@ import { ArrowLeft, Github, ExternalLink, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { NavbarActions } from "@/components/navbar-actions"
+import { BackToTop } from "@/components/back-to-top"
 import { useCommandPalette } from "@/components/command-palette-provider"
-import { projectsWithReadingTime } from "@/lib/data"
+import { projectsWithReadingTime, interactiveCaseStudySlugs } from "@/lib/data"
 import { ArchitectureDiagram } from "@/components/architecture-diagram"
 import { ArchitectureDiagramImage2Surface } from "@/components/architecture-diagram-image2surface"
+import { ArchitectureDiagramWhatsMyGrade } from "@/components/architecture-diagram-whatsmygrade"
 import ProductShowcase from "@/components/product-showcase"
 import Link from "next/link"
 
@@ -156,6 +158,26 @@ export default function ProjectClient({ slug }: { slug: string }) {
             </div>
           </motion.section>
         )}
+
+        {project.architecture &&
+          !interactiveCaseStudySlugs.includes(project.slug) && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Technical Architecture</h2>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {project.architecture}
+                </p>
+              </div>
+            </motion.section>
+          )}
 
         {project.slug === "billingsley-data-integration" && (
           <>
@@ -431,7 +453,144 @@ export default function ProjectClient({ slug }: { slug: string }) {
           </>
         )}
 
-        {(project.slug === "billingsley-data-integration" || project.slug === "image-2-surface") && (
+        {project.slug === "whats-my-grade" && (
+          <>
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Technical Architecture</h2>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+                <div className="text-muted-foreground space-y-3">
+                  <p>
+                    WhatsMyGrade is a full-stack grade planning app built around a tested grade engine, user-scoped course data, and AI features that operate through the same backend ownership and validation rules as the rest of the product.
+                  </p>
+                  <div className="bg-secondary/30 rounded p-4 mt-4">
+                    <p className="text-sm font-mono text-primary">
+                      React SPA → Axios + JWT → Express REST API → Controllers + Services → PostgreSQL + OpenAI
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Grade Planning Core</h4>
+                      <p className="text-sm text-muted-foreground">Courses, components, grades, and custom letter scales are stored per user. A pure calculation service computes current grade, maximum obtainable grade, and required averages for each target letter.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">AI Interaction Layer</h4>
+                      <p className="text-sm text-muted-foreground">The Grade Coach, syllabus parser, and natural language grade entry share one OpenAI service while keeping database writes behind validated controller logic and ownership checks.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 hidden md:block">
+                  <ArchitectureDiagramWhatsMyGrade />
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Challenges & Solutions</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 1: Turning Grades Into Actionable Planning</h3>
+                  <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
+                    <p className="text-sm text-muted-foreground">Students need more than a current average; they need to know what is still possible and exactly what score they need on remaining work.</p>
+                  </div>
+                  <p className="text-sm text-foreground font-medium">Solution:</p>
+                  <p className="text-sm text-muted-foreground">Built a pure grade engine that calculates current standing, projected maximum, and required averages for every letter grade while respecting custom course scales and incomplete component weights.</p>
+                </div>
+
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 2: Making AI Useful Without Guessing</h3>
+                  <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
+                    <p className="text-sm text-muted-foreground">A generic chatbot could give misleading grade advice if it does not use the real course data or the same calculation logic as the app.</p>
+                  </div>
+                  <p className="text-sm text-foreground font-medium">Solution:</p>
+                  <p className="text-sm text-muted-foreground">Implemented an AI Grade Coach with live course context and tool calls for reading summaries, calculating scenarios, comparing component impact, and applying validated course updates only after backend checks succeed.</p>
+                </div>
+
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 3: Reducing Setup Friction</h3>
+                  <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
+                    <p className="text-sm text-muted-foreground">Manual course setup can be tedious because students have to translate syllabus language into weighted grade components.</p>
+                  </div>
+                  <p className="text-sm text-foreground font-medium">Solution:</p>
+                  <p className="text-sm text-muted-foreground">Added a PDF syllabus parser that extracts a reviewable draft without writing to the database, then creates the course, scale, and components in one transaction after user confirmation.</p>
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Key Technical Decisions</h2>
+              </div>
+              <div className="space-y-3">
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Pure Grade Engine:</span> <span className="text-muted-foreground">Moved grade calculation into a standalone service so core math can be reused by controllers and covered with Vitest without requiring a database or OpenAI call.</span></p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Review Before Write:</span> <span className="text-muted-foreground">Syllabus parsing returns a draft first, allowing the user to review extracted course data before committing components and scales to PostgreSQL.</span></p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">JWT + Session Hardening:</span> <span className="text-muted-foreground">Auth uses JWT and bcrypt with server validation on load, proactive token-expiry logout, and a 30-minute idle timeout with warning dialog.</span></p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Railway + Vercel Deployment:</span> <span className="text-muted-foreground">The backend and PostgreSQL deploy on Railway while the Vite frontend deploys on Vercel with SPA routing rewrites.</span></p>
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Results & Outcomes</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-xl font-bold text-primary mb-2">AI Grade Coach</p>
+                  <p className="text-sm text-muted-foreground">Course-aware chat can answer planning questions and update course data through backend-validated write tools</p>
+                </div>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-xl font-bold text-primary mb-2">Syllabus to Draft</p>
+                  <p className="text-sm text-muted-foreground">PDF parser turns syllabus structure into a reviewable course setup flow before database creation</p>
+                </div>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-3xl font-bold text-primary mb-2">8h</p>
+                  <p className="text-sm text-muted-foreground">JWT lifetime with server validation, proactive expiry logout, and idle-session protection</p>
+                </div>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-xl font-bold text-primary mb-2">Tested Core Logic</p>
+                  <p className="text-sm text-muted-foreground">Vitest coverage for the grade calculation engine and natural language grade-entry resolver</p>
+                </div>
+              </div>
+            </motion.section>
+          </>
+        )}
+
+        {(project.slug === "billingsley-data-integration" || project.slug === "image-2-surface" || project.slug === "whats-my-grade") && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -443,6 +602,24 @@ export default function ProjectClient({ slug }: { slug: string }) {
               <h2 className="text-2xl font-bold">See the Product</h2>
             </div>
             <ProductShowcase projectSlug={project.slug} />
+
+            {project.slug === "whats-my-grade" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg"
+              >
+                <p className="text-sm text-muted-foreground">
+                  WhatsMyGrade is live. Open the{" "}
+                  <a href="https://whatsmygrade.app/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">live app</a>
+                  {" "}and sign in with{" "}
+                  <span className="font-mono text-foreground">demo</span> / <span className="font-mono text-foreground">demo</span>
+                  {" "}to explore a populated account, or view the code on{" "}
+                  <a href={project.links?.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">GitHub</a>.
+                </p>
+              </motion.div>
+            )}
 
             {project.slug === "image-2-surface" && (
               <motion.div
@@ -508,6 +685,7 @@ export default function ProjectClient({ slug }: { slug: string }) {
           )}
         </motion.section>
       </main>
+      <BackToTop />
     </div>
   )
 }

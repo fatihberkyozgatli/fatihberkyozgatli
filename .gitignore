@@ -18,6 +18,7 @@ frontend/.next/
 frontend/dist/
 frontend/.turbo/
 frontend/.vercel/
+*.tsbuildinfo
 
 # Admin Dashboard (Embedded Vite app)
 frontend/admin-dashboard/node_modules

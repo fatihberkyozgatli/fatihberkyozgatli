@@ -54,6 +54,102 @@
 
 ---
 
+## 06/11/2026 Findings:
+
+### Critical / Deploy Safety
+- [ ] Escape contact form user input before rendering HTML email (`name`, `email`, `message`).
+- [ ] Add contact form abuse protection: rate limiting, honeypot/CAPTCHA, or server-side throttling.
+- [ ] Move Resend initialization so builds/dev do not fail when `RESEND_API_KEY` is missing locally.
+- [ ] Make admin dashboard demo status explicit; current protected routes/API client are mock-only and should not be treated as real auth.
+- [ ] Remove production iframe fallback to `http://localhost:5173`; use a deployed demo URL or a controlled unavailable state.
+
+### Featured Project / Portfolio Strategy
+- [x] Decide the 3-featured-project layout before adding WhatsMyGrade.
+- [x] Use a deliberate featured layout instead of a 2-column orphan card: one flagship full-width case study + two supporting cards.
+- [x] Decide whether WhatsMyGrade becomes the flagship project or a supporting featured project.
+- [x] Use WhatsMyGrade as flagship for product + AI + deployed full-stack proof; keep Billingsley and Image2Surface as supporting featured cards.
+- [x] Add WhatsMyGrade project entry from README + architecture docs.
+- [x] Add WhatsMyGrade case-study content: problem, users, core grade engine, AI Grade Coach, syllabus parser, auth/session hardening, tests, deployment.
+- [x] Add live demo and GitHub links for WhatsMyGrade once final URLs are confirmed. ✅ DONE (demo → https://whatsmygrade.app/, GitHub already linked)
+
+### Case Studies / Project Cards
+- [x] Add visible Case Study buttons for all projects, not only featured projects.
+- [x] Ensure every project detail page has useful case-study content, including C++ Search Engine, Sentiment Analyzer, and Turkish Süper Lig Prediction. ✅ DONE (added problem/impact/architecture + generic Technical Architecture section; reading times now auto-compute)
+- [x] Make project cards structurally equal height with `h-full flex flex-col` and action buttons pinned with `mt-auto`.
+- [x] Remove hardcoded layout spacer for `Sentiment Analyzer - Tweets`.
+- [ ] Remove false click affordances from inert cards or make full-card click behavior intentional.
+- [ ] Reduce homepage featured-card detail; move deep bullets to detail pages.
+
+### UI / UX / Accessibility
+- [ ] Add `aria-label` to icon-only buttons and external icon links.
+- [ ] Add `aria-pressed`, grouped labels, and focus-visible states to project filters.
+- [ ] Add `aria-expanded` to expandable cards/buttons.
+- [ ] Reorder or group lower-conversion homepage sections so the hiring signal is clearer.
+- [ ] Reduce desktop nav density; keep key links visible and move secondary links to command palette/page body.
+- [ ] Surface product proof earlier on case-study pages.
+- [ ] Add mobile-friendly visual proof for architecture/product demos instead of hiding diagrams/showcases on mobile.
+- [ ] Consider shortening or adding skip behavior to the boot sequence for first-time recruiter visits.
+
+### Engineering Hygiene
+- [ ] Add/install ESLint or update lint scripts; `npm run lint` currently fails because `eslint` is missing.
+- [ ] Decide on one package manager/lockfile strategy to avoid npm/pnpm drift.
+- [ ] Make production builds reproducible without external Google font fetches, or accept the deployment dependency knowingly.
+- [ ] Add focused tests for `/api/contact`, `/api/github-stats`, dynamic project routes, and any real auth/session behavior.
+- [ ] Add mobile/desktop smoke checks after major portfolio layout changes.
+
+---
+
+## 06/12/2026 — Review Agent Findings (new, not previously tracked)
+
+> From parallel UI/UX + frontend-design review passes. Items already covered in the 06/11 block are intentionally omitted here.
+
+### Design / Brand
+- [ ] Reduce green-accent spread. Budget `--primary` to: CTAs, section eyebrows, ONE status pulse, and active filter state. Neutralize card hover borders (`hover:border-primary/50` → `hover:border-foreground/20`) and tone down the avatar's green glow (`shadow-primary/40` → `shadow-black/40` or `shadow-primary/10`).
+- [ ] Give typography an identity. Every heading is `text-3xl/4xl font-bold` and hero is `font-bold` — the loudest "AI-built" tell. Move to a weight/scale system (hero `font-semibold tracking-[-0.03em]`, section h2 `text-2xl md:text-3xl font-semibold tracking-[-0.02em]`); optionally one characterful face for the hero only.
+- [ ] Loosen section spacing. `pt-12 pb-12` (48px) reads as dashboard density; premium marketing pages run `py-24 md:py-32`. Pair with `scroll-mt-20` for anchor offset.
+- [ ] Normalize containers: blog uses `max-w-7xl`, timeline/contact use `max-w-4xl`, rest use `max-w-6xl` — pick one (likely `max-w-6xl`) so section edges align.
+- [ ] Unify chip radii: stack chips use `rounded` in smaller-project-card vs `rounded-md` in project-card for the same element.
+
+### Bugs / Hygiene
+- [ ] Delete dead duplicate theme file `styles/globals.css` (stale grays/blue-violet palette that contradicts `app/globals.css`) before it gets imported by accident.
+- [ ] Fix command-palette footer markup (`command-palette.tsx` ~214–225): the keyboard-hint row is missing its wrapper (`flex items-center justify-between border-t border-border px-4 py-2 text-xs text-muted-foreground`) and renders as unstyled full-size text. Also add `role="dialog"`/`aria-modal`, focus trap, and body-scroll lock (or swap to the `cmdk` lib already installed).
+- [ ] Remove double fade-up: `SmallerProjectCard` animates itself AND its parent wraps it in an identical `motion.div` in `featured-projects.tsx`.
+- [ ] Add `prefers-reduced-motion` handling — wrap app in `<MotionConfig reducedMotion="user">` and add a CSS media block neutralizing `animate-pulse` + smooth scroll (WCAG 2.3.3).
+- [ ] Fix invalid `<Link><Button>` nesting (renders `<a><button>`) in `featured-projects.tsx:176` and `blog-section.tsx:77` — use `<Button asChild><Link>`.
+
+### Accessibility (additions to 06/11 block)
+- [ ] Add explicit `focus-visible:ring-2 focus-visible:ring-ring` to hand-rolled `<button>`/`<a>` elements (filters, expand toggles, nav links) — only shadcn Buttons currently have rings.
+- [ ] Bump low-emphasis text contrast: `text-primary/60` "min read" and `text-xs text-muted-foreground` metadata are borderline/failing AA on card backgrounds.
+
+### Optional / Considered
+- [ ] Add `metadataBase` + a branded OG image to `layout.tsx` (Twitter card is `summary` with no image — blank LinkedIn/Slack previews).
+- [ ] Show "Ctrl/⌘ K" or platform-detect instead of ⌘K-only hint for Windows recruiters.
+
+---
+
+## 06/13/2026 — Completed This Session
+
+- [x] WhatsMyGrade interactive architecture diagram (`architecture-diagram-whatsmygrade.tsx`) matching the Billingsley/Image2Surface style; embedded in the case-study Technical Architecture section.
+- [x] WhatsMyGrade "See the Product" section added and wired to the live deployment (https://whatsmygrade.app/), with a live-app + GitHub note row.
+- [x] Back-to-top button (`back-to-top.tsx`) with a scroll-progress ring, `cursor-pointer`, desktop hover label, and reduced-motion support; mounted on home, project/blog/event detail pages, and the projects/blogs listing pages.
+- [x] Skills updated from WhatsMyGrade: added LLM Integration (data), Express (backend), Vite (tools), Framer Motion + Vercel + Railway (frontend); removed redundant Three.js (covered by React Three Fiber).
+- [x] Lightweight case studies for the 3 notable projects (Süper Lig, Sentiment Analyzer, Search Engine): added problem/impact/architecture in `data.ts` + generic Technical Architecture render; reading times now auto-compute.
+- [x] Appended the 06/12 review-agent findings block (design/bugs/a11y items) to this file.
+- [x] Added a `demo` / `demo` sign-in disclaimer to the WhatsMyGrade "See the Product" note.
+- [x] Made reading times more accurate: +3 min bonus for interactive case studies (Billingsley, Image2Surface, WhatsMyGrade) whose extra sections live in JSX, not data; exported `interactiveCaseStudySlugs` as the single source of truth.
+- [x] Refined skills layout: moved Railway from frontend → tools so frontend stays ≤ 2 rows.
+- [x] Created `frontend/.env.local` with all required vars (RESEND, CONTACT_EMAIL, GITHUB_API_TOKEN, the three dashboard URLs); confirmed gitignored.
+- [x] Full project cleanup: removed all code comments from custom source + dead code (unused imports in theme-provider/blog-post-client/boot-sequence, unused `isConnected` function, unused `showBlankLine` prop); verified no comments / no unused symbols / build passes. (`components/ui/` and sub-apps left untouched.)
+- [x] Gitignored `*.tsbuildinfo` build artifact.
+
+### Open follow-ups from this session
+- [x] Reconcile Sentiment Analyzer accuracy: matched portfolio to the repo's `accuracy.txt` (73% → 68%) in summary, highlight, and impact. (README still says 73%/52% — update the repo separately if desired.)
+- [ ] Confirm the WhatsMyGrade live-app iframe actually renders (it may be blocked by X-Frame-Options/CSP on whatsmygrade.app — if so, fall back to the CTA/screenshots).
+- [ ] Add a WhatsMyGrade `demo` / `demo` seeded account with sample courses so recruiters can try the real app without signing up.
+- [ ] Apply the flagship + pair layout to the homepage `featured-projects.tsx` grid (already done on `/projects`).
+
+---
+
 ## High Priority Next
 - [ ] Add "View All Events" button & dedicated /events page (when 4+ events available) (2 hrs)
 - [ ] Enhanced case studies for C++/Sentiment/Süper Lig (2-3 hrs)

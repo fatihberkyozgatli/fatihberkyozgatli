@@ -9,6 +9,7 @@ import Link from "next/link"
 import { ChevronLeft, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NavbarActions } from "@/components/navbar-actions"
+import { BackToTop } from "@/components/back-to-top"
 import { useCommandPalette } from "@/components/command-palette-provider"
 
 type FocusFilter = "all" | "fullstack" | "data-ai" | "systems"
@@ -20,6 +21,7 @@ export default function ProjectsPage() {
   const featuredProjects = projectsWithReadingTime.filter((p) => p.featured)
   const smallerProjects = projectsWithReadingTime.filter((p) => !p.featured)
   const allProjects = [...featuredProjects, ...smallerProjects]
+  const [flagshipProject, ...supportingFeaturedProjects] = featuredProjects
 
   const filteredProjects =
     filter === "all" ? null : allProjects.filter((p) => p.focus === filter)
@@ -112,7 +114,7 @@ export default function ProjectsPage() {
                   {project.featured ? (
                     <ProjectCard project={project} />
                   ) : (
-                    <SmallerProjectCard project={project} showBlankLine={true} />
+                    <SmallerProjectCard project={project} />
                   )}
                 </motion.div>
               ))}
@@ -144,8 +146,35 @@ export default function ProjectsPage() {
                   <h2 className="text-2xl font-semibold">Featured Work</h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {featuredProjects.map((project, index) => (
+                {flagshipProject && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-6"
+                  >
+                    <ProjectCard project={flagshipProject} />
+                  </motion.div>
+                )}
+
+                {supportingFeaturedProjects.length > 0 && (
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {supportingFeaturedProjects.map((project, index) => (
+                      <motion.div
+                        key={project.slug}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+
+                {!flagshipProject && (
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {featuredProjects.map((project, index) => (
                     <motion.div
                       key={project.slug}
                       initial={{ opacity: 0, y: 20 }}
@@ -154,8 +183,9 @@ export default function ProjectsPage() {
                     >
                       <ProjectCard project={project} />
                     </motion.div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </motion.div>
 
               {smallerProjects.length > 0 && (
@@ -191,6 +221,7 @@ export default function ProjectsPage() {
           )}
         </div>
       </section>
+      <BackToTop />
     </main>
   )
 }

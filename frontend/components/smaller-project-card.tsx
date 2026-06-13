@@ -1,23 +1,23 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { Project } from "@/lib/data"
 
 interface SmallerProjectCardProps {
   project: Project
-  showBlankLine?: boolean
 }
 
-export function SmallerProjectCard({ project, showBlankLine = false }: SmallerProjectCardProps) {
+export function SmallerProjectCard({ project }: SmallerProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="group relative rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 cursor-pointer"
+      className="group relative flex h-full flex-col rounded-lg border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
     >
       <div className="mb-3">
         <div className="flex items-start justify-between gap-2 mb-1">
@@ -52,23 +52,18 @@ export function SmallerProjectCard({ project, showBlankLine = false }: SmallerPr
         </div>
       )}
 
-      {project.title === "Sentiment Analyzer - Tweets" && showBlankLine && (
-        <div className="h-4" />
-      )}
-
-      <div className="flex gap-2 pt-3 border-t border-border">
+      <div className="mt-auto flex gap-2 pt-3 border-t border-border">
+        <Button size="sm" variant="default" className="gap-2 flex-1" asChild>
+          <Link href={`/projects/${project.slug}`}>
+            Case Study
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </Button>
         {project.links?.github && (
           <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
             <a href={project.links.github} target="_blank" rel="noopener noreferrer">
               <Github className="w-4 h-4" />
-              View Code
-            </a>
-          </Button>
-        )}
-        {project.links?.caseStudy && (
-          <Button size="sm" variant="ghost" className="gap-2 flex-1" asChild>
-            <a href={project.links.caseStudy} target="_blank" rel="noopener noreferrer">
-              Case Study
+              Code
             </a>
           </Button>
         )}
