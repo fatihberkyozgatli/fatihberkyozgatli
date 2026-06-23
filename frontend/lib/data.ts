@@ -8,6 +8,7 @@ export type Project = {
   role: string
   stack?: string[]
   featured: boolean
+  hideFromHome?: boolean
   focus?: "fullstack" | "data-ai" | "systems"
   image?: string
   links?: {
@@ -139,13 +140,36 @@ export const projects: Project[] = [
     architecture: "The system follows a 6-layer ETL (Extract, Transform, Load) architecture optimized for data consistency, security, and scalability. Third-party Financial Software → Python Preprocessing → MySQL Storage → FastAPI API (Interaction Layer) → React Frontend (Admin) + External Applications. Data flows through multiple validation layers ensuring enterprise-grade reliability with financial records. APScheduler orchestrates customizable, scheduled data imports via SFTP using Paramiko for secure connections. Python preprocessing handles validation and data cleaning before MySQL storage with strict schema constraints. FastAPI with Uvicorn provides high-performance async access supporting concurrent requests. Pydantic ensures strict schema validation preventing malformed data from entering the database. JWT tokens with refresh token rotation secure all endpoints, while 5-minute rate limiting prevents brute-force attacks. Technical Decisions: FastAPI over Django for async-first architecture enabling high concurrency, plus automatic OpenAPI documentation for transparency. Paramiko for SFTP provides low-level control over connection lifecycle and security, integrating cleanly with APScheduler scheduling. JWT plus Rate Limiting enforces 5-minute lockout after 5 failed logins without permanent account blocks, balancing security and usability. User Deactivation (not deletion) maintains historical audit trail for compliance while allowing re-activation. Challenges & Solutions: Service Management required pivoting from NSSM to WinSW plus Nginx architecture when NSSM wasn't supported on Windows Server post-2020. WinSW wraps FastAPI as Windows service while Nginx acts as reverse proxy handling HTTP/S traffic and routing. Data source delays were addressed with manual import fallback allowing CSV uploads from local files while maintaining identical pipeline logic, enabling development continuation. Data integrity under load was solved with multi-layer validation: Pydantic schemas validate all ingested data before insertion, Python preprocessing handles missing fields gracefully, database constraints prevent invalid data at storage level, comprehensive error logging enables rapid troubleshooting of edge cases. Results: System processes monthly property updates for 500+ records across multiple property management divisions with zero data loss or corruption incidents since deployment. Customizable scheduled imports run as frequently as needed (daily, weekly, or custom cadence) eliminating manual processes entirely. Completely automated platform replaced recurring manual operations with autonomous scheduled data ingestion and delivery, increasing reliability and scalability. Senior Design Expo recognition validates full-stack systems engineering approach combining secure authentication, automated scheduling, data validation, and enterprise-grade infrastructure."
   },
   {
+    title: "Pages from the Red Diary",
+    slug: "pages-from-the-red-diary",
+    category: "fullstack",
+    summary: "A production content platform built for a real client: a personal-reflections blog with an Ottoman/Persian editorial aesthetic, a custom admin CMS, and a database-enforced registration wall that gates full essays behind a free account.",
+    role: "Full-Stack Engineer",
+    stack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Row Level Security", "Tiptap", "Zod", "Server Actions", "Vitest", "Playwright", "Vercel"],
+    featured: true,
+    focus: "fullstack",
+    links: {
+      github: "https://github.com/fatihberkyozgatli/PagesfromtheRedDiary"
+    },
+    highlights: [
+      "Shipped a production blog platform for a real client with a database-enforced registration wall that keeps teasers public for SEO while gating full essays behind a free account",
+      "Enforced security in PostgreSQL with Row Level Security and a column-limited posts_public view, so gated content cannot leak even through direct API access",
+      "Built a custom admin CMS with a Tiptap editor, post, category, and tag CRUD, a Supabase Storage media library, and admin-editable About and contact settings",
+      "Added role-based auth, moderated comments, likes, view analytics, full-text search, and newsletter and contact capture through Zod-validated Server Actions",
+      "Delivered across six build stages and launch-hardened with a four-layer test suite spanning unit, integration, RLS, and Playwright e2e"
+    ],
+    problem: "A real client needed a launch-ready home for their personal writing with a distinctive Ottoman/Persian identity, not a generic template. The hard requirement was a registration wall: anyone can read a teaser, but the full essay requires a free account, a gate that is trivially bypassed when enforced only in the UI.",
+    impact: "Pages from the Red Diary launched as a production platform the client owns end to end. The owner writes and publishes through a custom admin portal, and the reading wall is enforced in PostgreSQL by Row Level Security, so a gated body cannot be retrieved even through the API.",
+    architecture: "Pages from the Red Diary is a Next.js 15 App Router application in TypeScript, styled with a custom Ottoman/Persian Tailwind theme and backed by Supabase for Postgres, Auth, and Storage. Security lives in the database: Row Level Security is enabled on every table, and the registration wall is implemented with a column-limited posts_public view that exposes only safe teaser columns (title, cover, excerpt, category, date, reading time) while the gated content JSON is never granted to anonymous callers. Public pages default to React Server Components for speed and SEO, with client components only where interaction requires them, such as auth forms, search, the comment composer, and the Tiptap editor. The single-post page always renders public metadata so search engines index the teaser, then fetches and renders the body only for an authenticated session. All admin writes go through Next.js Server Actions validated with Zod and authorized by RLS under the caller's session, with no bespoke REST layer and no service-role key in the browser. Three thin Supabase client factories cover the browser, server components and actions, and middleware; middleware.ts refreshes the session cookie on every request and guards the /admin routes. Engagement features, moderated nested comments, one-like-per-user reactions, per-post view counts, and full-text search, run through security-definer RPCs that return only safe columns. The platform deploys on Vercel with hosted Supabase Postgres, and was delivered across six dependency-ordered stages and hardened with a four-layer test suite."
+  },
+  {
     title: "Image2Surface: 3D Mesh Generation from Images",
     slug: "image-2-surface",
     category: "fullstack",
     summary: "Converts 2D images into interactive 3D surface models with layered architecture demonstrating clean separation of concerns and real-time mesh editing capabilities.",
     role: "Full-Stack Engineer",
     stack: ["React", "TypeScript", "Three.js", "React Three Fiber", "FastAPI", "Python", "PyTorch", "NumPy", "OpenCV", "SciPy", "Axios", "CUDA/GPU"],
-    featured: true,
+    featured: false,
     focus: "fullstack",
     links: {
       github: "https://github.com/Patriciomrt05/Image2Surface"
@@ -191,6 +215,7 @@ export const projects: Project[] = [
     role: "Full-Stack Engineer",
     stack: ["C++", "CMake", "STL", "Memory Management", "Valgrind", "Catch2"],
     featured: false,
+    hideFromHome: true,
     focus: "data-ai",
     links: {
       github: "https://github.com/fatihberkyozgatli/Sentiment_Analyzer_Tweets"
@@ -315,6 +340,7 @@ export const interactiveCaseStudySlugs = [
   "billingsley-data-integration",
   "image-2-surface",
   "whats-my-grade",
+  "pages-from-the-red-diary",
 ]
 
 export function enrichProjectsWithReadingTime(projectsList: Project[]): Project[] {
@@ -755,8 +781,20 @@ export const timeline: TimelineEvent[] = [
   },
   {
     year: "2026",
-    title: "Building My Portfolio",
+    title: "Building fatihOS",
     description: "Launched fatihOS, a premium portfolio system showcasing full-stack engineering, data workflows, and interactive design.",
+    type: "project"
+  },
+  {
+    year: "2026",
+    title: "Launched WhatsMyGrade",
+    description: "Built and deployed an AI-powered academic planning platform featuring syllabus parsing, grade forecasting, and personalized study assistance.",
+    type: "project"
+  },
+  {
+    year: "2026",
+    title: "Delivered Pages from the Red Diary",
+    description: "Designed and launched a production content platform with a custom CMS, gated content, role-based access controls, and editorial publishing workflows for a real client.",
     type: "project"
   },
 ]
@@ -787,6 +825,7 @@ export const commands = [
   { label: "Open Projects", action: "navigate", target: "#projects" },
   { label: "WhatsMyGrade", action: "navigate", target: "/projects/whats-my-grade" },
   { label: "Billingsley Data Integration", action: "navigate", target: "/projects/billingsley-data-integration" },
+  { label: "Pages from the Red Diary", action: "navigate", target: "/projects/pages-from-the-red-diary" },
   { label: "Image2Surface 3D Mesh", action: "navigate", target: "/projects/image-2-surface" },
   { label: "Turkish Super League Prediction", action: "navigate", target: "/projects/turkish-super-league-prediction" },
   { label: "Sentiment Analyzer", action: "navigate", target: "/projects/sentiment-analyzer-tweets" },

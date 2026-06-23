@@ -102,7 +102,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid md:grid-cols-2 gap-6"
+              className="grid md:grid-cols-2 items-start gap-6"
             >
               {filteredProjects.map((project, index) => (
                 <motion.div
@@ -158,7 +158,7 @@ export default function ProjectsPage() {
                 )}
 
                 {supportingFeaturedProjects.length > 0 && (
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 items-start gap-6">
                     {supportingFeaturedProjects.map((project, index) => (
                       <motion.div
                         key={project.slug}
@@ -173,7 +173,7 @@ export default function ProjectsPage() {
                 )}
 
                 {!flagshipProject && (
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 items-start gap-6">
                     {featuredProjects.map((project, index) => (
                     <motion.div
                       key={project.slug}

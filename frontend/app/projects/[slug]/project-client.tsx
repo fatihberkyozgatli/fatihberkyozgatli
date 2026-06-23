@@ -12,6 +12,7 @@ import { projectsWithReadingTime, interactiveCaseStudySlugs } from "@/lib/data"
 import { ArchitectureDiagram } from "@/components/architecture-diagram"
 import { ArchitectureDiagramImage2Surface } from "@/components/architecture-diagram-image2surface"
 import { ArchitectureDiagramWhatsMyGrade } from "@/components/architecture-diagram-whatsmygrade"
+import { ArchitectureDiagramRedDiary } from "@/components/architecture-diagram-reddiary"
 import ProductShowcase from "@/components/product-showcase"
 import Link from "next/link"
 
@@ -590,7 +591,144 @@ export default function ProjectClient({ slug }: { slug: string }) {
           </>
         )}
 
-        {(project.slug === "billingsley-data-integration" || project.slug === "image-2-surface" || project.slug === "whats-my-grade") && (
+        {project.slug === "pages-from-the-red-diary" && (
+          <>
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Technical Architecture</h2>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+                <div className="text-muted-foreground space-y-3">
+                  <p>
+                    A Next.js 15 App Router app in TypeScript where security lives in the database, not the frontend. Public pages are React Server Components; the registration wall is enforced in PostgreSQL through Row Level Security and a column-limited view, so gated content cannot leak even through direct API access.
+                  </p>
+                  <div className="bg-secondary/30 rounded p-4 mt-4">
+                    <p className="text-sm font-mono text-primary">
+                      Visitor → Next.js RSC → Middleware (auth guard) → Server Actions (Zod) → Supabase Postgres + RLS → posts_public view / Auth / Storage
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">The Registration Wall</h4>
+                      <p className="text-sm text-muted-foreground">Public teaser metadata is server-rendered for SEO, while the full post body is fetched only for an authenticated session. A column-limited posts_public view means the content JSON is never granted to anonymous callers.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Custom Admin CMS</h4>
+                      <p className="text-sm text-muted-foreground">The owner writes and publishes through a Tiptap editor with post, category, and tag CRUD, a Supabase Storage media library, and admin-editable About, contact, and featured-post settings, all via Zod-validated Server Actions.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 hidden md:block">
+                  <ArchitectureDiagramRedDiary />
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Challenges & Solutions</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 1: A Reading Wall That Cannot Be Bypassed</h3>
+                  <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
+                    <p className="text-sm text-muted-foreground">A login gate enforced only in the UI is trivially bypassed by calling the API directly, and RLS is row-level so it cannot hide a single column like the post body.</p>
+                  </div>
+                  <p className="text-sm text-foreground font-medium">Solution:</p>
+                  <p className="text-sm text-muted-foreground">Enforced the wall in PostgreSQL with Row Level Security on every table plus a column-limited posts_public view that exposes only teaser columns. The content JSON is never granted to anonymous callers, so the body cannot be retrieved even through the API.</p>
+                </div>
+
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 2: SEO Without Leaking Gated Content</h3>
+                  <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
+                    <p className="text-sm text-muted-foreground">Public pages must be fast and fully indexable so essays can be discovered, but the full body has to stay private behind the wall.</p>
+                  </div>
+                  <p className="text-sm text-foreground font-medium">Solution:</p>
+                  <p className="text-sm text-muted-foreground">Public metadata (title, cover, excerpt, category, date) is always server-rendered from posts_public for search engines, while the gated body is fetched server-side only for an authenticated session. The teaser ships in the HTML; the body never does for anonymous visitors.</p>
+                </div>
+
+                <div className="bg-card border border-border rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-2">Challenge 3: Safe Authoring for a Non-Technical Owner</h3>
+                  <div className="bg-destructive/10 border-l-2 border-destructive rounded px-3 py-2 mb-3">
+                    <p className="text-sm text-muted-foreground">The client needed to write, format, and publish rich essays, manage media, and edit site content without touching code or risking the database.</p>
+                  </div>
+                  <p className="text-sm text-foreground font-medium">Solution:</p>
+                  <p className="text-sm text-muted-foreground">Built a custom admin CMS with a Tiptap editor (content stored as JSON), a Supabase Storage media library with drag-and-drop uploads, and admin-editable About, contact, and featured-post settings. Every write runs through a Zod-validated Server Action authorized by RLS.</p>
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Key Technical Decisions</h2>
+              </div>
+              <div className="space-y-3">
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Security in the Database (RLS):</span> <span className="text-muted-foreground">Access rules live in PostgreSQL via Row Level Security and a column-limited view, not in the frontend, so the registration wall holds even against direct API calls.</span></p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Server Actions over a REST API:</span> <span className="text-muted-foreground">All mutations run as Next.js Server Actions under the caller's session and validated with Zod, removing a bespoke API layer while RLS authorizes every write.</span></p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Server Components by Default:</span> <span className="text-muted-foreground">Public pages render on the server for speed and SEO; client components are used only where interaction demands it, such as auth, search, comments, and the editor.</span></p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-4">
+                  <p className="text-sm"><span className="font-semibold text-foreground">Tiptap with JSON Content:</span> <span className="text-muted-foreground">Rich text is stored as structured JSON and rendered through a shared read-only renderer that mirrors the editor's extension set, keeping author and reader views in sync.</span></p>
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-1 h-6 bg-primary rounded-full" />
+                <h2 className="text-2xl font-bold">Results & Outcomes</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-xl font-bold text-primary mb-2">Production</p>
+                  <p className="text-sm text-muted-foreground">Launched as a live platform the client owns end to end, deployed on Vercel with hosted Supabase Postgres</p>
+                </div>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-xl font-bold text-primary mb-2">RLS-Enforced</p>
+                  <p className="text-sm text-muted-foreground">The registration wall is verified at the database level: anonymous callers are denied gated post bodies</p>
+                </div>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-3xl font-bold text-primary mb-2">77</p>
+                  <p className="text-sm text-muted-foreground">Unit and integration tests green, alongside RLS SQL checks and Playwright anon e2e in a four-layer suite</p>
+                </div>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
+                  <p className="text-3xl font-bold text-primary mb-2">6 Stages</p>
+                  <p className="text-sm text-muted-foreground">Delivered as dependency-ordered build stages, each spec, plan, build, and review, then launch-hardened</p>
+                </div>
+              </div>
+            </motion.section>
+          </>
+        )}
+
+        {(project.slug === "billingsley-data-integration" || project.slug === "image-2-surface" || project.slug === "whats-my-grade" || project.slug === "pages-from-the-red-diary") && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -644,6 +782,22 @@ export default function ProjectClient({ slug }: { slug: string }) {
               >
                 <p className="text-sm text-muted-foreground">
                   This demonstration uses mock data. For the full project, visit{" "}
+                  <a href={project.links?.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">GitHub</a>.
+                </p>
+              </motion.div>
+            )}
+
+            {project.slug === "pages-from-the-red-diary" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg"
+              >
+                <p className="text-sm text-muted-foreground">
+                  Pages from the Red Diary is live. Open the{" "}
+                  <a href="https://www.pagesfromthereddiary.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">live site</a>
+                  {" "}to explore the public pages and the registration wall, or view the code on{" "}
                   <a href={project.links?.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">GitHub</a>.
                 </p>
               </motion.div>

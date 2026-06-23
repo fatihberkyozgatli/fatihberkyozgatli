@@ -14,8 +14,9 @@ type FocusFilter = "all" | "fullstack" | "data-ai" | "systems"
 export function FeaturedProjects() {
   const [filter, setFilter] = useState<FocusFilter>("all")
 
-  const featuredProjects = projectsWithReadingTime.filter((p) => p.featured)
-  const smallerProjects = projectsWithReadingTime.filter((p) => !p.featured)
+  const homeProjects = projectsWithReadingTime.filter((p) => !p.hideFromHome)
+  const featuredProjects = homeProjects.filter((p) => p.featured)
+  const smallerProjects = homeProjects.filter((p) => !p.featured)
   const allProjects = [...featuredProjects, ...smallerProjects]
   const [flagshipProject, ...supportingFeaturedProjects] = featuredProjects
 
@@ -83,7 +84,7 @@ export function FeaturedProjects() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="grid md:grid-cols-2 gap-6"
+              className="grid md:grid-cols-2 items-start gap-6"
             >
               {filteredProjects && filteredProjects.length > 0 ? (
                 filteredProjects.map((project, index) => (
@@ -130,7 +131,7 @@ export function FeaturedProjects() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.25 }}
                 viewport={{ once: true }}
-                className="grid md:grid-cols-2 gap-6 mb-16"
+                className="grid md:grid-cols-2 items-start gap-6 mb-16"
               >
                 {supportingFeaturedProjects.map((project, index) => (
                   <motion.div
@@ -152,7 +153,7 @@ export function FeaturedProjects() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="grid md:grid-cols-2 gap-6 mb-16"
+                className="grid md:grid-cols-2 items-start gap-6 mb-16"
               >
                 {featuredProjects.map((project, index) => (
                 <motion.div

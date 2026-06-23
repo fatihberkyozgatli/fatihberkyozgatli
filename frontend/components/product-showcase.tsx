@@ -13,6 +13,8 @@ export default function ProductShowcase({ projectSlug = "billingsley-data-integr
     dashboardUrl = process.env.NEXT_PUBLIC_IMAGE2SURFACE_DASHBOARD_URL || ""
   } else if (projectSlug === "whats-my-grade") {
     dashboardUrl = process.env.NEXT_PUBLIC_WHATSMYGRADE_DASHBOARD_URL || "https://whatsmygrade.app/"
+  } else if (projectSlug === "pages-from-the-red-diary") {
+    dashboardUrl = process.env.NEXT_PUBLIC_REDDIARY_DASHBOARD_URL || "https://www.pagesfromthereddiary.com/"
   }
 
   const projectTitle =
@@ -20,6 +22,8 @@ export default function ProductShowcase({ projectSlug = "billingsley-data-integr
       ? "Intermediary Property DB Management System - Interactive Demo"
       : projectSlug === "whats-my-grade"
       ? "WhatsMyGrade - Live App"
+      : projectSlug === "pages-from-the-red-diary"
+      ? "Pages from the Red Diary - Live Site"
       : "Image2Surface - Interactive Demo"
   
   return (
