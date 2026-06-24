@@ -17,6 +17,8 @@ Features include:
 - Terminal-inspired boot sequence
 - Dynamic theming system
 - Interactive project showcase
+- Blog / writing collection
+- Live GitHub activity stats
 - Real-time contact integration
 - Specialized integrated applications
 
@@ -33,8 +35,8 @@ Next.js • React • TypeScript • Tailwind CSS • Framer Motion • shadcn/u
 
 **Key Features:**
 - Server-side rendering for SEO optimization
-- Dynamic route handling for projects and events
-- API routes for contact form processing
+- Dynamic route handling for projects, blogs, and events
+- API routes for contact form and GitHub stats
 - Responsive grid-based layouts
 - Dark-first design philosophy
 
@@ -55,18 +57,22 @@ frontend/
 ├── app/                          # Next.js core platform
 │   ├── layout.tsx               # Root layout with theme provider
 │   ├── page.tsx                 # Main portfolio homepage
-│   ├── api/contact/            # Contact form endpoint
-│   └── [dynamic routes]/        # Project and event pages
+│   ├── globals.css              # Global styles + Tailwind theme
+│   ├── api/
+│   │   ├── contact/             # Contact form endpoint
+│   │   └── github-stats/        # GitHub language stats endpoint
+│   ├── projects/                # Projects listing + [slug] detail
+│   ├── blogs/                   # Blog listing + [slug] detail
+│   └── events/[slug]/           # Event detail pages
 ├── components/                   # Core components
 │   ├── hero.tsx
 │   ├── featured-projects.tsx
+│   ├── blog-section.tsx
 │   ├── command-palette.tsx
 │   └── ui/                      # shadcn component library
 ├── lib/
 │   ├── data.ts                  # Portfolio content
 │   └── utils.ts                 # Utilities
-├── styles/
-│   └── globals.css              # Tailwind configuration
 ├── admin-dashboard/             # Data management system (Vite)
 ├── image2surface-showcase/      # 3D tool (Next.js)
 └── pnpm-workspace.yaml          # Monorepo configuration

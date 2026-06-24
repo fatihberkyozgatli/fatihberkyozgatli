@@ -184,7 +184,7 @@
 - [ ] Reading progress bar on blog post detail pages (30 min)
 - [ ] Table of contents for long blog posts (1 hr)
 - [ ] Related posts section at bottom of blog detail (1 hr)
-- [ ] Back to top button on long pages (20 min)
+- [x] ~~Back to top button on long pages~~ ✅ DONE (`back-to-top.tsx` with scroll-progress ring, mounted across home/detail/listing pages)
 
 ### Phase 2 (Lower Priority, MAYBE)
 - [ ] Terminal Mode (3-4 hrs)
