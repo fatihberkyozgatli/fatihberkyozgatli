@@ -144,9 +144,23 @@
 
 ### Open follow-ups from this session
 - [x] Reconcile Sentiment Analyzer accuracy: matched portfolio to the repo's `accuracy.txt` (73% → 68%) in summary, highlight, and impact. (README still says 73%/52% — update the repo separately if desired.)
-- [ ] Confirm the WhatsMyGrade live-app iframe actually renders (it may be blocked by X-Frame-Options/CSP on whatsmygrade.app — if so, fall back to the CTA/screenshots).
 - [ ] Add a WhatsMyGrade `demo` / `demo` seeded account with sample courses so recruiters can try the real app without signing up.
-- [ ] Apply the flagship + pair layout to the homepage `featured-projects.tsx` grid (already done on `/projects`).
+
+---
+
+## 06/23/2026 — Completed This Session
+
+- [x] Added **Pages from the Red Diary** as a featured project (supporting card next to Billingsley) with a full interactive case study: Technical Architecture + clickable diagram (`architecture-diagram-reddiary.tsx`), Challenges, Decisions, Results, and a "See the Product" embed wired to https://www.pagesfromthereddiary.com/; GitHub linked to `fatihberkyozgatli/PagesfromtheRedDiary`.
+- [x] Moved **Image2Surface** down to "Other Notable Projects" (case-study page kept) and hid **Sentiment Analyzer** from the homepage via a new `hideFromHome` flag while keeping it on `/projects`, so the homepage "Other Notable" grid stays a clean 3-up.
+- [x] Timeline: renamed "Building My Portfolio" → "Building fatihOS"; added "Launched WhatsMyGrade" and "Delivered Pages from the Red Diary".
+- [x] Fixed the side-by-side featured-card bug where expanding one card stretched its neighbor (`items-start` on the two-column card grids on the homepage and `/projects`).
+- [x] Trimmed the Red Diary featured-card expanded content (problem/highlights/impact) to match Billingsley's expanded height; deep detail stays in the case-study sections.
+- [x] Confirmed the WhatsMyGrade live-app iframe renders (no `X-Frame-Options` on whatsmygrade.app). (was: 06/13 open follow-up)
+- [x] Verified the homepage already uses the flagship + supporting-pair layout in `featured-projects.tsx`. (was: 06/13 open follow-up)
+- [x] Back-to-top button on long pages — already shipped in the 06/13 session (`back-to-top.tsx`); removed the stale duplicate from the wishlist.
+
+### New follow-up (Red Diary embed)
+- [ ] The Red Diary "See the Product" embed is blocked because pagesfromthereddiary.com sends `X-Frame-Options: DENY`. Fix on the Red Diary repo: remove `X-Frame-Options` and add `Content-Security-Policy: frame-ancestors 'self' https://fatihberkyozgatli.com https://www.fatihberkyozgatli.com http://localhost:3000;`, then redeploy. No portfolio change needed; the embed fills automatically afterward.
 
 ---
 
@@ -184,7 +198,6 @@
 - [ ] Reading progress bar on blog post detail pages (30 min)
 - [ ] Table of contents for long blog posts (1 hr)
 - [ ] Related posts section at bottom of blog detail (1 hr)
-- [x] ~~Back to top button on long pages~~ ✅ DONE (`back-to-top.tsx` with scroll-progress ring, mounted across home/detail/listing pages)
 
 ### Phase 2 (Lower Priority, MAYBE)
 - [ ] Terminal Mode (3-4 hrs)
